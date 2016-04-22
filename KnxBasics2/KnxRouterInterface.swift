@@ -8,8 +8,13 @@
 
 import Foundation
 
-protocol KnxRouterInterface {
+public protocol KnxRouterInterface {
     
-    init(ipAddress:String)
+    init()
     
+    func connectTo(ipAddress:String, onPort:UInt16)
+    
+    func submit(telegram:KnxTelegram)
+    
+    func show()
 }

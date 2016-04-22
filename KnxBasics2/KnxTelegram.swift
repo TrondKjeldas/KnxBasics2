@@ -9,11 +9,13 @@
 import Foundation
 
 
-protocol KnxTelegram {
+public protocol KnxTelegram {
     
 
-    init(s:String)
+    init()
+    init(bytes:[UInt8])
     
-    func show() -> Int
-
+    var payload:[UInt8] { get }
+    
+    func show()
 }

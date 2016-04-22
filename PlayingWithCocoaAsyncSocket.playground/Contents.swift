@@ -1,19 +1,17 @@
 //: Playground - noun: a place where people can play
 
 import XCPlayground
-//XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
 import Cocoa
 
 import CocoaAsyncSocket
 
-import KnxBasics2
-
-//let kp = KnxTelegramImplementation()
 
 public class SendNet: NSObject, GCDAsyncSocketDelegate {
     
     var socket:GCDAsyncSocket! = nil
+    var socket2:GCDAsyncSocket! = nil
     
     func setupConnection(){
         
@@ -24,7 +22,7 @@ public class SendNet: NSObject, GCDAsyncSocketDelegate {
         }
         
         let port:UInt16 = 80
-        let host = "192.168.1.51"
+        let host = "192.168.1.7"
         do {
             
              try socket.connectToHost(host, onPort: port)
@@ -35,7 +33,33 @@ public class SendNet: NSObject, GCDAsyncSocketDelegate {
         }
         
     }
+    
+    func startServer(port:UInt16) {
+        
+        if (socket == nil) {
+            socket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+        } else {
+            socket.disconnect()
+        }
+        
+        do {
+            try socket.acceptOnPort(port)
+        } catch let e {
+            print("Catched: \(e)")
+        }
+    }
 
+    public func socket(socket : GCDAsyncSocket, didAcceptNewSocket: GCDAsyncSocket) {
+        
+        socket2 = socket
+        print("Accepted: \(socket.connectedHost) from port \(socket.connectedPort).")
+        
+        let string = "THIS IS SENT\n\n"
+        let msgData = string.dataUsingEncoding(NSUTF8StringEncoding)
+        socket2.writeData(msgData, withTimeout: -1.0, tag: 0)
+        socket2.readDataWithTimeout(-1.0, tag: 0)
+    }
+    
     public func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
         
         print("Connected to \(host) on port \(p).")
@@ -44,9 +68,9 @@ public class SendNet: NSObject, GCDAsyncSocketDelegate {
         
         getSystemInfo()
         getSystemStatus()
-        
     }
     
+
     func send(msgBytes: [UInt8]) {
         
         let msgData = NSData(bytes: msgBytes, length: msgBytes.count)
@@ -121,13 +145,15 @@ class MyDelegateClass : NSObject, GCDAsyncSocketDelegate {
 
 let md = MyDelegateClass()
 let md2 = SendNet()
+//md2.startServer(18002)
+
 //md2.setupConnection()
 //md2.getSystemStatus()
 
 let s = GCDAsyncSocket(delegate: md, delegateQueue: dispatch_get_main_queue())
 
 do {
-    try s.connectToHost("192.168.1.51", onPort: 80)
+    try s.connectToHost("zbox", onPort: 80)
     print("after")
 } catch let e {
     print("Oops: \(e)")

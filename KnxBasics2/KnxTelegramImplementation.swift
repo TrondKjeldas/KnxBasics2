@@ -10,19 +10,41 @@ import Foundation
 
 //import KnxTelegram
 
-class KnxTelegramImplementation : KnxTelegram {
+public class KnxTelegramImplementation : KnxTelegram {
   
-    private var _s:String
+  /*
+    -(UInt8*)bytes;
+    -(size_t)bufsize;
     
-    internal required init(s:String) {
+    -(size_t)length;
+    -(UInt16)type;
+    -(UInt8*)payload;
     
-        _s = s
+    -(void)log;
+    */
+    
+    private var _bytes:[UInt8]?
+    private var _len:Int
+    
+    required public init() {
+        
+        _bytes = nil
+        _len = 0
+    }
+
+    required public init(bytes:[UInt8]) {
+    
+        _bytes = bytes
+        _len = bytes.count
     }
     
-    internal func show() -> Int {
+    public var payload:[UInt8] {
+        get {
+            return _bytes!
+        }
+    }
+     public func show() {
     
-        print(_s)
-    
-        return 0
+        print(_bytes)
     }
 }
