@@ -10,7 +10,5 @@ import Foundation
 
 public protocol KnxTelegramFactory {
     
-    init()
-    
-    func createSubscriptionRequest(groupAddress:KnxGroupAddress) -> KnxTelegram
+    static func createSubscriptionRequest(groupAddress:KnxGroupAddress) -> KnxTelegram
 }

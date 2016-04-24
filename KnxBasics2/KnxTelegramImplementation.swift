@@ -39,8 +39,23 @@ public class KnxTelegramImplementation : KnxTelegram {
         
         switch(type) {
             
-        case .DPT001:
+        case .DPT1_xxx:
+
+            if(_bytes!.count != 8) {
+                throw KnxException.IllformedTelegramForType
+            }
             return Int(_bytes![7] & 0x1)
+            
+        case .DPT5_001:
+            
+            if(_bytes!.count != 9) {
+                throw KnxException.IllformedTelegramForType
+            }
+            
+            let dimVal = Int(_bytes![8] & 0xff)
+            
+            return (dimVal * 100) / 255
+
         default:
             throw KnxException.UnknownTelegramType
         }

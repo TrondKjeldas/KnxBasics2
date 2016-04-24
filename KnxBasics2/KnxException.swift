@@ -11,4 +11,5 @@ import Foundation
 enum KnxException : ErrorType {
     
     case UnknownTelegramType
+    case IllformedTelegramForType
 }

@@ -9,12 +9,10 @@
 import Foundation
 
 
-protocol KnxDimmerControl {
+public protocol KnxDimmerControl {
     
-    init(setOnOffAddress:KnxGroupAddress, setDimLevelAddress:KnxGroupAddress, setLevelResponseAddress:KnxGroupAddress);
-    
-    init(setOnOffAddress:KnxGroupAddress, setDimLevelAddress:KnxGroupAddress, setLevelResponseAddress:KnxGroupAddress,
-         onOffResponseHandler:(), levelResponseHandler:());
+    init(setOnOffAddress:KnxGroupAddress, setDimLevelAddress:KnxGroupAddress, levelResponseAddress:KnxGroupAddress,
+         responseHandler : KnxResponseHandlerDelegate);
     
     var lightOn:Bool { get set }
     

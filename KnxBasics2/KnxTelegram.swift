@@ -11,7 +11,8 @@ import Foundation
 public enum KnxTelegramType {
     
     case UNKNOWN
-    case DPT001
+    case DPT1_xxx
+    case DPT5_001
 }
 
 public protocol KnxTelegram {

@@ -14,4 +14,8 @@ public protocol KnxResponseHandlerDelegate {
     
     func subscriptionResponse(telegram:KnxTelegram)
     
+    func onOffResponse(on:Bool)
+    
+    func dimLevelResponse(level:Int)
+    
 }
