@@ -8,34 +8,25 @@
 
 import Foundation
 
-//import KnxTelegram
-
 public class KnxTelegramImplementation : KnxTelegram {
   
-  /*
-    -(UInt8*)bytes;
-    -(size_t)bufsize;
-    
-    -(size_t)length;
-    -(UInt16)type;
-    -(UInt8*)payload;
-    
-    -(void)log;
-    */
     
     private var _bytes:[UInt8]?
     private var _len:Int
+    private var _type:KnxTelegramType
     
     required public init() {
         
         _bytes = nil
         _len = 0
+        _type = .UNKNOWN
     }
 
-    required public init(bytes:[UInt8]) {
+    required public init(bytes:[UInt8], type:KnxTelegramType = .UNKNOWN) {
     
         _bytes = bytes
         _len = bytes.count
+        _type = type
     }
     
     public var payload:[UInt8] {
@@ -43,6 +34,18 @@ public class KnxTelegramImplementation : KnxTelegram {
             return _bytes!
         }
     }
+    
+    public func getValueAsType(type:KnxTelegramType) throws -> Int {
+        
+        switch(type) {
+            
+        case .DPT001:
+            return Int(_bytes![7] & 0x1)
+        default:
+            throw KnxException.UnknownTelegramType
+        }
+    }
+
      public func show() {
     
         print(_bytes)

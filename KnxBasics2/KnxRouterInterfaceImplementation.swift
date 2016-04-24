@@ -17,17 +17,19 @@ public class KnxRouterInterfaceImplementation : NSObject, GCDAsyncSocketDelegate
     private var readCount:Int = 0
     
     private var telegramData = NSMutableData()
-
-
-    required public override init() {
-        super.init()
+    
+    private var responseHandler : KnxResponseHandlerDelegate? = nil
+    
+    required public init(responseHandler : KnxResponseHandlerDelegate) {
         
+        super.init()
+        self.responseHandler = responseHandler
         socket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
         
     }
     
     public func connectTo(ipAddress:String, onPort:UInt16 = 6720) {
-     
+        
         
         do {
             try socket.connectToHost("zbox", onPort: onPort)
@@ -45,9 +47,9 @@ public class KnxRouterInterfaceImplementation : NSObject, GCDAsyncSocketDelegate
         
         written += telegram.payload.count
     }
-   
+    
     @objc public func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
-
+        
         
         print("isConnected: \(socket.isConnected)")
         
@@ -59,6 +61,8 @@ public class KnxRouterInterfaceImplementation : NSObject, GCDAsyncSocketDelegate
     @objc public func socket(socket : GCDAsyncSocket!, didReadData data:NSData!, withTag tag:Int) {
         
         if(tag == 0) {
+            
+            // Got header, two first bytes
             
             telegramData.setData(data)
             
@@ -75,11 +79,21 @@ public class KnxRouterInterfaceImplementation : NSObject, GCDAsyncSocketDelegate
             socket.readDataToLength(UInt(msgLen), withTimeout:-1.0, buffer:telegramData, bufferOffset:2, tag: 1)
             
         } else {
-
+            
+            // Got remaining part of telegram
+            
             readCount += 1
             
             print("GOT: \(telegramData)")
- 
+            
+            if(telegramData.length > 4) {
+                
+                var dataBytes:[UInt8] = [UInt8](count:telegramData.length, repeatedValue:0)
+                telegramData.getBytes(&dataBytes, length: dataBytes.count)
+                self.responseHandler?.subscriptionResponse(KnxTelegramImplementation(bytes: dataBytes))
+                
+            }
+            
             // Next header
             socket.readDataToLength(2, withTimeout:-1.0, tag: 0)
         }

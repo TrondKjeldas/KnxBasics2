@@ -8,14 +8,20 @@
 
 import Foundation
 
+public enum KnxTelegramType {
+    
+    case UNKNOWN
+    case DPT001
+}
 
 public protocol KnxTelegram {
     
-
     init()
-    init(bytes:[UInt8])
+    init(bytes:[UInt8], type:KnxTelegramType)
     
     var payload:[UInt8] { get }
+    
+    func getValueAsType(type:KnxTelegramType) throws -> Int
     
     func show()
 }

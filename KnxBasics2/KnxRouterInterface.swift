@@ -10,7 +10,7 @@ import Foundation
 
 public protocol KnxRouterInterface {
     
-    init()
+    init(responseHandler : KnxResponseHandlerDelegate)
     
     func connectTo(ipAddress:String, onPort:UInt16)
     

@@ -8,9 +8,10 @@
 
 import Foundation
 
-protocol KnxGroupAddress {
+public protocol KnxGroupAddress {
     
     init(fromString:String)
     
+    var addressAsUInt16 : UInt16 { get set }
     
 }
