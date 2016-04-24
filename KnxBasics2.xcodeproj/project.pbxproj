@@ -22,6 +22,11 @@
 		BF6652631CC93BBC004158BB /* KnxRouterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6652621CC93BBC004158BB /* KnxRouterInterface.swift */; };
 		BF6652641CC93BBC004158BB /* KnxRouterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6652621CC93BBC004158BB /* KnxRouterInterface.swift */; };
 		BF6652661CC94096004158BB /* KnxRouterInterfaceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6652651CC94096004158BB /* KnxRouterInterfaceImplementation.swift */; };
+		BFE54FAA1CCB6C3B002A79C4 /* KnxResponseHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FA91CCB6C3B002A79C4 /* KnxResponseHandlerDelegate.swift */; };
+		BFE54FAC1CCCC3FB002A79C4 /* KnxException.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FAB1CCCC3FB002A79C4 /* KnxException.swift */; };
+		BFE54FAE1CCCC857002A79C4 /* KnxGroupAddressImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FAD1CCCC857002A79C4 /* KnxGroupAddressImplementation.swift */; };
+		BFE54FB01CCCC8FA002A79C4 /* KnxTelegramFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FAF1CCCC8FA002A79C4 /* KnxTelegramFactory.swift */; };
+		BFE54FB21CCCC951002A79C4 /* KnxTelegramFactoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FB11CCCC951002A79C4 /* KnxTelegramFactoryImplementation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,12 @@
 		BF66525F1CC93AF1004158BB /* KnxGroupAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxGroupAddress.swift; sourceTree = "<group>"; };
 		BF6652621CC93BBC004158BB /* KnxRouterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxRouterInterface.swift; sourceTree = "<group>"; };
 		BF6652651CC94096004158BB /* KnxRouterInterfaceImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxRouterInterfaceImplementation.swift; sourceTree = "<group>"; };
+		BFE54FA81CCA8759002A79C4 /* KnxRouterInterface.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KnxRouterInterface.playground; sourceTree = "<group>"; };
+		BFE54FA91CCB6C3B002A79C4 /* KnxResponseHandlerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxResponseHandlerDelegate.swift; sourceTree = "<group>"; };
+		BFE54FAB1CCCC3FB002A79C4 /* KnxException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxException.swift; sourceTree = "<group>"; };
+		BFE54FAD1CCCC857002A79C4 /* KnxGroupAddressImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxGroupAddressImplementation.swift; sourceTree = "<group>"; };
+		BFE54FAF1CCCC8FA002A79C4 /* KnxTelegramFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxTelegramFactory.swift; sourceTree = "<group>"; };
+		BFE54FB11CCCC951002A79C4 /* KnxTelegramFactoryImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxTelegramFactoryImplementation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +104,7 @@
 		BF66522B1CC7F065004158BB = {
 			isa = PBXGroup;
 			children = (
+				BFE54FA81CCA8759002A79C4 /* KnxRouterInterface.playground */,
 				BF66524F1CC92B0E004158BB /* PlayingWithCocoaAsyncSocket.playground */,
 				BF6652371CC7F065004158BB /* KnxBasics2 */,
 				BF6652431CC7F066004158BB /* KnxBasics2Tests */,
@@ -138,6 +150,8 @@
 				BF66525C1CC937DF004158BB /* KnxDimmerControl.swift */,
 				BF66525F1CC93AF1004158BB /* KnxGroupAddress.swift */,
 				BF6652621CC93BBC004158BB /* KnxRouterInterface.swift */,
+				BFE54FA91CCB6C3B002A79C4 /* KnxResponseHandlerDelegate.swift */,
+				BFE54FAF1CCCC8FA002A79C4 /* KnxTelegramFactory.swift */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -147,6 +161,9 @@
 			children = (
 				BF6652591CC93417004158BB /* KnxTelegramImplementation.swift */,
 				BF6652651CC94096004158BB /* KnxRouterInterfaceImplementation.swift */,
+				BFE54FAB1CCCC3FB002A79C4 /* KnxException.swift */,
+				BFE54FAD1CCCC857002A79C4 /* KnxGroupAddressImplementation.swift */,
+				BFE54FB11CCCC951002A79C4 /* KnxTelegramFactoryImplementation.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -295,10 +312,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF6652661CC94096004158BB /* KnxRouterInterfaceImplementation.swift in Sources */,
+				BFE54FB01CCCC8FA002A79C4 /* KnxTelegramFactory.swift in Sources */,
+				BFE54FAC1CCCC3FB002A79C4 /* KnxException.swift in Sources */,
+				BFE54FAA1CCB6C3B002A79C4 /* KnxResponseHandlerDelegate.swift in Sources */,
+				BFE54FB21CCCC951002A79C4 /* KnxTelegramFactoryImplementation.swift in Sources */,
 				BF6652601CC93AF1004158BB /* KnxGroupAddress.swift in Sources */,
 				BF66525A1CC93417004158BB /* KnxTelegramImplementation.swift in Sources */,
 				BF6652571CC93409004158BB /* KnxTelegram.swift in Sources */,
 				BF6652631CC93BBC004158BB /* KnxRouterInterface.swift in Sources */,
+				BFE54FAE1CCCC857002A79C4 /* KnxGroupAddressImplementation.swift in Sources */,
 				BF66525D1CC937DF004158BB /* KnxDimmerControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
