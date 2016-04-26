@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class KnxGroupAddressImplementation : KnxGroupAddress {
+public class KnxGroupAddressImplementation : KnxGroupAddress, Hashable {
     
     required public init(fromString:String) {
         
@@ -27,4 +27,13 @@ public class KnxGroupAddressImplementation : KnxGroupAddress {
     }
     
     public var addressAsUInt16 : UInt16
+    
+    public var hashValue: Int {
+        return Int(addressAsUInt16)
+    }
+ }
+
+public func ==(lhs: KnxGroupAddressImplementation,
+                 rhs: KnxGroupAddressImplementation) -> Bool {
+                    return lhs.hashValue == rhs.hashValue
 }
