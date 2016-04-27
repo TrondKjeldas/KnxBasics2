@@ -55,33 +55,64 @@ public class KnxDimmerControlImplementation : KnxDimmerControl, KnxResponseHandl
         }
     }
     
-    public var lightOn:Bool
+    public var lightOn:Bool {
+        willSet(newValue) {
+            if newValue != lightOn {
+                var value = 0
+                if newValue {
+                    value = 1
+                }
+                print("lightOn soon: \(value)")
+                onOffInterface!.submit(KnxTelegramFactoryImplementation.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
+            }
+        }
+        didSet {
+            print("lightOn now: \(lightOn)")
+        }
+    }
     
     public var dimLevel:Int
     
-    public func subscriptionResponse(telegram: KnxTelegram) {
-        var val = -1
-        do {
-            val = try telegram.getValueAsType(.DPT1_xxx)
-            lightOn = Bool(val)
-            responseHandler?.onOffResponse(lightOn)
-            
+    public func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+
+        var type : KnxTelegramType
+        
+        let interface = sender as! KnxRouterInterfaceImplementation
+        
+        if interface == onOffInterface {
+            type = KnxGroupAddressRegistry.getTypeForGroupAddress(onOffAddress)
+            do {
+                let val = try telegram.getValueAsType(type)
+                lightOn = Bool(val)
+                responseHandler?.onOffResponse(lightOn)
+            }
+            catch KnxException.IllformedTelegramForType {
+                
+                print("Catched...")
+            }
+            catch {
+                
+                print("Catched...")
+            }
         }
-        catch KnxException.IllformedTelegramForType {
-            
+        else if interface == levelRspInterface {
+             type = KnxGroupAddressRegistry.getTypeForGroupAddress(levelRspAddress)
             do {
                 dimLevel = try telegram.getValueAsType(.DPT5_001)
                 responseHandler?.dimLevelResponse(dimLevel)
             }
-            catch  {
+            catch KnxException.IllformedTelegramForType {
+                
+                print("Catched...")
+            }
+            catch {
+                
                 print("Catched...")
             }
         }
-        catch  {
-            print("Catched...")
-        }
+    
 
-        print("HANDLING: \(telegram.payload), \(val)")
+        print("HANDLING: \(telegram.payload)")
     }
     
     public func onOffResponse(on:Bool) {

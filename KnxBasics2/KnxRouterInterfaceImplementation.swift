@@ -90,7 +90,7 @@ public class KnxRouterInterfaceImplementation : NSObject, GCDAsyncSocketDelegate
                 
                 var dataBytes:[UInt8] = [UInt8](count:telegramData.length, repeatedValue:0)
                 telegramData.getBytes(&dataBytes, length: dataBytes.count)
-                self.responseHandler?.subscriptionResponse(KnxTelegramImplementation(bytes: dataBytes))
+                self.responseHandler?.subscriptionResponse(self, telegram:KnxTelegramImplementation(bytes: dataBytes))
                 
             }
             

@@ -12,10 +12,9 @@ import Foundation
 public protocol KnxResponseHandlerDelegate {
     
     
-    func subscriptionResponse(telegram:KnxTelegram)
+    func subscriptionResponse(sender : AnyObject?, telegram:KnxTelegram)
     
     func onOffResponse(on:Bool)
     
-    func dimLevelResponse(level:Int)
-    
+    func dimLevelResponse(level:Int)    
 }

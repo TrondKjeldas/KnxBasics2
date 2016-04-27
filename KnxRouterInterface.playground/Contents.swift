@@ -11,7 +11,7 @@ import KnxBasics2
 
 class Handler : KnxResponseHandlerDelegate {
 
-    func subscriptionResponse(telegram: KnxTelegram) {
+    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         var val = -1
         do {
@@ -50,15 +50,32 @@ kr2.submit(KnxTelegramFactoryImplementation.createSubscriptionRequest(KnxGroupAd
 
 */
 
+let onoffaddr = KnxGroupAddressImplementation(fromString: "1/0/14")
+onoffaddr.addressAsUInt16
+let s = String(format: "0x%x", onoffaddr.addressAsUInt16)
+print("oa: \(s)")
+
+let lvlrspaddr = KnxGroupAddressImplementation(fromString: "3/5/26")
+lvlrspaddr.addressAsUInt16
+
 let dimmer =
-    KnxDimmerControlImplementation(setOnOffAddress: KnxGroupAddressImplementation(fromString: "1/0/14"),
+    KnxDimmerControlImplementation(setOnOffAddress: onoffaddr,
                                    setDimLevelAddress: KnxGroupAddressImplementation(fromString: "1/1/27"),
-                                   levelResponseAddress: KnxGroupAddressImplementation(fromString: "3/5/26"), responseHandler:handler)
+                                   levelResponseAddress: lvlrspaddr, responseHandler:handler)
+
+//dimmer.lightOn = true
 
 
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))),
+               dispatch_get_main_queue()) {
+                //dimmer.lightOn = !dimmer.lightOn
+}
 
 
-
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC))),
+               dispatch_get_main_queue()) {
+                //dimmer.lightOn = !dimmer.lightOn
+}
 
 
  

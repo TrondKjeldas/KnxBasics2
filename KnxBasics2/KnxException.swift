@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum KnxException : ErrorType {
+public enum KnxException : ErrorType {
     
     case UnknownTelegramType
     case IllformedTelegramForType
