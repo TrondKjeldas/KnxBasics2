@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class KnxTelegramFactoryImplementation : KnxTelegramFactory {
+public class KnxTelegramFactory {
     
     public static func createSubscriptionRequest(groupAddress:KnxGroupAddress) -> KnxTelegram {
         
@@ -28,7 +28,7 @@ public class KnxTelegramFactoryImplementation : KnxTelegramFactory {
     
         
         
-        return KnxTelegramImplementation(bytes: bytes)
+        return KnxTelegram(bytes: bytes)
     }
     
     public static func createWriteRequest(type:KnxTelegramType, value:Int) -> KnxTelegram {
@@ -44,7 +44,7 @@ public class KnxTelegramFactoryImplementation : KnxTelegramFactory {
         bytes[5] = UInt8(truncatingBitPattern:value) | 0x80
         
         
-        return KnxTelegramImplementation(bytes: bytes)
+        return KnxTelegram(bytes: bytes)
     }
 
 }

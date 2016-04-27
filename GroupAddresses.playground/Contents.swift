@@ -5,12 +5,12 @@ import CocoaAsyncSocket
 import KnxBasics2
 
 
-KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddressImplementation(fromString:"1/2/3"))
+KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3"))
 
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddressImplementation(fromString:"1/2/3"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3"),
                                                type: KnxTelegramType.DPT1_xxx)
 
-KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddressImplementation(fromString:"1/2/3"))
+KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3"))
 
 

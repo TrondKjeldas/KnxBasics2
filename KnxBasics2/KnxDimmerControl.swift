@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class KnxDimmerControlImplementation : KnxDimmerControl, KnxResponseHandlerDelegate {
+public class KnxDimmerControl : KnxResponseHandlerDelegate {
     
     private var onOffAddress:KnxGroupAddress
     private var dimmerAddress:KnxGroupAddress
     private var levelRspAddress:KnxGroupAddress
     
-    private var onOffInterface:KnxRouterInterfaceImplementation?
-    private var dimmerInterface:KnxRouterInterfaceImplementation?
-    private var levelRspInterface:KnxRouterInterfaceImplementation?
+    private var onOffInterface:KnxRouterInterface?
+    private var dimmerInterface:KnxRouterInterface?
+    private var levelRspInterface:KnxRouterInterface?
     
     private var responseHandler:KnxResponseHandlerDelegate?
         
@@ -34,24 +34,24 @@ public class KnxDimmerControlImplementation : KnxDimmerControl, KnxResponseHandl
         
         self.responseHandler = responseHandler
         
-        onOffInterface = KnxRouterInterfaceImplementation(responseHandler: self)
+        onOffInterface = KnxRouterInterface(responseHandler: self)
         if let onOffInterface = onOffInterface {
             
             onOffInterface.connectTo("zbox")
-            onOffInterface.submit(KnxTelegramFactoryImplementation.createSubscriptionRequest(setOnOffAddress))
+            onOffInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setOnOffAddress))
         }
 
-        dimmerInterface = KnxRouterInterfaceImplementation(responseHandler: self)
+        dimmerInterface = KnxRouterInterface(responseHandler: self)
         if let dimmerInterface = dimmerInterface {
             
             dimmerInterface.connectTo("zbox")
         }
 
-        levelRspInterface = KnxRouterInterfaceImplementation(responseHandler: self)
+        levelRspInterface = KnxRouterInterface(responseHandler: self)
         if let levelRspInterface = levelRspInterface {
             
             levelRspInterface.connectTo("zbox")
-            levelRspInterface.submit(KnxTelegramFactoryImplementation.createSubscriptionRequest(levelResponseAddress))
+            levelRspInterface.submit(KnxTelegramFactory.createSubscriptionRequest(levelResponseAddress))
         }
     }
     
@@ -63,7 +63,7 @@ public class KnxDimmerControlImplementation : KnxDimmerControl, KnxResponseHandl
                     value = 1
                 }
                 print("lightOn soon: \(value)")
-                onOffInterface!.submit(KnxTelegramFactoryImplementation.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
+                onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
             }
         }
         didSet {
@@ -77,7 +77,7 @@ public class KnxDimmerControlImplementation : KnxDimmerControl, KnxResponseHandl
 
         var type : KnxTelegramType
         
-        let interface = sender as! KnxRouterInterfaceImplementation
+        let interface = sender as! KnxRouterInterface
         
         if interface == onOffInterface {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(onOffAddress)

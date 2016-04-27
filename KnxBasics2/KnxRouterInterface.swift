@@ -10,7 +10,7 @@ import Foundation
 
 import CocoaAsyncSocket
 
-public class KnxRouterInterfaceImplementation : NSObject, GCDAsyncSocketDelegate, KnxRouterInterface {
+public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     
     private var socket:GCDAsyncSocket! = nil
     private var written:Int = 0
@@ -90,7 +90,7 @@ public class KnxRouterInterfaceImplementation : NSObject, GCDAsyncSocketDelegate
                 
                 var dataBytes:[UInt8] = [UInt8](count:telegramData.length, repeatedValue:0)
                 telegramData.getBytes(&dataBytes, length: dataBytes.count)
-                self.responseHandler?.subscriptionResponse(self, telegram:KnxTelegramImplementation(bytes: dataBytes))
+                self.responseHandler?.subscriptionResponse(self, telegram:KnxTelegram(bytes: dataBytes))
                 
             }
             

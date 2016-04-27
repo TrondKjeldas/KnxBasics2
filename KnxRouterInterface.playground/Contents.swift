@@ -39,28 +39,28 @@ let handler = Handler()
 
 /*
 
-let kr = KnxRouterInterfaceImplementation(responseHandler: handler)
-let kr2 = KnxRouterInterfaceImplementation(responseHandler: handler)
+let kr = KnxRouterInterface(responseHandler: handler)
+let kr2 = KnxRouterInterface(responseHandler: handler)
 
 kr.connectTo("zbox")
-kr.submit(KnxTelegramFactoryImplementation.createSubscriptionRequest(KnxGroupAddressImplementation(fromString: "3/5/26")))
+kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
 
 kr2.connectTo("zbox")
-kr2.submit(KnxTelegramFactoryImplementation.createSubscriptionRequest(KnxGroupAddressImplementation(fromString: "1/0/14")))
+kr2.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "1/0/14")))
 
 */
 
-let onoffaddr = KnxGroupAddressImplementation(fromString: "1/0/14")
+let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
 onoffaddr.addressAsUInt16
 let s = String(format: "0x%x", onoffaddr.addressAsUInt16)
 print("oa: \(s)")
 
-let lvlrspaddr = KnxGroupAddressImplementation(fromString: "3/5/26")
+let lvlrspaddr = KnxGroupAddress(fromString: "3/5/26")
 lvlrspaddr.addressAsUInt16
 
 let dimmer =
-    KnxDimmerControlImplementation(setOnOffAddress: onoffaddr,
-                                   setDimLevelAddress: KnxGroupAddressImplementation(fromString: "1/1/27"),
+    KnxDimmerControl(setOnOffAddress: onoffaddr,
+                                   setDimLevelAddress: KnxGroupAddress(fromString: "1/1/27"),
                                    levelResponseAddress: lvlrspaddr, responseHandler:handler)
 
 //dimmer.lightOn = true

@@ -16,7 +16,7 @@ public enum KnxTelegramType {
 }
 
 
-public class KnxTelegramImplementation : KnxTelegram {
+public class KnxTelegram {
   
     
     private var _bytes:[UInt8]?
