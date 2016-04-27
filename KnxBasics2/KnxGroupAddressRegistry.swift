@@ -1,26 +1,29 @@
-///
-/// - File:      GroupAddressRegistry.swift
-/// - Framework: KnxBasics2
-///
-/// - author: Created by Trond Kjeldås on 26/04/16.
-///  - Copyright: Copyright © 2016 Trond Kjeldås. All rights reserved.
-///
+//
+//  GroupAddressRegistry.swift
+//  KnxBasics2
+//
+//  Created by Trond Kjeldås on 24/04/16.
+//  Copyright © 2016 Trond Kjeldås. All rights reserved.
+//
 
 import Foundation
 
 /// A global registry for mapping group addresses to DPT types.
 public class KnxGroupAddressRegistry {
     
+    // MARK: Public API.
+    
     private static var registry : [KnxGroupAddress : KnxTelegramType] = [:]
     
-    /// Look up a DPT type based on the group address
-    ///
-    /// - Parameters:
-    ///     - address: The group address to look up
-    ///
-    /// - Returns: The DPT type registered for the address, or .UNKNOWN if the address is not registered
+    /**
+     Look up a DPT type based on the group address.
+     
+     - parameter address: The group address to look up.
+     
+     - returns: The DPT type registered for the address, or .UNKNOWN if the address is not registered.
+     */
     public static func getTypeForGroupAddress(address : KnxGroupAddress) -> KnxTelegramType {
-    
+        
         if let address = registry[address] {
             return address
         }
@@ -30,11 +33,14 @@ public class KnxGroupAddressRegistry {
         }
     }
     
-    /// Register a DPT type for a group address
-    ///
-    /// - Parameters:
-    ///     - address: The group address to register a type for
-    ///     - type:    The type to register
+    /**
+     Register a DPT type for a group address.
+     
+     - parameter address: The group address to register a type for.
+     - parameter type: The type to register.
+     
+     - returns: Nothing.
+     */
     public static func addTypeForGroupAddress(address : KnxGroupAddress,
                                               type : KnxTelegramType) {
         

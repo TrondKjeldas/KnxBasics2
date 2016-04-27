@@ -8,13 +8,24 @@
 
 import Foundation
 
-
+/// Delegate protocol for KnxDimmerControl delegates.
 public protocol KnxResponseHandlerDelegate {
     
-    
-    func subscriptionResponse(sender : AnyObject?, telegram:KnxTelegram)
-    
+    /**
+     Handler for changes in on/off state.
+     
+     - parameter on: True if light on, false if light off.
+     
+     - returns: Noting.
+     */
     func onOffResponse(on:Bool)
     
-    func dimLevelResponse(level:Int)    
+    /**
+     Handler for changes in dimmer level.
+     
+     - parameter level: The new dimmer level.
+     
+     - returns: Nothing.
+     */
+    func dimLevelResponse(level:Int)
 }

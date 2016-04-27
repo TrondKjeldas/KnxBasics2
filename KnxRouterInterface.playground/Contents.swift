@@ -20,7 +20,7 @@ class Handler : KnxResponseHandlerDelegate {
         catch {
             print("Catched...")
         }
-        print("HANDLING: \(telegram.payload), \(val)")
+       // print("HANDLING: \(telegram.payload), \(val)")
     }
     
     func onOffResponse(on:Bool) {

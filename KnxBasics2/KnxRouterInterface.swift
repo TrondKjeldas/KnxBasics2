@@ -10,17 +10,19 @@ import Foundation
 
 import CocoaAsyncSocket
 
+/// Class representing the interface towards the KNX router.
 public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     
-    private var socket:GCDAsyncSocket! = nil
-    private var written:Int = 0
-    private var readCount:Int = 0
+    // MARK: Public API.
     
-    private var telegramData = NSMutableData()
-    
-    private var responseHandler : KnxResponseHandlerDelegate? = nil
-    
-    required public init(responseHandler : KnxResponseHandlerDelegate) {
+    /**
+     Initializer for the router interface object.
+     
+     - parameter responseHandler: The delegate object handling received telegrams.
+     
+     - returns: Nothing.
+     */
+    public init(responseHandler : KnxTelegramResponseHandlerDelegate) {
         
         super.init()
         self.responseHandler = responseHandler
@@ -28,6 +30,14 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         
     }
     
+    /**
+     Connect to a KNX router at the specified address and port.
+     
+     - parameter ipAddress: The IP address to connect to.
+     - parameter onPort: The port to connect to. Default is port 6720.
+     
+     - returns: Nothing.
+     */
     public func connectTo(ipAddress:String, onPort:UInt16 = 6720) {
         
         
@@ -39,6 +49,13 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         }
     }
     
+    /**
+     Submit a telegram for transmission.
+     
+     - parameter telegram: The telegram to transmit.
+     
+     - returns: Nothing.
+     */
     public func submit(telegram:KnxTelegram) {
         
         let msgData = NSData(bytes: telegram.payload, length: telegram.payload.count)
@@ -48,6 +65,15 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         written += telegram.payload.count
     }
     
+    /**
+     Response handler, called from the CocoaAsyncSocket framework upon connection.
+     
+     - parameter socket: The socket that did connect.
+     - parameter didConnectToHost: The name of the host that it has connected to.
+     - parameter port: The port that was connected on.
+     
+     - returns: Nothing.
+     */
     @objc public func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
         
         
@@ -58,6 +84,15 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     }
     
     
+    /**
+     Response handler, called from the CocoaAsyncSocket framework upon reception of data.
+     
+     - parameter socket: The socket that did connect.
+     - parameter didReadData: The received data.
+     - parameter withTag: The tag value supplied in the request to read.
+     
+     - returns: Nothing.
+     */
     @objc public func socket(socket : GCDAsyncSocket!, didReadData data:NSData!, withTag tag:Int) {
         
         if(tag == 0) {
@@ -99,8 +134,15 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         }
     }
     
-    public func show() {
-        print("Connected? \(socket.isConnected)")
-        print("Written? \(written)")
-    }
+    // MARK: Internal and private declarations.
+    
+    private var socket:GCDAsyncSocket! = nil
+    private var written:Int = 0
+    private var readCount:Int = 0
+    
+    private var telegramData = NSMutableData()
+    
+    private var responseHandler : KnxTelegramResponseHandlerDelegate? = nil
+    
+    
 }

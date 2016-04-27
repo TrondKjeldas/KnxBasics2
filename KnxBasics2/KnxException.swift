@@ -8,8 +8,12 @@
 
 import Foundation
 
+/// Enumeration of the exceptions that can be raised from the classes in the framework.
 public enum KnxException : ErrorType {
     
+    /// Unknown value used for DPT.
     case UnknownTelegramType
+    
+    /// Not possible to decode telegram according to specified DPT.
     case IllformedTelegramForType
 }

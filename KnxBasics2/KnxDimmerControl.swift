@@ -8,23 +8,26 @@
 
 import Foundation
 
-public class KnxDimmerControl : KnxResponseHandlerDelegate {
+/// Class representing a dimmable light.
+public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
     
-    private var onOffAddress:KnxGroupAddress
-    private var dimmerAddress:KnxGroupAddress
-    private var levelRspAddress:KnxGroupAddress
+    // MARK: Public API:
     
-    private var onOffInterface:KnxRouterInterface?
-    private var dimmerInterface:KnxRouterInterface?
-    private var levelRspInterface:KnxRouterInterface?
+    /**
+     Initializes a new object.
+     
+     - parameter setOnOffAddress: The group address to use for turning light on and off.
+     - parameter setDimLevelAddress: The group address to use for setting light level.
+     - parameter levelResponseAddress: The group address to use for subscribing to light level changes.
+     
+     - returns: Nothing.
+     */
     
-    private var responseHandler:KnxResponseHandlerDelegate?
+    public init(setOnOffAddress:KnxGroupAddress,
+                setDimLevelAddress:KnxGroupAddress,
+                levelResponseAddress:KnxGroupAddress,
+                responseHandler : KnxResponseHandlerDelegate) {
         
-    public required init(setOnOffAddress:KnxGroupAddress,
-                         setDimLevelAddress:KnxGroupAddress,
-                         levelResponseAddress:KnxGroupAddress,
-                         responseHandler : KnxResponseHandlerDelegate) {
-
         onOffAddress = setOnOffAddress
         dimmerAddress = setDimLevelAddress
         levelRspAddress = levelResponseAddress
@@ -40,13 +43,13 @@ public class KnxDimmerControl : KnxResponseHandlerDelegate {
             onOffInterface.connectTo("zbox")
             onOffInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setOnOffAddress))
         }
-
+        
         dimmerInterface = KnxRouterInterface(responseHandler: self)
         if let dimmerInterface = dimmerInterface {
             
             dimmerInterface.connectTo("zbox")
         }
-
+        
         levelRspInterface = KnxRouterInterface(responseHandler: self)
         if let levelRspInterface = levelRspInterface {
             
@@ -55,6 +58,7 @@ public class KnxDimmerControl : KnxResponseHandlerDelegate {
         }
     }
     
+    /// Read/write attribute holding the on/off state.
     public var lightOn:Bool {
         willSet(newValue) {
             if newValue != lightOn {
@@ -71,10 +75,19 @@ public class KnxDimmerControl : KnxResponseHandlerDelegate {
         }
     }
     
+    /// Read/write attribute holding the light level.
     public var dimLevel:Int
     
+    /**
+     Handler for telegram responses.
+     
+     - parameter sender: The interface the telegran were received on.
+     - parameter telegram: The received telegram.
+     
+     - returns: Nothing.
+     */
     public func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
-
+        
         var type : KnxTelegramType
         
         let interface = sender as! KnxRouterInterface
@@ -96,7 +109,7 @@ public class KnxDimmerControl : KnxResponseHandlerDelegate {
             }
         }
         else if interface == levelRspInterface {
-             type = KnxGroupAddressRegistry.getTypeForGroupAddress(levelRspAddress)
+            type = KnxGroupAddressRegistry.getTypeForGroupAddress(levelRspAddress)
             do {
                 dimLevel = try telegram.getValueAsType(.DPT5_001)
                 responseHandler?.dimLevelResponse(dimLevel)
@@ -110,16 +123,20 @@ public class KnxDimmerControl : KnxResponseHandlerDelegate {
                 print("Catched...")
             }
         }
-    
-
+        
+        
         print("HANDLING: \(telegram.payload)")
     }
     
-    public func onOffResponse(on:Bool) {
-    }
+    // MARK: Internal and private declarations
     
-    public func dimLevelResponse(level:Int) {
-    }
+    private var onOffAddress:KnxGroupAddress
+    private var dimmerAddress:KnxGroupAddress
+    private var levelRspAddress:KnxGroupAddress
     
+    private var onOffInterface:KnxRouterInterface?
+    private var dimmerInterface:KnxRouterInterface?
+    private var levelRspInterface:KnxRouterInterface?
+    
+    private var responseHandler:KnxResponseHandlerDelegate?
 }
-

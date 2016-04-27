@@ -1,5 +1,5 @@
 //
-//  KnxTelegramFactoryImplementation.swift
+//  KnxTelegramFactory.swift
 //  KnxBasics2
 //
 //  Created by Trond Kjeldås on 24/04/16.
@@ -8,8 +8,18 @@
 
 import Foundation
 
+/// Factory class to create KNX telegrams of various type.
 public class KnxTelegramFactory {
     
+    // MARK: Public API
+    
+    /**
+     Create a subscription request.
+     
+     - parameter groupAddress: The group address to subscribe to.
+     
+     - returns: A subscription request telegram, ready to be sent.
+     */
     public static func createSubscriptionRequest(groupAddress:KnxGroupAddress) -> KnxTelegram {
         
         let addrLow8 = UInt8(truncatingBitPattern:(groupAddress.addressAsUInt16 & 0xFF))
@@ -25,12 +35,20 @@ public class KnxTelegramFactory {
         bytes[4] = addrHigh8
         bytes[5] = addrLow8
         bytes[6] = 0x00;
-    
+        
         
         
         return KnxTelegram(bytes: bytes)
     }
     
+    /**
+     Create a write request telegram.
+     
+     - parameter type: DPT type.
+     - parameter value: The value to write, as an integer.
+     
+     - returns: A telegram, ready to be sent.
+     */
     public static func createWriteRequest(type:KnxTelegramType, value:Int) -> KnxTelegram {
         
         var bytes:[UInt8] = [UInt8](count:6, repeatedValue:0)
@@ -46,5 +64,4 @@ public class KnxTelegramFactory {
         
         return KnxTelegram(bytes: bytes)
     }
-
 }
