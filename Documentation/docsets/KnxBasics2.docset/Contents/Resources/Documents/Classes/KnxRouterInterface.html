@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KnxRouterInterface Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/KnxRouterInterface" class="dashAnchor"></a>
+
+    <a title="KnxRouterInterface Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          KnxBasics2 Docs
+        </a>
+         (100% documented)
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">KnxBasics2 Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      KnxRouterInterface Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxDimmerControl.html">KnxDimmerControl</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxGroupAddressRegistry.html">KnxGroupAddressRegistry</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxRouterInterface.html">KnxRouterInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxTelegram.html">KnxTelegram</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxTelegramFactory.html">KnxTelegramFactory</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/KnxException.html">KnxException</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/KnxTelegramType.html">KnxTelegramType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:ZF10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxResponseHandlerDelegate.html">KnxResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>KnxRouterInterface</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">KnxRouterInterface</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">GCDAsyncSocketDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>Class representing the interface towards the KNX router.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Public%20API."></a>
+                <a name="//apple_ref/swift/Section/Public API." class="dashAnchor"></a>
+                <a href="#/Public%20API.">
+                  <h3 class="section-name">Public API.</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10KnxBasics218KnxRouterInterfacecFT15responseHandlerPS_34KnxTelegramResponseHandlerDelegate__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(responseHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10KnxBasics218KnxRouterInterfacecFT15responseHandlerPS_34KnxTelegramResponseHandlerDelegate__S0_">init(responseHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializer for the router interface object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">responseHandler</span> <span class="p">:</span> <span class="kt">KnxTelegramResponseHandlerDelegate</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>responseHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate object handling received telegrams.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Nothing.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10KnxBasics218KnxRouterInterface9connectToFTSS6onPortVs6UInt16_T_"></a>
+                    <a name="//apple_ref/swift/Method/connectTo(_:onPort:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10KnxBasics218KnxRouterInterface9connectToFTSS6onPortVs6UInt16_T_">connectTo(_:onPort:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Connect to a KNX router at the specified address and port.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">connectTo</span><span class="p">(</span><span class="nv">ipAddress</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">onPort</span><span class="p">:</span><span class="kt">UInt16</span> <span class="o">=</span> <span class="mi">6720</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ipAddress</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IP address to connect to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onPort</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The port to connect to. Default is port 6720.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Nothing.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10KnxBasics218KnxRouterInterface6submitFCS_11KnxTelegramT_"></a>
+                    <a name="//apple_ref/swift/Method/submit(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10KnxBasics218KnxRouterInterface6submitFCS_11KnxTelegramT_">submit(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Submit a telegram for transmission.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">submit</span><span class="p">(</span><span class="nv">telegram</span><span class="p">:</span><span class="kt">KnxTelegram</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>telegram</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The telegram to transmit.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Nothing.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10KnxBasics218KnxRouterInterface6socketERR"></a>
+                    <a name="//apple_ref/swift/Method/socket(_:didConnectToHost:port:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10KnxBasics218KnxRouterInterface6socketERR">socket(_:didConnectToHost:port:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Response handler, called from the CocoaAsyncSocket framework upon connection.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">socket</span><span class="p">(</span><span class="nv">socket</span> <span class="p">:</span> <span class="kt">GCDAsyncSocket</span><span class="p">,</span> <span class="n">didConnectToHost</span> <span class="nv">host</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="n">port</span> <span class="nv">p</span><span class="p">:</span><span class="kt">UInt16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>socket</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The socket that did connect.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>didConnectToHost</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the host that it has connected to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>port</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The port that was connected on.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Nothing.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10KnxBasics218KnxRouterInterface6socketERR"></a>
+                    <a name="//apple_ref/swift/Method/socket(_:didReadData:withTag:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10KnxBasics218KnxRouterInterface6socketERR">socket(_:didReadData:withTag:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Response handler, called from the CocoaAsyncSocket framework upon reception of data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">socket</span><span class="p">(</span><span class="nv">socket</span> <span class="p">:</span> <span class="kt">GCDAsyncSocket</span><span class="o">!</span><span class="p">,</span> <span class="n">didReadData</span> <span class="nv">data</span><span class="p">:</span><span class="kt">NSData</span><span class="o">!</span><span class="p">,</span> <span class="n">withTag</span> <span class="nv">tag</span><span class="p">:</span><span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>socket</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The socket that did connect.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>didReadData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The received data.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withTag</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The tag value supplied in the request to read.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Nothing.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2016-04-28)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
