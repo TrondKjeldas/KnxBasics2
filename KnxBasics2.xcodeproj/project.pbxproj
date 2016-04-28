@@ -10,26 +10,18 @@
 		96BCC57E300C00B4D83826D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA40C7BEA1D54A86D869C31E /* Pods.framework */; };
 		BF6652401CC7F066004158BB /* KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6652351CC7F065004158BB /* KnxBasics2.framework */; };
 		BFE54FDF1CD2732F002A79C4 /* KnxGroupAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */; };
-		BFE54FE01CD2732F002A79C4 /* KnxGroupAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */; };
 		BFE54FE11CD2732F002A79C4 /* KnxDimmerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */; };
-		BFE54FE21CD2732F002A79C4 /* KnxDimmerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */; };
 		BFE54FE31CD2732F002A79C4 /* KnxException.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD61CD2732F002A79C4 /* KnxException.swift */; };
-		BFE54FE41CD2732F002A79C4 /* KnxException.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD61CD2732F002A79C4 /* KnxException.swift */; };
 		BFE54FE51CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */; };
-		BFE54FE61CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */; };
 		BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift */; };
-		BFE54FE81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift */; };
 		BFE54FE91CD2732F002A79C4 /* KnxRouterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD91CD2732F002A79C4 /* KnxRouterInterface.swift */; };
-		BFE54FEA1CD2732F002A79C4 /* KnxRouterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD91CD2732F002A79C4 /* KnxRouterInterface.swift */; };
 		BFE54FEB1CD2732F002A79C4 /* KnxTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDA1CD2732F002A79C4 /* KnxTelegram.swift */; };
-		BFE54FEC1CD2732F002A79C4 /* KnxTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDA1CD2732F002A79C4 /* KnxTelegram.swift */; };
 		BFE54FED1CD2732F002A79C4 /* KnxTelegramFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDB1CD2732F002A79C4 /* KnxTelegramFactory.swift */; };
-		BFE54FEE1CD2732F002A79C4 /* KnxTelegramFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDB1CD2732F002A79C4 /* KnxTelegramFactory.swift */; };
 		BFE54FEF1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDC1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift */; };
-		BFE54FF01CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDC1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift */; };
 		BFE54FF81CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FF41CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift */; };
-		BFE54FFA1CD27C25002A79C4 /* KnxBasics2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FF51CD27C25002A79C4 /* KnxBasics2Tests.swift */; };
 		BFE54FFB1CD27C25002A79C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFE54FF61CD27C25002A79C4 /* Info.plist */; };
+		BFE550041CD282EC002A79C4 /* TestKnxTelegramFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE550031CD282EC002A79C4 /* TestKnxTelegramFactory.swift */; };
+		BFE550051CD284CD002A79C4 /* KnxBasics2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FF51CD27C25002A79C4 /* KnxBasics2Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +58,7 @@
 		BFE54FF51CD27C25002A79C4 /* KnxBasics2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxBasics2Tests.swift; path = Tests/KnxBasics2Tests.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FF61CD27C25002A79C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
 		BFE54FFD1CD27DBE002A79C4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		BFE550031CD282EC002A79C4 /* TestKnxTelegramFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestKnxTelegramFactory.swift; path = Tests/TestKnxTelegramFactory.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,15 +125,7 @@
 		BF6652371CC7F065004158BB /* KnxBasics2 */ = {
 			isa = PBXGroup;
 			children = (
-				BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */,
-				BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */,
-				BFE54FD61CD2732F002A79C4 /* KnxException.swift */,
-				BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */,
-				BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift */,
-				BFE54FD91CD2732F002A79C4 /* KnxRouterInterface.swift */,
-				BFE54FDA1CD2732F002A79C4 /* KnxTelegram.swift */,
-				BFE54FDB1CD2732F002A79C4 /* KnxTelegramFactory.swift */,
-				BFE54FDC1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift */,
+				BFE550001CD281DC002A79C4 /* Source */,
 				BFE54FDD1CD2732F002A79C4 /* KnxBasics2.h */,
 				BFE54FDE1CD2732F002A79C4 /* Info.plist */,
 			);
@@ -150,11 +135,28 @@
 		BF6652431CC7F066004158BB /* KnxBasics2Tests */ = {
 			isa = PBXGroup;
 			children = (
+				BFE550031CD282EC002A79C4 /* TestKnxTelegramFactory.swift */,
 				BFE54FF41CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift */,
 				BFE54FF51CD27C25002A79C4 /* KnxBasics2Tests.swift */,
 				BFE54FF61CD27C25002A79C4 /* Info.plist */,
 			);
 			path = KnxBasics2Tests;
+			sourceTree = "<group>";
+		};
+		BFE550001CD281DC002A79C4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */,
+				BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */,
+				BFE54FD61CD2732F002A79C4 /* KnxException.swift */,
+				BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */,
+				BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift */,
+				BFE54FD91CD2732F002A79C4 /* KnxRouterInterface.swift */,
+				BFE54FDA1CD2732F002A79C4 /* KnxTelegram.swift */,
+				BFE54FDB1CD2732F002A79C4 /* KnxTelegramFactory.swift */,
+				BFE54FDC1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift */,
+			);
+			name = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,17 +318,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE54FEE1CD2732F002A79C4 /* KnxTelegramFactory.swift in Sources */,
-				BFE54FE81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift in Sources */,
-				BFE54FE41CD2732F002A79C4 /* KnxException.swift in Sources */,
+				BFE550051CD284CD002A79C4 /* KnxBasics2Tests.swift in Sources */,
 				BFE54FF81CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift in Sources */,
-				BFE54FFA1CD27C25002A79C4 /* KnxBasics2Tests.swift in Sources */,
-				BFE54FE21CD2732F002A79C4 /* KnxDimmerControl.swift in Sources */,
-				BFE54FE01CD2732F002A79C4 /* KnxGroupAddress.swift in Sources */,
-				BFE54FEC1CD2732F002A79C4 /* KnxTelegram.swift in Sources */,
-				BFE54FF01CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift in Sources */,
-				BFE54FEA1CD2732F002A79C4 /* KnxRouterInterface.swift in Sources */,
-				BFE54FE61CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */,
+				BFE550041CD282EC002A79C4 /* TestKnxTelegramFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
