@@ -33,7 +33,7 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
         levelRspAddress = levelResponseAddress
         
         self.lightOn  = false
-        self.dimLevel = 0
+        self._dimLevel = 0
         
         self.responseHandler = responseHandler
         
@@ -48,6 +48,7 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
         if let dimmerInterface = dimmerInterface {
             
             dimmerInterface.connectTo("zbox")
+            dimmerInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setDimLevelAddress))
         }
         
         levelRspInterface = KnxRouterInterface(responseHandler: self)
@@ -67,7 +68,7 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
                     value = 1
                 }
                 print("lightOn soon: \(value)")
-                onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
+                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
             }
         }
         didSet {
@@ -76,8 +77,19 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
     }
     
     /// Read/write attribute holding the light level.
-    public var dimLevel:Int
-    
+    public var dimLevel:Int{
+        get {
+            return _dimLevel
+        }
+        set {
+            if newValue != _dimLevel {
+                print("dimLevel soon: \(newValue)")
+                try! dimmerInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT5_001, value:newValue))
+            }
+        }
+    }
+
+
     /**
      Handler for telegram responses.
      
@@ -111,8 +123,8 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
         else if interface == levelRspInterface {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(levelRspAddress)
             do {
-                dimLevel = try telegram.getValueAsType(.DPT5_001)
-                responseHandler?.dimLevelResponse(dimLevel)
+                _dimLevel = try telegram.getValueAsType(.DPT5_001)
+                responseHandler?.dimLevelResponse(_dimLevel)
             }
             catch KnxException.IllformedTelegramForType {
                 
@@ -139,4 +151,6 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
     private var levelRspInterface:KnxRouterInterface?
     
     private var responseHandler:KnxResponseHandlerDelegate?
+    
+    private var _dimLevel : Int
 }

@@ -82,8 +82,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         // Read first header
         socket.readDataToLength(2, withTimeout:-1.0, tag: 0)
     }
-    
-    
+
     /**
      Response handler, called from the CocoaAsyncSocket framework upon reception of data.
      

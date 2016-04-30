@@ -37,6 +37,14 @@ class Handler : KnxResponseHandlerDelegate {
 
 let handler = Handler()
 
+
+KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
+                                               type: KnxTelegramType.DPT1_xxx)
+
+KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
+                                               type: KnxTelegramType.DPT5_001)
+
+
 /*
 
 let kr = KnxRouterInterface(responseHandler: handler)
@@ -63,18 +71,19 @@ let dimmer =
                                    setDimLevelAddress: KnxGroupAddress(fromString: "1/1/27"),
                                    levelResponseAddress: lvlrspaddr, responseHandler:handler)
 
-//dimmer.lightOn = true
+dimmer.lightOn = true
 
 
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))),
                dispatch_get_main_queue()) {
-                //dimmer.lightOn = !dimmer.lightOn
+                dimmer.dimLevel = 1
+                
 }
 
 
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC))),
                dispatch_get_main_queue()) {
-                //dimmer.lightOn = !dimmer.lightOn
+                dimmer.dimLevel = 75
 }
 
 
