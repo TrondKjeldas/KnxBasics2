@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyBeaver
 
 /// A global registry for mapping group addresses to DPT types.
 public class KnxGroupAddressRegistry {
@@ -28,7 +29,7 @@ public class KnxGroupAddressRegistry {
             return address
         }
         else {
-            print("Address not in registry: \(address)")
+            log.warning("Address not in registry: \(address)")
             return KnxTelegramType.UNKNOWN
         }
     }
@@ -43,7 +44,11 @@ public class KnxGroupAddressRegistry {
      */
     public static func addTypeForGroupAddress(address : KnxGroupAddress,
                                               type : KnxTelegramType) {
-        
+        log.verbose("Adding address \(address.addressAsUInt16) to registry.")
         registry[address] = type
     }
+    
+    // MARK: Internal and private declarations
+    private static let log = SwiftyBeaver.self
 }
+

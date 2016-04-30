@@ -5,6 +5,8 @@ use_frameworks!
  
 pod 'CocoaAsyncSocket' 
 
+pod 'SwiftyBeaver'
+
 target 'KnxBasics2' do
 
 end

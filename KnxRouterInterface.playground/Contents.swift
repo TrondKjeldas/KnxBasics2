@@ -6,8 +6,14 @@ XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 import Cocoa
 
 import CocoaAsyncSocket
-
+import SwiftyBeaver
 import KnxBasics2
+
+let console = ConsoleDestination()
+console.detailOutput = false
+console.asynchronously = false
+console.minLevel = .Warning
+SwiftyBeaver.addDestination(console)
 
 class Handler : KnxResponseHandlerDelegate {
 

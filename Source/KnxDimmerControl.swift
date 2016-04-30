@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyBeaver
 
 /// Class representing a dimmable light.
 public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
@@ -67,12 +68,12 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
                 if newValue {
                     value = 1
                 }
-                print("lightOn soon: \(value)")
+                log.verbose("lightOn soon: \(value)")
                 try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
             }
         }
         didSet {
-            print("lightOn now: \(lightOn)")
+            log.verbose("lightOn now: \(lightOn)")
         }
     }
     
@@ -83,7 +84,7 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
         }
         set {
             if newValue != _dimLevel {
-                print("dimLevel soon: \(newValue)")
+                log.verbose("dimLevel soon: \(newValue)")
                 try! dimmerInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT5_001, value:newValue))
             }
         }
@@ -113,11 +114,11 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
             }
             catch KnxException.IllformedTelegramForType {
                 
-                print("Catched...")
+                log.error("Catched...")
             }
             catch {
                 
-                print("Catched...")
+                log.error("Catched...")
             }
         }
         else if interface == levelRspInterface {
@@ -128,16 +129,16 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
             }
             catch KnxException.IllformedTelegramForType {
                 
-                print("Catched...")
+                log.error("Catched...")
             }
             catch {
                 
-                print("Catched...")
+                log.error("Catched...")
             }
         }
         
         
-        print("HANDLING: \(telegram.payload)")
+        log.debug("HANDLING: \(telegram.payload)")
     }
     
     // MARK: Internal and private declarations
@@ -153,4 +154,6 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
     private var responseHandler:KnxResponseHandlerDelegate?
     
     private var _dimLevel : Int
+    
+    private let log = SwiftyBeaver.self
 }

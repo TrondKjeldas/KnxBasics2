@@ -6,11 +6,14 @@ PODS:
     - CocoaAsyncSocket/RunLoop
   - CocoaAsyncSocket/GCD (7.4.3)
   - CocoaAsyncSocket/RunLoop (7.4.3)
+  - SwiftyBeaver (0.5.1)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
+  - SwiftyBeaver
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
+  SwiftyBeaver: 35438d71982a8d569be3d8b79332e2fd17991cbf
 
 COCOAPODS: 0.39.0

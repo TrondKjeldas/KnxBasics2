@@ -9,6 +9,7 @@
 import Foundation
 
 import CocoaAsyncSocket
+import SwiftyBeaver
 
 /// Class representing the interface towards the KNX router.
 public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
@@ -43,9 +44,9 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         
         do {
             try socket.connectToHost("zbox", onPort: onPort)
-            print("after")
+            log.verbose("after")
         } catch let e {
-            print("Oops: \(e)")
+            log.error("Oops: \(e)")
         }
     }
     
@@ -59,7 +60,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     public func submit(telegram:KnxTelegram) {
         
         let msgData = NSData(bytes: telegram.payload, length: telegram.payload.count)
-        print("SEND: \(msgData)")
+        log.info("SEND: \(msgData)")
         socket.writeData(msgData, withTimeout: -1.0, tag: 0)
         
         written += telegram.payload.count
@@ -77,7 +78,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     @objc public func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
         
         
-        print("isConnected: \(socket.isConnected)")
+        log.verbose("isConnected: \(socket.isConnected)")
         
         // Read first header
         socket.readDataToLength(2, withTimeout:-1.0, tag: 0)
@@ -108,7 +109,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             
             let msgLen:UInt16 = UInt16(msgLenH) << 8 | UInt16(msgLenL)
             
-            print("LEN: \(msgLen)")
+            log.debug("LEN: \(msgLen)")
             
             socket.readDataToLength(UInt(msgLen), withTimeout:-1.0, buffer:telegramData, bufferOffset:2, tag: 1)
             
@@ -118,7 +119,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             
             readCount += 1
             
-            print("GOT: \(telegramData)")
+            log.info("GOT: \(telegramData)")
             
             if(telegramData.length > 4) {
                 
@@ -143,5 +144,5 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     
     private var responseHandler : KnxTelegramResponseHandlerDelegate? = nil
     
-    
+    private let log = SwiftyBeaver.self
 }
