@@ -28,6 +28,6 @@ class TestKnxTelegramFactory: XCTestCase {
     
     func testAddressFound() {
         
-        XCTAssertNotNil(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT5_001, value: 1))
+        XCTAssertNotNil(try! KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT5_001, value: 1))
     }
 }
