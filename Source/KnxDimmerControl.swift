@@ -23,7 +23,7 @@ import Foundation
 import SwiftyBeaver
 
 /// Class representing a dimmable light.
-public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
+public class KnxDimmerControl : KnxOnOffControl {
     
     // MARK: Public API:
     
@@ -40,24 +40,18 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
     public init(setOnOffAddress:KnxGroupAddress,
                 setDimLevelAddress:KnxGroupAddress,
                 levelResponseAddress:KnxGroupAddress,
-                responseHandler : KnxResponseHandlerDelegate) {
+                responseHandler : KnxDimmerResponseHandlerDelegate) {
         
-        onOffAddress = setOnOffAddress
         dimmerAddress = setDimLevelAddress
         levelRspAddress = levelResponseAddress
         
-        self.lightOn  = false
         self._dimLevel = 0
         
-        self.responseHandler = responseHandler
-        
-        onOffInterface = KnxRouterInterface(responseHandler: self)
-        if let onOffInterface = onOffInterface {
-            
-            onOffInterface.connectTo("zbox")
-            onOffInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setOnOffAddress))
-        }
-        
+        self.dimmerResponseHandler = responseHandler
+
+        // Initialize super for on/off functionality
+        super.init(setOnOffAddress: setOnOffAddress, responseHandler: responseHandler)
+
         dimmerInterface = KnxRouterInterface(responseHandler: self)
         if let dimmerInterface = dimmerInterface {
             
@@ -70,23 +64,6 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
             
             levelRspInterface.connectTo("zbox")
             levelRspInterface.submit(KnxTelegramFactory.createSubscriptionRequest(levelResponseAddress))
-        }
-    }
-    
-    /// Read/write attribute holding the on/off state.
-    public var lightOn:Bool {
-        willSet(newValue) {
-            if newValue != lightOn {
-                var value = 0
-                if newValue {
-                    value = 1
-                }
-                log.verbose("lightOn soon: \(value)")
-                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
-            }
-        }
-        didSet {
-            log.verbose("lightOn now: \(lightOn)")
         }
     }
     
@@ -112,33 +89,17 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
      
      - returns: Nothing.
      */
-    public func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    public override func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         var type : KnxTelegramType
         
         let interface = sender as! KnxRouterInterface
         
-        if interface == onOffInterface {
-            type = KnxGroupAddressRegistry.getTypeForGroupAddress(onOffAddress)
-            do {
-                let val = try telegram.getValueAsType(type)
-                lightOn = Bool(val)
-                responseHandler?.onOffResponse(lightOn)
-            }
-            catch KnxException.IllformedTelegramForType {
-                
-                log.error("Catched...")
-            }
-            catch {
-                
-                log.error("Catched...")
-            }
-        }
-        else if interface == levelRspInterface {
+        if interface == levelRspInterface {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(levelRspAddress)
             do {
-                _dimLevel = try telegram.getValueAsType(.DPT5_001)
-                responseHandler?.dimLevelResponse(_dimLevel)
+                _dimLevel = try telegram.getValueAsType(type)
+                dimmerResponseHandler?.dimLevelResponse(_dimLevel)
             }
             catch KnxException.IllformedTelegramForType {
                 
@@ -148,23 +109,23 @@ public class KnxDimmerControl : KnxTelegramResponseHandlerDelegate {
                 
                 log.error("Catched...")
             }
+        } else {
+            // Also give super a shot...
+            super.subscriptionResponse(sender, telegram: telegram)
         }
-        
         
         log.debug("HANDLING: \(telegram.payload)")
     }
     
     // MARK: Internal and private declarations
     
-    private var onOffAddress:KnxGroupAddress
     private var dimmerAddress:KnxGroupAddress
     private var levelRspAddress:KnxGroupAddress
     
-    private var onOffInterface:KnxRouterInterface?
     private var dimmerInterface:KnxRouterInterface?
     private var levelRspInterface:KnxRouterInterface?
     
-    private var responseHandler:KnxResponseHandlerDelegate?
+    private var dimmerResponseHandler:KnxDimmerResponseHandlerDelegate?
     
     private var _dimLevel : Int
     

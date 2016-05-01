@@ -22,8 +22,8 @@
 
 import Foundation
 
-/// Delegate protocol for KnxDimmerControl delegates.
-public protocol KnxResponseHandlerDelegate {
+/// Delegate protocol for KnxOnOffControl delegates.
+public protocol KnxOnOffResponseHandlerDelegate {
     
     /**
      Handler for changes in on/off state.
@@ -33,6 +33,10 @@ public protocol KnxResponseHandlerDelegate {
      - returns: Noting.
      */
     func onOffResponse(on:Bool)
+}
+
+/// Delegate protocol for KnxDimmerControl delegates.
+public protocol KnxDimmerResponseHandlerDelegate : KnxOnOffResponseHandlerDelegate {
     
     /**
      Handler for changes in dimmer level.

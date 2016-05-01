@@ -32,41 +32,47 @@ console.asynchronously = false
 console.minLevel = .Warning
 SwiftyBeaver.addDestination(console)
 
-class Handler : KnxTelegramResponseHandlerDelegate {
+class Handler : KnxOnOffResponseHandlerDelegate {
     
-    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    func onOffResponse(on:Bool) {
         
-        var val = -1
-        do {
-            val = try telegram.getValueAsType(.DPT5_001)
-            print("Got response with value: \(val)")
-        }
-        catch {
-            do {
-                val = try telegram.getValueAsType(.DPT1_xxx)
-                print("Got response with value: \(val)")
-            }
-            catch {
-                print("Catched...")
-            }
-        }
+        print("ON: \(on)")
+    }
+    
+    // No use for these...
+    func dimLevelResponse(level:Int) {
+    }
+    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
     }
 }
 
 let handler = Handler()
 
+
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
                                                type: KnxTelegramType.DPT1_xxx)
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
-                                               type: KnxTelegramType.DPT5_001)
+
+let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
+
+let lightSwitch =
+    KnxOnOffControl(setOnOffAddress: onoffaddr,
+                    responseHandler:handler)
+
+lightSwitch.lightOn = true
 
 
-let kr = KnxRouterInterface(responseHandler: handler)
-let kr2 = KnxRouterInterface(responseHandler: handler)
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
+               dispatch_get_main_queue()) {
+                lightSwitch.lightOn = false
+                
+}
 
-kr.connectTo("zbox")
-kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
 
-kr2.connectTo("zbox")
-kr2.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "1/0/14")))
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(6 * Double(NSEC_PER_SEC))),
+               dispatch_get_main_queue()) {
+                lightSwitch.lightOn = true
+}
+
+
+

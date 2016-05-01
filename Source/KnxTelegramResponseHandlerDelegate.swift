@@ -34,3 +34,4 @@ public protocol KnxTelegramResponseHandlerDelegate {
      */
     func subscriptionResponse(sender : AnyObject?, telegram:KnxTelegram)
 }
+

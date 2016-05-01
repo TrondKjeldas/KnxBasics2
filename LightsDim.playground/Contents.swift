@@ -32,24 +32,21 @@ console.asynchronously = false
 console.minLevel = .Warning
 SwiftyBeaver.addDestination(console)
 
-class Handler : KnxTelegramResponseHandlerDelegate {
+class Handler : KnxDimmerResponseHandlerDelegate {
     
-    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    
+    func onOffResponse(on:Bool) {
         
-        var val = -1
-        do {
-            val = try telegram.getValueAsType(.DPT5_001)
-            print("Got response with value: \(val)")
-        }
-        catch {
-            do {
-                val = try telegram.getValueAsType(.DPT1_xxx)
-                print("Got response with value: \(val)")
-            }
-            catch {
-                print("Catched...")
-            }
-        }
+        print("ON: \(on)")
+    }
+    
+    func dimLevelResponse(level:Int) {
+        
+        print("DIM LEVEL: \(level)")
+    }
+
+    // No use for this...
+    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
     }
 }
 
@@ -61,12 +58,24 @@ KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/1
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
                                                type: KnxTelegramType.DPT5_001)
 
+let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
 
-let kr = KnxRouterInterface(responseHandler: handler)
-let kr2 = KnxRouterInterface(responseHandler: handler)
+let lvlrspaddr = KnxGroupAddress(fromString: "3/5/26")
 
-kr.connectTo("zbox")
-kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
+let dimmer =
+    KnxDimmerControl(setOnOffAddress: onoffaddr,
+                     setDimLevelAddress: KnxGroupAddress(fromString: "1/1/27"),
+                     levelResponseAddress: lvlrspaddr, responseHandler:handler)
 
-kr2.connectTo("zbox")
-kr2.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "1/0/14")))
+dimmer.lightOn = true
+
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
+               dispatch_get_main_queue()) {
+                dimmer.dimLevel = 20
+}
+
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(6 * Double(NSEC_PER_SEC))),
+               dispatch_get_main_queue()) {
+                dimmer.dimLevel = 75
+}
+
