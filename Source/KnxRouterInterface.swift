@@ -1,5 +1,5 @@
 //
-//  KnxRouterInterfaceImplementation.swift
+//  KnxRouterInterface.swift
 //  KnxBasics2
 //
 //  Created by Trond Kjeldås on 21/04/16.

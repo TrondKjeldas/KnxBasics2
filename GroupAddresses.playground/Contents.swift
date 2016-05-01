@@ -5,13 +5,17 @@ import CocoaAsyncSocket
 import SwiftyBeaver
 import KnxBasics2
 
-
+//: Set up logging with SwiftyBeaver
 let console = ConsoleDestination()
 console.detailOutput = false
 console.asynchronously = false
 SwiftyBeaver.addDestination(console)
 
-
+/*:
+ 
+ ---------
+ 
+ */
 
 KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3"))
 

@@ -25,12 +25,12 @@ class KnxBasics2Tests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-      //  let kt = KnxTelegramImplementation(s: "testing")
+      //  let kt = KnxTelegram(s: "testing")
         
         XCTAssertEqual(0, 0)
         
         
-      //  let kr = KnxRouterInterfaceImplementation("192.168.1.51")
+      //  let kr = KnxRouterInterface("192.168.1.51")
         
         
         

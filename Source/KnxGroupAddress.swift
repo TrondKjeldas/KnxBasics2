@@ -1,5 +1,5 @@
 //
-//  KnxGroupAddressImplementation.swift
+//  KnxGroupAddress.swift
 //  KnxBasics2
 //
 //  Created by Trond Kjeldås on 24/04/16.
