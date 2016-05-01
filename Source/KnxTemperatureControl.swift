@@ -1,5 +1,5 @@
 //
-//  KnxOnOffControl.swift
+//  KnxTemperatureControl.swift
 //  KnxBasics2
 //
 //  The KnxBasics2 framework provides basic interworking with a KNX installation.
@@ -22,8 +22,8 @@
 import Foundation
 import SwiftyBeaver
 
-/// Class representing a light switch.
-public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
+/// Class allowing subscription on temperature.
+public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
     
     // MARK: Public API:
     
@@ -35,37 +35,27 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
      - returns: Nothing.
      */
     
-    public init(setOnOffAddress:KnxGroupAddress,
-                responseHandler : KnxOnOffResponseHandlerDelegate) {
+    public init(subscriptionAddress:KnxGroupAddress,
+                responseHandler : KnxTemperatureResponseHandlerDelegate) {
         
-        onOffAddress = setOnOffAddress
-        
-        self.lightOn  = false
+        self.subscriptionAddress = subscriptionAddress
         
         self.responseHandler = responseHandler
         
-        onOffInterface = KnxRouterInterface(responseHandler: self)
-        if let onOffInterface = onOffInterface {
+        self._temperature = 0.0
+        
+        interface = KnxRouterInterface(responseHandler: self)
+        if let interface = interface {
             
-            onOffInterface.connectTo("zbox")
-            onOffInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setOnOffAddress))
+            interface.connectTo("zbox")
+            interface.submit(KnxTelegramFactory.createSubscriptionRequest(subscriptionAddress))
         }
     }
     
-    /// Read/write attribute holding the on/off state.
-    public var lightOn:Bool {
-        willSet(newValue) {
-            if newValue != lightOn {
-                var value = 0
-                if newValue {
-                    value = 1
-                }
-                log.verbose("lightOn soon: \(value)")
-                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
-            }
-        }
-        didSet {
-            log.verbose("lightOn now: \(lightOn)")
+    /// Read-only attribute holding the last received.
+    public var temperature:Double {
+        get {
+            return _temperature
         }
     }
     
@@ -83,19 +73,18 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
         
         let interface = sender as! KnxRouterInterface
         
-        if interface == onOffInterface {
-            type = KnxGroupAddressRegistry.getTypeForGroupAddress(onOffAddress)
+        if interface == self.interface {
+            type = KnxGroupAddressRegistry.getTypeForGroupAddress(subscriptionAddress)
             do {
-                let val:Int = try telegram.getValueAsType(type)
-                lightOn = Bool(val)
-                responseHandler?.onOffResponse(lightOn)
+                _temperature = try telegram.getValueAsType(type)
+                responseHandler?.temperatureResponse(_temperature)
             }
             catch KnxException.IllformedTelegramForType {
                 
                 log.error("Catched...")
             }
             catch {
-                
+                // TODO: Improve error handling.
                 log.error("Catched...")
             }
         }
@@ -106,11 +95,13 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
     
     // MARK: Internal and private declarations
     
-    private var onOffAddress:KnxGroupAddress
+    private var subscriptionAddress:KnxGroupAddress
     
-    private var onOffInterface:KnxRouterInterface?
+    private var interface:KnxRouterInterface?
     
-    private var responseHandler:KnxOnOffResponseHandlerDelegate?
+    private var responseHandler:KnxTemperatureResponseHandlerDelegate?
+    
+    private var _temperature : Double
     
     private let log = SwiftyBeaver.self
 }

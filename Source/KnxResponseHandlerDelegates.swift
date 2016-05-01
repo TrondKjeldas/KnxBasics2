@@ -47,3 +47,16 @@ public protocol KnxDimmerResponseHandlerDelegate : KnxOnOffResponseHandlerDelega
      */
     func dimLevelResponse(level:Int)
 }
+
+/// Delegate protocol for KnxTemperatureControl delegates.
+public protocol KnxTemperatureResponseHandlerDelegate {
+    
+    /**
+     Handler for changes in dimmer level.
+     
+     - parameter level: The received temperature value.
+     
+     - returns: Nothing.
+     */
+    func temperatureResponse(level:Double)
+}

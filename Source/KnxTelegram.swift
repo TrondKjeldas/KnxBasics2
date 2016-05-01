@@ -32,6 +32,9 @@ public enum KnxTelegramType {
     
     /// Scaling value, range 0-100%.
     case DPT5_001
+    
+    /// Temperature, in degree celsius
+    case DPT9_001
 }
 
 /// Class representing a KNX telegram.
@@ -89,6 +92,53 @@ public class KnxTelegram {
             let dimVal = Int(_bytes![8] & 0xff)
             
             return (dimVal * 100) / 255
+            
+        default:
+            throw KnxException.UnknownTelegramType
+        }
+    }
+
+    /**
+     Returns the data value in the telegram as a specific DPT.
+     
+     - parameter type: DPT type to decode the telegram according to.
+     
+     - returns: The decoded value as a float.
+     */
+    public func getValueAsType(type:KnxTelegramType) throws -> Double {
+        
+        switch(type) {
+            
+        case .DPT9_001:
+            
+            if(_bytes!.count != 10) {
+                throw KnxException.IllformedTelegramForType
+            }
+            
+            //FloatValue = (0,01*M)*2(E)
+            //E = [0 ... 15]
+            //M = [-2 048 ... 2 047], two’s complement notation
+            //For all Datapoint Types 9.xxx, the encoded value 7FFFh shall always be used to denote invalid data.
+            
+            let val:UInt16 = (UInt16(_bytes![9] & 0xff) | (UInt16(_bytes![8] & 0xff)<<8))
+            let sign = ((val & 0x8000) >> 15)
+            let exp = (val & 0x7800) >> 11
+            
+            var mantissa : Int32 = Int32(val & 0x7FF)
+            
+            if sign == 1 {
+                
+                mantissa = -1 - mantissa
+            }
+            
+            let twoExp = Int32(1 << exp)
+            
+            mantissa *= twoExp
+            
+            let floatVal = Double(mantissa) * 0.01
+            
+            return floatVal
+            
             
         default:
             throw KnxException.UnknownTelegramType
