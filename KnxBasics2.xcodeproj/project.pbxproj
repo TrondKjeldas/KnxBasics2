@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		96BCC57E300C00B4D83826D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA40C7BEA1D54A86D869C31E /* Pods.framework */; };
 		BF6652401CC7F066004158BB /* KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6652351CC7F065004158BB /* KnxBasics2.framework */; };
+		BF9ADC971CD6345100CA7C83 /* KnxOnOffControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9ADC961CD6345100CA7C83 /* KnxOnOffControl.swift */; };
+		BF9ADC9B1CD6483E00CA7C83 /* TestKnxTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9ADC9A1CD6483E00CA7C83 /* TestKnxTelegram.swift */; };
+		BF9ADC9E1CD6686900CA7C83 /* KnxTemperatureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9ADC9D1CD6686900CA7C83 /* KnxTemperatureControl.swift */; };
 		BFE54FDF1CD2732F002A79C4 /* KnxGroupAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */; };
 		BFE54FE11CD2732F002A79C4 /* KnxDimmerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */; };
 		BFE54FE31CD2732F002A79C4 /* KnxException.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD61CD2732F002A79C4 /* KnxException.swift */; };
 		BFE54FE51CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */; };
-		BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift */; };
+		BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift */; };
 		BFE54FE91CD2732F002A79C4 /* KnxRouterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FD91CD2732F002A79C4 /* KnxRouterInterface.swift */; };
 		BFE54FEB1CD2732F002A79C4 /* KnxTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDA1CD2732F002A79C4 /* KnxTelegram.swift */; };
 		BFE54FED1CD2732F002A79C4 /* KnxTelegramFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FDB1CD2732F002A79C4 /* KnxTelegramFactory.swift */; };
@@ -40,14 +43,20 @@
 		AA40C7BEA1D54A86D869C31E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6652351CC7F065004158BB /* KnxBasics2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KnxBasics2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF66523F1CC7F066004158BB /* KnxBasics2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnxBasics2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF66524F1CC92B0E004158BB /* PlayingWithCocoaAsyncSocket.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PlayingWithCocoaAsyncSocket.playground; sourceTree = "<group>"; };
-		BFE54FA81CCA8759002A79C4 /* KnxRouterInterface.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KnxRouterInterface.playground; sourceTree = "<group>"; };
-		BFE54FB71CCFE084002A79C4 /* GroupAddresses.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GroupAddresses.playground; sourceTree = "<group>"; };
+		BF9ADC961CD6345100CA7C83 /* KnxOnOffControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnxOnOffControl.swift; sourceTree = SOURCE_ROOT; };
+		BF9ADC9A1CD6483E00CA7C83 /* TestKnxTelegram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestKnxTelegram.swift; sourceTree = SOURCE_ROOT; };
+		BF9ADC9D1CD6686900CA7C83 /* KnxTemperatureControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxTemperatureControl.swift; path = Source/KnxTemperatureControl.swift; sourceTree = SOURCE_ROOT; };
+		BFD490E11CD66DFF00D76625 /* Temperature.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Temperature.playground; path = Playgrounds/Temperature.playground; sourceTree = "<group>"; };
+		BFD490E21CD66DFF00D76625 /* LightsDim.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = LightsDim.playground; path = Playgrounds/LightsDim.playground; sourceTree = "<group>"; };
+		BFD490E31CD66DFF00D76625 /* LightsOnOff.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = LightsOnOff.playground; path = Playgrounds/LightsOnOff.playground; sourceTree = "<group>"; };
+		BFD490E41CD66DFF00D76625 /* KnxRouterInterface.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = KnxRouterInterface.playground; path = Playgrounds/KnxRouterInterface.playground; sourceTree = "<group>"; };
+		BFD490E51CD66DFF00D76625 /* GroupAddresses.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = GroupAddresses.playground; path = Playgrounds/GroupAddresses.playground; sourceTree = "<group>"; };
+		BFD490E61CD66DFF00D76625 /* PlayingWithCocoaAsyncSocket.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PlayingWithCocoaAsyncSocket.playground; path = Playgrounds/PlayingWithCocoaAsyncSocket.playground; sourceTree = "<group>"; };
 		BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxGroupAddress.swift; path = Source/KnxGroupAddress.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxDimmerControl.swift; path = Source/KnxDimmerControl.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FD61CD2732F002A79C4 /* KnxException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxException.swift; path = Source/KnxException.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxGroupAddressRegistry.swift; path = Source/KnxGroupAddressRegistry.swift; sourceTree = SOURCE_ROOT; };
-		BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxResponseHandlerDelegate.swift; path = Source/KnxResponseHandlerDelegate.swift; sourceTree = SOURCE_ROOT; };
+		BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxResponseHandlerDelegates.swift; path = Source/KnxResponseHandlerDelegates.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FD91CD2732F002A79C4 /* KnxRouterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxRouterInterface.swift; path = Source/KnxRouterInterface.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FDA1CD2732F002A79C4 /* KnxTelegram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxTelegram.swift; path = Source/KnxTelegram.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FDB1CD2732F002A79C4 /* KnxTelegramFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxTelegramFactory.swift; path = Source/KnxTelegramFactory.swift; sourceTree = SOURCE_ROOT; };
@@ -102,9 +111,7 @@
 		BF66522B1CC7F065004158BB = {
 			isa = PBXGroup;
 			children = (
-				BFE54FB71CCFE084002A79C4 /* GroupAddresses.playground */,
-				BFE54FA81CCA8759002A79C4 /* KnxRouterInterface.playground */,
-				BF66524F1CC92B0E004158BB /* PlayingWithCocoaAsyncSocket.playground */,
+				BFD490E01CD66DD300D76625 /* Playgrounds */,
 				BF6652371CC7F065004158BB /* KnxBasics2 */,
 				BF6652431CC7F066004158BB /* KnxBasics2Tests */,
 				BF6652361CC7F065004158BB /* Products */,
@@ -139,8 +146,22 @@
 				BFE54FF41CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift */,
 				BFE54FF51CD27C25002A79C4 /* KnxBasics2Tests.swift */,
 				BFE54FF61CD27C25002A79C4 /* Info.plist */,
+				BF9ADC9A1CD6483E00CA7C83 /* TestKnxTelegram.swift */,
 			);
 			path = KnxBasics2Tests;
+			sourceTree = "<group>";
+		};
+		BFD490E01CD66DD300D76625 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				BFD490E11CD66DFF00D76625 /* Temperature.playground */,
+				BFD490E21CD66DFF00D76625 /* LightsDim.playground */,
+				BFD490E31CD66DFF00D76625 /* LightsOnOff.playground */,
+				BFD490E41CD66DFF00D76625 /* KnxRouterInterface.playground */,
+				BFD490E51CD66DFF00D76625 /* GroupAddresses.playground */,
+				BFD490E61CD66DFF00D76625 /* PlayingWithCocoaAsyncSocket.playground */,
+			);
+			name = Playgrounds;
 			sourceTree = "<group>";
 		};
 		BFE550001CD281DC002A79C4 /* Source */ = {
@@ -150,11 +171,13 @@
 				BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */,
 				BFE54FD61CD2732F002A79C4 /* KnxException.swift */,
 				BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */,
-				BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift */,
+				BFE54FD81CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift */,
 				BFE54FD91CD2732F002A79C4 /* KnxRouterInterface.swift */,
 				BFE54FDA1CD2732F002A79C4 /* KnxTelegram.swift */,
 				BFE54FDB1CD2732F002A79C4 /* KnxTelegramFactory.swift */,
 				BFE54FDC1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift */,
+				BF9ADC961CD6345100CA7C83 /* KnxOnOffControl.swift */,
+				BF9ADC9D1CD6686900CA7C83 /* KnxTemperatureControl.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -304,10 +327,12 @@
 			files = (
 				BFE54FEF1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift in Sources */,
 				BFE54FE91CD2732F002A79C4 /* KnxRouterInterface.swift in Sources */,
+				BF9ADC9E1CD6686900CA7C83 /* KnxTemperatureControl.swift in Sources */,
 				BFE54FEB1CD2732F002A79C4 /* KnxTelegram.swift in Sources */,
 				BFE54FDF1CD2732F002A79C4 /* KnxGroupAddress.swift in Sources */,
-				BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegate.swift in Sources */,
+				BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift in Sources */,
 				BFE54FE51CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */,
+				BF9ADC971CD6345100CA7C83 /* KnxOnOffControl.swift in Sources */,
 				BFE54FED1CD2732F002A79C4 /* KnxTelegramFactory.swift in Sources */,
 				BFE54FE11CD2732F002A79C4 /* KnxDimmerControl.swift in Sources */,
 				BFE54FE31CD2732F002A79C4 /* KnxException.swift in Sources */,
@@ -320,6 +345,7 @@
 			files = (
 				BFE550051CD284CD002A79C4 /* KnxBasics2Tests.swift in Sources */,
 				BFE54FF81CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift in Sources */,
+				BF9ADC9B1CD6483E00CA7C83 /* TestKnxTelegram.swift in Sources */,
 				BFE550041CD282EC002A79C4 /* TestKnxTelegramFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

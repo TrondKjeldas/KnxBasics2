@@ -1,16 +1,16 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "093E7BB53CFDE2D6480742695E891ACB873C5454",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6CE20897118257BC9E7F3755D39886DAFC357BD7",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "89C1CF38A75388C6CC729998F2F7CF5F1FD82D22" : 0,
-    "093E7BB53CFDE2D6480742695E891ACB873C5454" : 0
+    "6CE20897118257BC9E7F3755D39886DAFC357BD7" : 0,
+    "89C1CF38A75388C6CC729998F2F7CF5F1FD82D22" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4D96EE93-E165-4AAE-8744-4B7A42B7896E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "89C1CF38A75388C6CC729998F2F7CF5F1FD82D22" : "KnxBasics\/",
-    "093E7BB53CFDE2D6480742695E891ACB873C5454" : "KnxBasics2\/"
+    "6CE20897118257BC9E7F3755D39886DAFC357BD7" : "KnxBasics2\/",
+    "89C1CF38A75388C6CC729998F2F7CF5F1FD82D22" : "KnxBasics\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "KnxBasics2",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -19,7 +19,7 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/gax58\/local\/gitroot\/mac\/KnxBasics2.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "093E7BB53CFDE2D6480742695E891ACB873C5454"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6CE20897118257BC9E7F3755D39886DAFC357BD7"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/gax58\/local\/gitroot\/mac\/KnxBasics.git",
