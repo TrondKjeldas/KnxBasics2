@@ -35,6 +35,9 @@ public enum KnxTelegramType {
     
     /// Temperature, in degree celsius
     case DPT9_001
+    
+    // Time of day
+    case DPT10_001
 }
 
 /// Class representing a KNX telegram.
@@ -127,8 +130,9 @@ public class KnxTelegram {
             var mantissa : Int32 = Int32(val & 0x7FF)
             
             if sign == 1 {
-                
-                mantissa = -1 - mantissa
+      
+                mantissa = 2048 - mantissa
+                mantissa = -mantissa
             }
             
             let twoExp = Int32(1 << exp)
@@ -145,6 +149,40 @@ public class KnxTelegram {
         }
     }
     
+    /**
+     Returns the data value in the telegram as a specific DPT.
+     
+     - parameter type: DPT type to decode the telegram according to.
+     
+     - returns: The decoded value as a string.
+     */
+    public func getValueAsType(type:KnxTelegramType) throws -> String {
+        
+        switch(type) {
+            
+        case .DPT10_001:
+            
+            if(_bytes!.count != 11) {
+                throw KnxException.IllformedTelegramForType
+            }
+            
+            let days = ["??", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+            let day     = Int((_bytes![8]  & 0xE0) >> 5)
+            let hour    = (_bytes![8]  & 0x1F)
+            let minutes = (_bytes![9]  & 0x3F)
+            let seconds = (_bytes![10] & 0x3F)
+
+            let time = String(format: "%@ %.2d:%.2d:%.2d",
+                              days[day], hour, minutes, seconds)
+            return time
+            
+            
+        default:
+            throw KnxException.UnknownTelegramType
+        }
+    }
+
     // MARK: Internal and private declarations
     
     private var _bytes:[UInt8]?
