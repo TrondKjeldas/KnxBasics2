@@ -67,8 +67,6 @@ let dimmer =
                      setDimLevelAddress: KnxGroupAddress(fromString: "1/1/27"),
                      levelResponseAddress: lvlrspaddr, responseHandler:handler)
 
-dimmer.lightOn = true
-
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
                dispatch_get_main_queue()) {
                 dimmer.dimLevel = 20

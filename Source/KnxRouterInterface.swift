@@ -137,9 +137,15 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             if(telegramData.length > 4) {
                 
                 var dataBytes:[UInt8] = [UInt8](count:telegramData.length, repeatedValue:0)
-                telegramData.getBytes(&dataBytes, length: dataBytes.count)
-                self.responseHandler?.subscriptionResponse(self, telegram:KnxTelegram(bytes: dataBytes))
                 
+                telegramData.getBytes(&dataBytes, length: dataBytes.count)
+                
+                let telegram = KnxTelegram(bytes: dataBytes)
+                
+                if telegram.isWriteRequestOrValueResponse {
+                    
+                    self.responseHandler?.subscriptionResponse(self, telegram:telegram)
+                }
             }
             
             // Next header

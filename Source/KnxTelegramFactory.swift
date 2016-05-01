@@ -49,11 +49,31 @@ public class KnxTelegramFactory {
         bytes[5] = addrLow8
         bytes[6] = 0x00;
 
-
-
         return KnxTelegram(bytes: bytes)
     }
 
+    /**
+     Create a read request.
+     
+     - parameter groupAddress: The group address to read.
+     
+     - returns: A read request telegram, ready to be sent.
+     */
+    public static func createReadRequest(groupAddress:KnxGroupAddress) -> KnxTelegram {
+        
+        var bytes:[UInt8] = [UInt8](count:6, repeatedValue:0)
+        // Length...
+        bytes[0] = 0;
+        bytes[1] = 4;
+        // Content
+        bytes[2] = 0;
+        bytes[3] = 37;
+        bytes[4] = 0
+        bytes[5] = 0
+        
+        return KnxTelegram(bytes: bytes)
+    }
+    
     /**
      Create a write request telegram.
 

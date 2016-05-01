@@ -64,7 +64,13 @@ public class KnxDimmerControl : KnxOnOffControl {
             
             levelRspInterface.connectTo("zbox")
             levelRspInterface.submit(KnxTelegramFactory.createSubscriptionRequest(levelResponseAddress))
+            readLevel()
         }
+    }
+    
+    public func readLevel() {
+
+        levelRspInterface?.submit(KnxTelegramFactory.createReadRequest(levelRspAddress))
     }
     
     /// Read/write attribute holding the light level.

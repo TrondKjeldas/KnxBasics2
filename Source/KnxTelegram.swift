@@ -183,6 +183,20 @@ public class KnxTelegram {
         }
     }
 
+    /// Read-only property indicating whether the telegram contains a
+    /// write request or value response, i.e. not a read request.
+    public var isWriteRequestOrValueResponse : Bool {
+        
+        guard let bytes = _bytes else {
+            
+            return false
+        }
+        
+        return ((bytes[6] & 0x03 == 0x00)
+            && ((bytes[7] & 0xC0 == 0x80)) // write request
+            || ((bytes[7] & 0xC0 == 0x40))) // value response
+    }
+    
     // MARK: Internal and private declarations
     
     private var _bytes:[UInt8]?
