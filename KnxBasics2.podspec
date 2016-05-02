@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
-  s.license      =  { :type => "LGPL V2.1" :file => "FILE_LICENSE" }
+  s.license      =  { :type => "LGPL V2.1", :file => "LICENSE.md" }
 
 
   s.author             = { "Trond Kjeldås" => "trond@kjeldas.no" }
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "ssh://gax58/local/gitroot/mac/KnxBasics2.git" }
 
 
-  s.source_files  = "Sources/*.swift"
+  s.source_files  = "Source/*.swift"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
