@@ -36,7 +36,7 @@ public enum KnxTelegramType {
     /// Temperature, in degree celsius
     case DPT9_001
     
-    // Time of day
+    /// Time of day
     case DPT10_001
 }
 

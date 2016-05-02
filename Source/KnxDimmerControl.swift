@@ -68,6 +68,11 @@ public class KnxDimmerControl : KnxOnOffControl {
         }
     }
     
+    /**
+     Trigger reading of dimmer level.
+     
+     - returns: Nothing.
+     */
     public func readLevel() {
 
         levelRspInterface?.submit(KnxTelegramFactory.createReadRequest(levelRspAddress))
