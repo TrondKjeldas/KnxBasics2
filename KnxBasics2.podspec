@@ -42,8 +42,8 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
-  # s.framework  = "SomeFramework"
-   s.frameworks = "CocoaAsyncSocket", "SwiftyBeaver"
+  s.framework  = "Foundation"
+  # s.frameworks = "CocoaAsyncSocket", "SwiftyBeaver"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
@@ -52,5 +52,6 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
-
+  s.dependency "CocoaAsyncSocket"
+  s.dependency "SwiftyBeaver"
 end
