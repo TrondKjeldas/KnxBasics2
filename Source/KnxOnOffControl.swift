@@ -31,8 +31,6 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
      Initializes a new object.
      
      - parameter setOnOffAddress: The group address to use for turning light on and off.
-     
-     - returns: Nothing.
      */
     
     public init(setOnOffAddress:KnxGroupAddress,
@@ -53,7 +51,7 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
         }
     }
     
-    /// Read/write attribute holding the on/off state.
+    /// Read/write property holding the on/off state.
     public var lightOn:Bool {
         willSet(newValue) {
             if newValue != lightOn {
@@ -75,8 +73,6 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
      
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
-     
-     - returns: Nothing.
      */
     public func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         

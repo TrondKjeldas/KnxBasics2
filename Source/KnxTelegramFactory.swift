@@ -81,6 +81,7 @@ public class KnxTelegramFactory {
      - parameter value: The value to write, as an integer.
 
      - returns: A telegram, ready to be sent.
+     - throws: UnknownTelegramType     
      */
     public static func createWriteRequest(type:KnxTelegramType, value:Int) throws -> KnxTelegram {
 

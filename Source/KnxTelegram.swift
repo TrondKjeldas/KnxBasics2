@@ -58,8 +58,6 @@ public class KnxTelegram {
      
      - parameter bytes: The payload to initialize the telegram with.
      - parameter type: The DPT type to set for the telegram.
-     
-     - returns: Nothing.
      */
     public init(bytes:[UInt8], type:KnxTelegramType = .UNKNOWN) {
         
@@ -74,6 +72,7 @@ public class KnxTelegram {
      - parameter type: DPT type to decode the telegram according to.
      
      - returns: The decoded value as an integer.
+     - throws: IllformedTelegramForType, UnknownTelegramType
      */
     public func getValueAsType(type:KnxTelegramType) throws -> Int {
         
@@ -107,6 +106,7 @@ public class KnxTelegram {
      - parameter type: DPT type to decode the telegram according to.
      
      - returns: The decoded value as a float.
+     - throws: IllformedTelegramForType, UnknownTelegramType
      */
     public func getValueAsType(type:KnxTelegramType) throws -> Double {
         
@@ -155,6 +155,7 @@ public class KnxTelegram {
      - parameter type: DPT type to decode the telegram according to.
      
      - returns: The decoded value as a string.
+     - throws: IllformedTelegramForType, UnknownTelegramType     
      */
     public func getValueAsType(type:KnxTelegramType) throws -> String {
         

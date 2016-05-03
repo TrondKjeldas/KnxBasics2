@@ -31,8 +31,6 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
      Initializes a new object.
      
      - parameter setOnOffAddress: The group address to use for turning light on and off.
-     
-     - returns: Nothing.
      */
     
     public init(subscriptionAddress:KnxGroupAddress,
@@ -53,7 +51,7 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
         }
     }
     
-    /// Read-only attribute holding the last received.
+    /// Read-only property holding the last received.
     public var temperature:Double {
         get {
             return _temperature
@@ -65,8 +63,6 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
      
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
-     
-     - returns: Nothing.
      */
     public func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         

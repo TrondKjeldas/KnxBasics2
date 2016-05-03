@@ -30,8 +30,6 @@ public class KnxGroupAddress : Hashable {
      initializer for the group address object.
      
      - parameter fromString: A string representation of the group address, in the form of "a/b/c".
-     
-     - returns: Nothing.
      */
     public init(fromString:String) {
         
@@ -49,10 +47,10 @@ public class KnxGroupAddress : Hashable {
         
     }
     
-    /// A read-only attribute returning the 16bit representation of the group address.
+    /// A read-only property returning the 16bit representation of the group address.
     private(set) public var addressAsUInt16 : UInt16
     
-    /// A read-only attribute returning the hash value of the object.
+    /// A read-only property returning the hash value of the object.
     public var hashValue: Int {
         return Int(addressAsUInt16)
     }

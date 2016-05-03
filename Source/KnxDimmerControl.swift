@@ -33,8 +33,6 @@ public class KnxDimmerControl : KnxOnOffControl {
      - parameter setOnOffAddress: The group address to use for turning light on and off.
      - parameter setDimLevelAddress: The group address to use for setting light level.
      - parameter levelResponseAddress: The group address to use for subscribing to light level changes.
-     
-     - returns: Nothing.
      */
     
     public init(setOnOffAddress:KnxGroupAddress,
@@ -72,15 +70,13 @@ public class KnxDimmerControl : KnxOnOffControl {
     
     /**
      Trigger reading of dimmer level.
-     
-     - returns: Nothing.
      */
     public func readLevel() {
 
         levelRspInterface?.submit(KnxTelegramFactory.createReadRequest(levelRspAddress))
     }
     
-    /// Read/write attribute holding the light level.
+    /// Read/write property holding the light level.
     public var dimLevel:Int{
         get {
             return _dimLevel
@@ -99,8 +95,6 @@ public class KnxDimmerControl : KnxOnOffControl {
      
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
-     
-     - returns: Nothing.
      */
     public override func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         

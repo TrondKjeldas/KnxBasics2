@@ -33,8 +33,6 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      Initializer for the router interface object.
      
      - parameter responseHandler: The delegate object handling received telegrams.
-     
-     - returns: Nothing.
      */
     public init(responseHandler : KnxTelegramResponseHandlerDelegate) {
         
@@ -51,7 +49,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      - parameter ipAddress: The IP address to connect to.
      - parameter onPort: The port to connect to. Default is port 6720.
      
-     - returns: Nothing.
+     - throws: UnableToConnectToRouter
      */
     public func connect() throws {
         
@@ -72,8 +70,6 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      Submit a telegram for transmission.
      
      - parameter telegram: The telegram to transmit.
-     
-     - returns: Nothing.
      */
     public func submit(telegram:KnxTelegram) {
         
@@ -90,8 +86,6 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      - parameter socket: The socket that did connect.
      - parameter didConnectToHost: The name of the host that it has connected to.
      - parameter port: The port that was connected on.
-     
-     - returns: Nothing.
      */
     @objc public func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
         
@@ -108,8 +102,6 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      - parameter socket: The socket that did connect.
      - parameter didReadData: The received data.
      - parameter withTag: The tag value supplied in the request to read.
-     
-     - returns: Nothing.
      */
     @objc public func socket(socket : GCDAsyncSocket!, didReadData data:NSData!, withTag tag:Int) {
         
@@ -161,8 +153,8 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     /// Property for setting the IP address of the KNX router
     public static var routerIp : String?
     
-    /// Property for setting the port to connect to the KNX router on.
-    /// (defaults to port 6720)
+    /// Property for setting the port to connect to the KNX router on
+    /// (defaults to port 6720.)
     public static var routerPort : UInt16 = 6720
     
     // MARK: Internal and private declarations.

@@ -29,8 +29,6 @@ public protocol KnxOnOffResponseHandlerDelegate {
      Handler for changes in on/off state.
      
      - parameter on: True if light on, false if light off.
-     
-     - returns: Noting.
      */
     func onOffResponse(on:Bool)
 }
@@ -42,8 +40,6 @@ public protocol KnxDimmerResponseHandlerDelegate : KnxOnOffResponseHandlerDelega
      Handler for changes in dimmer level.
      
      - parameter level: The new dimmer level.
-     
-     - returns: Nothing.
      */
     func dimLevelResponse(level:Int)
 }
@@ -55,8 +51,6 @@ public protocol KnxTemperatureResponseHandlerDelegate {
      Handler for changes in dimmer level.
      
      - parameter level: The received temperature value.
-     
-     - returns: Nothing.
      */
     func temperatureResponse(level:Double)
 }

@@ -52,8 +52,6 @@ public class KnxGroupAddressRegistry {
      
      - parameter address: The group address to register a type for.
      - parameter type: The type to register.
-     
-     - returns: Nothing.
      */
     public static func addTypeForGroupAddress(address : KnxGroupAddress,
                                               type : KnxTelegramType) {
