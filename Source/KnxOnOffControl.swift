@@ -47,7 +47,8 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
         onOffInterface = KnxRouterInterface(responseHandler: self)
         if let onOffInterface = onOffInterface {
             
-            onOffInterface.connectTo("zbox")
+            // TODO: Better error handling!
+            try! onOffInterface.connect()
             onOffInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setOnOffAddress))
         }
     }

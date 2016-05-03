@@ -55,14 +55,16 @@ public class KnxDimmerControl : KnxOnOffControl {
         dimmerInterface = KnxRouterInterface(responseHandler: self)
         if let dimmerInterface = dimmerInterface {
             
-            dimmerInterface.connectTo("zbox")
+            // TODO: Better error handling!
+            try! dimmerInterface.connect()
             dimmerInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setDimLevelAddress))
         }
         
         levelRspInterface = KnxRouterInterface(responseHandler: self)
         if let levelRspInterface = levelRspInterface {
             
-            levelRspInterface.connectTo("zbox")
+            // TODO: Better error handling!
+            try! levelRspInterface.connect()
             levelRspInterface.submit(KnxTelegramFactory.createSubscriptionRequest(levelResponseAddress))
             readLevel()
         }

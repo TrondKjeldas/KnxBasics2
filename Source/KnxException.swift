@@ -24,6 +24,9 @@ import Foundation
 /// Enumeration of the exceptions that can be raised from the classes in the framework.
 public enum KnxException : ErrorType {
     
+    /// A connection to the KNX router could not be initiated
+    case UnableToConnectToRouter
+    
     /// Unknown value used for DPT.
     case UnknownTelegramType
     

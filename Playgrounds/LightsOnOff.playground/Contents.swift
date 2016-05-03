@@ -48,6 +48,7 @@ class Handler : KnxOnOffResponseHandlerDelegate {
 
 let handler = Handler()
 
+KnxRouterInterface.routerIp = "gax58"
 
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
                                                type: KnxTelegramType.DPT1_xxx)

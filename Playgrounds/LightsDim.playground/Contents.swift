@@ -52,6 +52,8 @@ class Handler : KnxDimmerResponseHandlerDelegate {
 
 let handler = Handler()
 
+KnxRouterInterface.routerIp = "zbox"
+
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
                                                type: KnxTelegramType.DPT1_xxx)
 

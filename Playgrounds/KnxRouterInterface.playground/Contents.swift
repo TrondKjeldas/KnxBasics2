@@ -61,12 +61,13 @@ KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/1
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
                                                type: KnxTelegramType.DPT5_001)
 
+KnxRouterInterface.routerIp = "zbox"
 
 let kr = KnxRouterInterface(responseHandler: handler)
 let kr2 = KnxRouterInterface(responseHandler: handler)
 
-kr.connectTo("zbox")
+try! kr.connect()
 kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
 
-kr2.connectTo("zbox")
+try! kr2.connect()
 kr2.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "1/0/14")))

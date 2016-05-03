@@ -40,6 +40,8 @@ class Handler : KnxTemperatureResponseHandlerDelegate {
     }
 }
 
+KnxRouterInterface.routerIp = "zbox"
+
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/2/0"),
                                                type: KnxTelegramType.DPT9_001)
 

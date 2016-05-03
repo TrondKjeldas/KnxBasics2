@@ -47,7 +47,8 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
         interface = KnxRouterInterface(responseHandler: self)
         if let interface = interface {
             
-            interface.connectTo("zbox")
+            // TODO: Better error handling!
+            try! interface.connect()
             interface.submit(KnxTelegramFactory.createSubscriptionRequest(subscriptionAddress))
         }
     }

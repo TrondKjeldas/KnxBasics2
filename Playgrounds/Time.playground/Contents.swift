@@ -51,7 +51,9 @@ let handler = Handler()
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/6/0"),
                                                type: KnxTelegramType.DPT10_001)
 
+KnxRouterInterface.routerIp = "zbox"
+
 let kr = KnxRouterInterface(responseHandler: handler)
 
-kr.connectTo("zbox")
+try! kr.connect()
 kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/6/0")))

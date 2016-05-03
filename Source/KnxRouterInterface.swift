@@ -39,6 +39,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     public init(responseHandler : KnxTelegramResponseHandlerDelegate) {
         
         super.init()
+        
         self.responseHandler = responseHandler
         socket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
         
@@ -52,14 +53,18 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      
      - returns: Nothing.
      */
-    public func connectTo(ipAddress:String, onPort:UInt16 = 6720) {
+    public func connect() throws {
         
         
         do {
-            try socket.connectToHost("zbox", onPort: onPort)
+            try socket.connectToHost(KnxRouterInterface.routerIp,
+                                     onPort: KnxRouterInterface.routerPort)
             log.verbose("after")
         } catch let e {
+            
             log.error("Oops: \(e)")
+
+            throw KnxException.UnableToConnectToRouter
         }
     }
     
@@ -152,6 +157,13 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             socket.readDataToLength(2, withTimeout:-1.0, tag: 0)
         }
     }
+    
+    /// Property for setting the IP address of the KNX router
+    public static var routerIp : String?
+    
+    /// Property for setting the port to connect to the KNX router on.
+    /// (defaults to port 6720)
+    public static var routerPort : UInt16 = 6720
     
     // MARK: Internal and private declarations.
     
