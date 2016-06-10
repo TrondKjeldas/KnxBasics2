@@ -40,7 +40,6 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         
         self.responseHandler = responseHandler
         socket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
-        
     }
     
     /**
@@ -53,19 +52,39 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      */
     public func connect() throws {
         
-        
-        do {
-            try socket.connectToHost(KnxRouterInterface.routerIp,
-                                     onPort: KnxRouterInterface.routerPort)
-            log.verbose("after")
-        } catch let e {
+        if !socket.isConnected {
+         
+            socket.delegate = self
             
-            log.error("Oops: \(e)")
-
-            throw KnxException.UnableToConnectToRouter
+            do {
+                try socket.connectToHost(KnxRouterInterface.routerIp,
+                                         onPort: KnxRouterInterface.routerPort)
+                log.verbose("after")
+            } catch let e {
+                
+                log.error("Oops: \(e)")
+                
+                throw KnxException.UnableToConnectToRouter
+            }
+            
+        } else {
+            
+            log.warning("socket already connected")
         }
     }
     
+    /**
+     Disconnect from a KNX.
+     */
+    public func disconnect() {
+        
+        if socket.isConnected {
+
+            socket.delegate = nil
+            socket.disconnect()
+        }
+    }
+
     /**
      Submit a telegram for transmission.
      
@@ -148,6 +167,17 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             // Next header
             socket.readDataToLength(2, withTimeout:-1.0, tag: 0)
         }
+    }
+    
+    /**
+     Response handler, called from the CocoaAsyncSocket framework upon reception of data.
+     
+     - parameter socket: The socket that did connect.
+     - parameter err: If the socket disconneted because of an error.
+     */
+    @objc public func socketDidDisconnect(sock: GCDAsyncSocket!, withError err: NSError!) {
+
+        log.error("Socket disconnected: \(err)")
     }
     
     /// Property for setting the IP address of the KNX router

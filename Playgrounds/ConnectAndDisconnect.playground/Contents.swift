@@ -32,49 +32,47 @@ console.asynchronously = false
 console.minLevel = .Info
 SwiftyBeaver.addDestination(console)
 
-class Handler : KnxOnOffResponseHandlerDelegate {
+class Handler : KnxTelegramResponseHandlerDelegate {
     
-    func onOffResponse(on:Bool) {
-        
-        print("ON: \(on)")
-    }
-    
-    // No use for these...
-    func dimLevelResponse(level:Int) {
-    }
     func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+        
+        var val = -1
+        do {
+            val = try telegram.getValueAsType(.DPT5_001)
+            print("Got response with value: \(val)")
+        }
+        catch {
+            do {
+                val = try telegram.getValueAsType(.DPT1_xxx)
+                print("Got response with value: \(val)")
+            }
+            catch {
+                print("Catched...")
+            }
+        }
     }
 }
 
 let handler = Handler()
 
-KnxRouterInterface.routerIp = "gax58"
+KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
+                                               type: KnxTelegramType.DPT5_001)
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
-                                               type: KnxTelegramType.DPT1_xxx)
+KnxRouterInterface.routerIp = "zbox"
 
+let kr = KnxRouterInterface(responseHandler: handler)
 
-let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
-
-let lightSwitch =
-    KnxOnOffControl(setOnOffAddress: onoffaddr,
-                    responseHandler:handler)
-
-lightSwitch.lightOn = true
-
+try! kr.connect()
+kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
 
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
-               dispatch_get_main_queue()) {
-                lightSwitch.lightOn = false
+              dispatch_get_main_queue()) {
                 
+                kr.disconnect()
 }
-
-
 
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(6 * Double(NSEC_PER_SEC))),
                dispatch_get_main_queue()) {
-                lightSwitch.lightOn = true
+                try! kr.connect()
+                kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
 }
-
-
-

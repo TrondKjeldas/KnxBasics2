@@ -34,6 +34,48 @@ class TestKnxTelegram: XCTestCase {
         super.tearDown()
     }
     
+    func testDPT1_xxx() {
+        
+        var bytes = [UInt8](count:8, repeatedValue:0)
+        
+        bytes[7] = 0xFE
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT1_xxx), 0)
+
+        bytes[7] = 0xaF
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT1_xxx), 1)
+    }
+    
+    func testDPT3_007() {
+        
+        var bytes = [UInt8](count:8, repeatedValue:0)
+        
+        bytes[7] = 0x00
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT3_007), 0)
+        
+        bytes[7] = 0x01
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT3_007), -1)
+
+        bytes[7] = 0x09
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT3_007), 1)
+    }
+    
+    func testDPT5_001() {
+        
+        var bytes = [UInt8](count:9, repeatedValue:0)
+        
+        
+        bytes[8] = 0x00
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT5_001), 0 )
+
+        bytes[8] = 128
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT5_001), 50 )
+
+        bytes[8] = 0xFF
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT5_001), 100 )
+
+    }
+
+    
     func testDPT9_001() {
     
         var bytes = [UInt8](count:10, repeatedValue:0)
@@ -72,6 +114,19 @@ class TestKnxTelegram: XCTestCase {
         XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(.DPT9_001), 670760.96, accuracy: 0.01)
     }
     
+    func testDPT9_004() {
+
+        // Same format for now...
+        testDPT9_001()
+        
+    }
+    
+    func testDPT9_005() {
+        
+        // Same format for now...
+        testDPT9_001()
+    }
+
     func testDPT10_001() {
         
         var bytes = [UInt8](count:11, repeatedValue:0)
@@ -90,5 +145,24 @@ class TestKnxTelegram: XCTestCase {
         bytes[9] = 0x3B
         bytes[10] = 0x3B
         XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(.DPT10_001), "Sun 23:59:59")
-}
+    }
+    
+    
+    func testDPT17_001() {
+        
+        XCTAssertTrue(false)
+        
+    }
+    
+    func testDPT20_102() {
+        
+        XCTAssertTrue(false)
+        
+    }
+    
+    func testDPT27_001() {
+        
+        XCTAssertTrue(false)
+        
+    }
 }

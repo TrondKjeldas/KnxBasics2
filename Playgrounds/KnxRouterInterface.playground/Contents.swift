@@ -71,3 +71,5 @@ kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromStrin
 
 try! kr2.connect()
 kr2.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "1/0/14")))
+
+

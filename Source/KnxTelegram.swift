@@ -28,16 +28,40 @@ public enum KnxTelegramType {
     case UNKNOWN
     
     /// A generic 1-bit value in the range of DPT 1.001 - 1.022.
+    /// DPT1.001 - On/off
+    /// DPT1.002 - True/false
+    /// DPT1.003 - Enable/disable
+    /// DPT1.005 - Alarm/no alarm
+    /// DPT1.009 - Close/open
+    /// DPT1.015 - Reset/no action
     case DPT1_xxx
+
+    /// Dimming control
+    case DPT3_007
     
-    /// Scaling value, range 0-100%.
+    /// Scaled value, range 0-100%.
     case DPT5_001
     
     /// Temperature, in degree celsius
     case DPT9_001
+
+    /// Brightness
+    case DPT9_004
+    
+    /// Wind
+    case DPT9_005
     
     /// Time of day
     case DPT10_001
+    
+    /// Scene number
+    case DPT17_001
+    
+    /// HVAC mode
+    case DPT20_102
+    
+    /// Combined info, on/off
+    case DPT27_001
 }
 
 /// Class representing a KNX telegram.
@@ -84,6 +108,37 @@ public class KnxTelegram {
                 throw KnxException.IllformedTelegramForType
             }
             return Int(_bytes![7] & 0x1)
+
+        case .DPT3_007:
+            
+            if(_bytes!.count != 8) {
+                throw KnxException.IllformedTelegramForType
+            }
+            
+            var returnValue : Int = 0
+            
+            let inc = (_bytes![7] & 0x08) == 0x08
+            let stepcode = Int(_bytes![7] & 0x07)
+            
+            if stepcode == 0 {
+            
+                // Stop!
+                returnValue = 0
+                
+            } else {
+                
+                // Go!
+                let steps = 1 << (stepcode-1)
+                
+                if inc  {
+                    returnValue = steps
+                } else {
+                    returnValue = -steps
+                }
+            }
+            
+            return returnValue
+
             
         case .DPT5_001:
             
@@ -112,7 +167,9 @@ public class KnxTelegram {
         
         switch(type) {
             
-        case .DPT9_001:
+        case .DPT9_001: fallthrough
+        case .DPT9_004: fallthrough
+        case .DPT9_005:
             
             if(_bytes!.count != 10) {
                 throw KnxException.IllformedTelegramForType

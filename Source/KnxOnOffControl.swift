@@ -38,7 +38,7 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
         
         onOffAddress = setOnOffAddress
         
-        self.lightOn  = false
+        self._lightOn  = false
         
         self.responseHandler = responseHandler
         
@@ -53,18 +53,18 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
     
     /// Read/write property holding the on/off state.
     public var lightOn:Bool {
-        willSet(newValue) {
-            if newValue != lightOn {
-                var value = 0
-                if newValue {
-                    value = 1
-                }
-                log.verbose("lightOn soon: \(value)")
-                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx, value:value))
-            }
+        get {
+            return _lightOn
         }
-        didSet {
-            log.verbose("lightOn now: \(lightOn)")
+        set {
+            if newValue != _lightOn {
+                
+                _lightOn = newValue
+                
+                log.verbose("lightOn soon: \(_lightOn)")
+                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx,
+                    value:Int(_lightOn)))
+            }
         }
     }
     
@@ -84,7 +84,7 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(onOffAddress)
             do {
                 let val:Int = try telegram.getValueAsType(type)
-                lightOn = Bool(val)
+                _lightOn = Bool(val)
                 responseHandler?.onOffResponse(lightOn)
             }
             catch KnxException.IllformedTelegramForType {
@@ -108,6 +108,8 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
     private var onOffInterface:KnxRouterInterface?
     
     private var responseHandler:KnxOnOffResponseHandlerDelegate?
+    
+    private var _lightOn : Bool
     
     private let log = SwiftyBeaver.self
 }

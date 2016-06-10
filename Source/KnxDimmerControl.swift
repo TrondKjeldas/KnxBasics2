@@ -73,7 +73,7 @@ public class KnxDimmerControl : KnxOnOffControl {
      */
     public func readLevel() {
 
-        levelRspInterface?.submit(KnxTelegramFactory.createReadRequest(levelRspAddress))
+        levelRspInterface?.submit(KnxTelegramFactory.createReadRequest())
     }
     
     /// Read/write property holding the light level.
