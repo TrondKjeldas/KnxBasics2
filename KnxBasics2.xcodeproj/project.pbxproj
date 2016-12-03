@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		96BCC57E300C00B4D83826D4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA40C7BEA1D54A86D869C31E /* Pods.framework */; };
+		1D95691F4AB8C1F52C221271 /* Pods_KnxBasics2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C95B88379E0E0A01C9C97A /* Pods_KnxBasics2Tests.framework */; };
+		94C75CBA379C573D0C44FC68 /* Pods_KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED72649DF879A631A6A7C0FA /* Pods_KnxBasics2.framework */; };
 		BF6652401CC7F066004158BB /* KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6652351CC7F065004158BB /* KnxBasics2.framework */; };
 		BF9ADC9E1CD6686900CA7C83 /* KnxTemperatureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9ADC9D1CD6686900CA7C83 /* KnxTemperatureControl.swift */; };
 		BFD490E91CD66EC600D76625 /* TestKnxTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD490E71CD66EAC00D76625 /* TestKnxTelegram.swift */; };
@@ -38,8 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1EAD616C407C97278F410848 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		27A477565E1F4A2436825C92 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5F56CA737BA366B7AEEF85F3 /* Pods-KnxBasics2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnxBasics2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnxBasics2/Pods-KnxBasics2.debug.xcconfig"; sourceTree = "<group>"; };
+		787B4B234BE2761552504889 /* Pods-KnxBasics2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnxBasics2.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnxBasics2/Pods-KnxBasics2.release.xcconfig"; sourceTree = "<group>"; };
+		92C95B88379E0E0A01C9C97A /* Pods_KnxBasics2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnxBasics2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA40C7BEA1D54A86D869C31E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6652351CC7F065004158BB /* KnxBasics2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KnxBasics2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF66523F1CC7F066004158BB /* KnxBasics2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnxBasics2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,8 @@
 		BFD490E61CD66DFF00D76625 /* PlayingWithCocoaAsyncSocket.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PlayingWithCocoaAsyncSocket.playground; path = Playgrounds/PlayingWithCocoaAsyncSocket.playground; sourceTree = "<group>"; };
 		BFD490E71CD66EAC00D76625 /* TestKnxTelegram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestKnxTelegram.swift; path = Tests/TestKnxTelegram.swift; sourceTree = SOURCE_ROOT; };
 		BFD490EA1CD66EFE00D76625 /* KnxOnOffControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxOnOffControl.swift; path = Source/KnxOnOffControl.swift; sourceTree = SOURCE_ROOT; };
+		BFD490EC1CD6721600D76625 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Time.playground; path = Playgrounds/Time.playground; sourceTree = "<group>"; };
+		BFD491641CD93B8A00D76625 /* ConnectAndDisconnect.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = ConnectAndDisconnect.playground; path = Playgrounds/ConnectAndDisconnect.playground; sourceTree = "<group>"; };
 		BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxGroupAddress.swift; path = Source/KnxGroupAddress.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxDimmerControl.swift; path = Source/KnxDimmerControl.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FD61CD2732F002A79C4 /* KnxException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxException.swift; path = Source/KnxException.swift; sourceTree = SOURCE_ROOT; };
@@ -68,6 +72,9 @@
 		BFE54FF61CD27C25002A79C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
 		BFE54FFD1CD27DBE002A79C4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BFE550031CD282EC002A79C4 /* TestKnxTelegramFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestKnxTelegramFactory.swift; path = Tests/TestKnxTelegramFactory.swift; sourceTree = SOURCE_ROOT; };
+		CEAB61FEAD1BB8CAB2AFACE5 /* Pods-KnxBasics2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnxBasics2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		ED72649DF879A631A6A7C0FA /* Pods_KnxBasics2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnxBasics2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEA1F347E3085A819C1DDF8D /* Pods-KnxBasics2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnxBasics2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96BCC57E300C00B4D83826D4 /* Pods.framework in Frameworks */,
+				94C75CBA379C573D0C44FC68 /* Pods_KnxBasics2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF6652401CC7F066004158BB /* KnxBasics2.framework in Frameworks */,
+				1D95691F4AB8C1F52C221271 /* Pods_KnxBasics2Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,15 +103,19 @@
 			children = (
 				BFE54FFD1CD27DBE002A79C4 /* Cocoa.framework */,
 				AA40C7BEA1D54A86D869C31E /* Pods.framework */,
+				ED72649DF879A631A6A7C0FA /* Pods_KnxBasics2.framework */,
+				92C95B88379E0E0A01C9C97A /* Pods_KnxBasics2Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BDF1E6D7071779ECD0FAEF19 /* Pods */ = {
+		6917636D2FE02542073098F6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1EAD616C407C97278F410848 /* Pods.debug.xcconfig */,
-				27A477565E1F4A2436825C92 /* Pods.release.xcconfig */,
+				5F56CA737BA366B7AEEF85F3 /* Pods-KnxBasics2.debug.xcconfig */,
+				787B4B234BE2761552504889 /* Pods-KnxBasics2.release.xcconfig */,
+				EEA1F347E3085A819C1DDF8D /* Pods-KnxBasics2Tests.debug.xcconfig */,
+				CEAB61FEAD1BB8CAB2AFACE5 /* Pods-KnxBasics2Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -115,8 +127,8 @@
 				BF6652371CC7F065004158BB /* KnxBasics2 */,
 				BF6652431CC7F066004158BB /* KnxBasics2Tests */,
 				BF6652361CC7F065004158BB /* Products */,
-				BDF1E6D7071779ECD0FAEF19 /* Pods */,
 				607026A591C5AAD4ED115E75 /* Frameworks */,
+				6917636D2FE02542073098F6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,12 +166,14 @@
 		BFD490E01CD66DD300D76625 /* Playgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				BFD490EC1CD6721600D76625 /* Time.playground */,
 				BFD490E11CD66DFF00D76625 /* Temperature.playground */,
 				BFD490E21CD66DFF00D76625 /* LightsDim.playground */,
 				BFD490E31CD66DFF00D76625 /* LightsOnOff.playground */,
-				BFD490E41CD66DFF00D76625 /* KnxRouterInterface.playground */,
 				BFD490E51CD66DFF00D76625 /* GroupAddresses.playground */,
+				BFD490E41CD66DFF00D76625 /* KnxRouterInterface.playground */,
 				BFD490E61CD66DFF00D76625 /* PlayingWithCocoaAsyncSocket.playground */,
+				BFD491641CD93B8A00D76625 /* ConnectAndDisconnect.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";
@@ -199,12 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF6652491CC7F066004158BB /* Build configuration list for PBXNativeTarget "KnxBasics2" */;
 			buildPhases = (
-				75E5A51F6693319A8A5E64CB /* Check Pods Manifest.lock */,
+				8D1C90AE89B4A6DAEA7A801F /* 📦 Check Pods Manifest.lock */,
 				BF6652301CC7F065004158BB /* Sources */,
 				BF6652311CC7F065004158BB /* Frameworks */,
 				BF6652321CC7F065004158BB /* Headers */,
 				BF6652331CC7F065004158BB /* Resources */,
-				57ED1EA0FC1C760BB102F0CC /* Copy Pods Resources */,
+				FA893CDCFEDF710C49C6EFD3 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,9 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF66524C1CC7F066004158BB /* Build configuration list for PBXNativeTarget "KnxBasics2Tests" */;
 			buildPhases = (
+				EDA35A3FF1B1C2859B0B14BE /* 📦 Check Pods Manifest.lock */,
 				BF66523B1CC7F066004158BB /* Sources */,
 				BF66523C1CC7F066004158BB /* Frameworks */,
 				BF66523D1CC7F066004158BB /* Resources */,
+				18854C9EAFCFDD3786687324 /* 📦 Embed Pods Frameworks */,
+				7EECA9B910E6499330676A5A /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,14 +257,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Trond Kjeldås";
 				TargetAttributes = {
 					BF6652341CC7F065004158BB = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 					};
 					BF66523E1CC7F066004158BB = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -288,34 +307,79 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		57ED1EA0FC1C760BB102F0CC /* Copy Pods Resources */ = {
+		18854C9EAFCFDD3786687324 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		75E5A51F6693319A8A5E64CB /* Check Pods Manifest.lock */ = {
+		7EECA9B910E6499330676A5A /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D1C90AE89B4A6DAEA7A801F /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EDA35A3FF1B1C2859B0B14BE /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA893CDCFEDF710C49C6EFD3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KnxBasics2/Pods-KnxBasics2-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -375,8 +439,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -399,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -423,8 +489,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -441,9 +509,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -451,8 +520,9 @@
 		};
 		BF66524A1CC7F066004158BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EAD616C407C97278F410848 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 5F56CA737BA366B7AEEF85F3 /* Pods-KnxBasics2.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -470,13 +540,15 @@
 				SWIFT_INCLUDE_PATHS = Source;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		BF66524B1CC7F066004158BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27A477565E1F4A2436825C92 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 787B4B234BE2761552504889 /* Pods-KnxBasics2.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -493,28 +565,33 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = Source;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		BF66524D1CC7F066004158BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEA1F347E3085A819C1DDF8D /* Pods-KnxBasics2Tests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Systemsoft.KnxBasics2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		BF66524E1CC7F066004158BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEAB61FEAD1BB8CAB2AFACE5 /* Pods-KnxBasics2Tests.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Systemsoft.KnxBasics2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
