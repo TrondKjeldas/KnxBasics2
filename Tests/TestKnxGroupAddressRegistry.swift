@@ -28,10 +28,10 @@ class TestKnxGroupAddressRegistry: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3"),
-                                                       type: KnxTelegramType.DPT1_xxx)
+                                                       type: KnxTelegramType.dpt1_xxx)
         
         KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"8/9/10"),
-                                                       type: KnxTelegramType.DPT5_001)
+                                                       type: KnxTelegramType.dpt5_001)
     }
     
     override func tearDown() {
@@ -42,15 +42,15 @@ class TestKnxGroupAddressRegistry: XCTestCase {
     func testAddressNotFound() {
         
         XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"5/6/7")),
-                       KnxTelegramType.UNKNOWN)
+                       KnxTelegramType.unknown)
     }
     
     func testAddressFound() {
 
         XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3")),
-                       KnxTelegramType.DPT1_xxx)
+                       KnxTelegramType.dpt1_xxx)
 
         XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"8/9/10")),
-                       KnxTelegramType.DPT5_001)
+                       KnxTelegramType.dpt5_001)
     }
 }
