@@ -17,8 +17,8 @@
 //
 //: Playground - noun: a place where people can play
 
-import XCPlayground
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 import Cocoa
 
@@ -33,7 +33,7 @@ public class SendNet: NSObject, GCDAsyncSocketDelegate {
     func setupConnection(){
         
         if (socket == nil) {
-            socket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+            socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         } else {
             socket.disconnect()
         }
@@ -42,7 +42,7 @@ public class SendNet: NSObject, GCDAsyncSocketDelegate {
         let host = "192.168.1.7"
         do {
             
-             try socket.connectToHost(host, onPort: port)
+             try socket.connect(toHost: host, onPort: port)
             
             }
         catch let e {
@@ -54,30 +54,30 @@ public class SendNet: NSObject, GCDAsyncSocketDelegate {
     func startServer(port:UInt16) {
         
         if (socket == nil) {
-            socket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+            socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         } else {
             socket.disconnect()
         }
         
         do {
-            try socket.acceptOnPort(port)
+            try socket.accept(onPort: port)
         } catch let e {
             print("Catched: \(e)")
         }
     }
 
-    public func socket(socket : GCDAsyncSocket, didAcceptNewSocket: GCDAsyncSocket) {
+    public func socket(_ socket : GCDAsyncSocket, didAcceptNewSocket: GCDAsyncSocket) {
         
         socket2 = socket
         print("Accepted: \(socket.connectedHost) from port \(socket.connectedPort).")
         
         let string = "THIS IS SENT\n\n"
-        let msgData = string.dataUsingEncoding(NSUTF8StringEncoding)
-        socket2.writeData(msgData, withTimeout: -1.0, tag: 0)
-        socket2.readDataWithTimeout(-1.0, tag: 0)
+        let msgData = string.data(using: String.Encoding.utf8)
+        socket2.write(msgData!, withTimeout: -1.0, tag: 0)
+        socket2.readData(withTimeout: -1.0, tag: 0)
     }
     
-    public func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
+    public func socket(_ socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
         
         print("Connected to \(host) on port \(p).")
         
@@ -91,28 +91,28 @@ public class SendNet: NSObject, GCDAsyncSocketDelegate {
     func send(msgBytes: [UInt8]) {
         
         let msgData = NSData(bytes: msgBytes, length: msgBytes.count)
-        socket.writeData(msgData, withTimeout: -1.0, tag: 0)
-        socket.readDataWithTimeout(-1.0, tag: 0)
+        socket.write(msgData as Data, withTimeout: -1.0, tag: 0)
+        socket.readData(withTimeout: -1.0, tag: 0)
         
     }
     
     func getSystemInfo() {
         
         let sendBytes:[UInt8] = [0x0, 0x1, 0x2, 0x3]
-        send(sendBytes)
+        send(msgBytes: sendBytes)
         
     }
     
     func getSystemStatus() {
         
         let sendBytes:[UInt8] = [0x4, 0x5, 0x6, 0x7]
-        send(sendBytes)
+        send(msgBytes: sendBytes)
         print("ccc")
         
     }
     
     
-    public func socket(socket : GCDAsyncSocket!, didReadData data:NSData!, withTag tag:Int){
+    public func socket(_ socket : GCDAsyncSocket, didRead data:Data, withTag tag:Int){
         
         let msgData = NSMutableData()
         msgData.setData(data)
@@ -129,29 +129,29 @@ class MyDelegateClass : NSObject, GCDAsyncSocketDelegate {
 
     var socket:GCDAsyncSocket! = nil
 
-     func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
+     func socket(_ socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
     //func didConnectToHost(socket:GCDAsyncSocket, host:NSString, port:UInt16) {
     
         print("connect!")
         print("isConnected: \(socket.isConnected)")
         self.socket = socket
         let sendBytes:[UInt8] =  [0x4, 0x5, 0x6, 0x7]
-        send(sendBytes)
+        send(msgBytes: sendBytes)
     }
     
     func send(msgBytes: [UInt8]) {
         
         let string = "GET / HTTP/1.1 \nhost: xxx\n\n"
-        let msgData = string.dataUsingEncoding(NSUTF8StringEncoding)
-        socket.writeData(msgData, withTimeout: -1.0, tag: 0)
-        socket.readDataWithTimeout(-1.0, tag: 20)
+        let msgData = string.data(using: String.Encoding.utf8)
+        socket.write(msgData!, withTimeout: -1.0, tag: 0)
+        socket.readData(withTimeout: -1.0, tag: 20)
         
         socket.disconnectAfterReading()
     }
 
-    func socket(socket : GCDAsyncSocket!, didReadData data:NSData!, withTag tag:Int) {
+    func socket(_ socket : GCDAsyncSocket, didRead data:Data, withTag tag:Int) {
         
-        let ss = NSString(data:data, encoding:NSUTF8StringEncoding)
+        let ss = NSString(data:data, encoding:String.Encoding.utf8.rawValue)
         
         print("GOT:\n\(ss)\n with tag: \(tag)")
         
@@ -167,10 +167,10 @@ let md2 = SendNet()
 //md2.setupConnection()
 //md2.getSystemStatus()
 
-let s = GCDAsyncSocket(delegate: md, delegateQueue: dispatch_get_main_queue())
+let s = GCDAsyncSocket(delegate: md, delegateQueue: DispatchQueue.main)
 
 do {
-    try s.connectToHost("zbox", onPort: 80)
+    try s.connect(toHost: "gax58", onPort: 80)
     print("after")
 } catch let e {
     print("Oops: \(e)")

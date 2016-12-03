@@ -17,8 +17,8 @@
 //
 //: Playground - noun: a place where people can play
 
-import XCPlayground
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 import Cocoa
 
@@ -27,17 +27,16 @@ import SwiftyBeaver
 import KnxBasics2
 
 let console = ConsoleDestination()
-console.detailOutput = false
 console.asynchronously = false
-console.minLevel = .Info
+console.minLevel = .info
 SwiftyBeaver.addDestination(console)
 
 class Handler : KnxTelegramResponseHandlerDelegate {
     
-    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
         
         do {
-            let time : String = try telegram.getValueAsType(.DPT10_001)
+            let time : String = try telegram.getValueAsType(.dpt10_001)
             print("Time: \(time)")
         }
         catch {
@@ -49,9 +48,9 @@ class Handler : KnxTelegramResponseHandlerDelegate {
 let handler = Handler()
 
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/6/0"),
-                                               type: KnxTelegramType.DPT10_001)
+                                               type: KnxTelegramType.dpt10_001)
 
-KnxRouterInterface.routerIp = "zbox"
+KnxRouterInterface.routerIp = "gax58"
 
 let kr = KnxRouterInterface(responseHandler: handler)
 

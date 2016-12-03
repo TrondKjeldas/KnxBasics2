@@ -17,8 +17,8 @@
 //
 //: Playground - noun: a place where people can play
 
-import XCPlayground
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 import Cocoa
 import CocoaAsyncSocket
@@ -27,14 +27,13 @@ import KnxBasics2
 
 //: Set up logging with SwiftyBeaver
 let console = ConsoleDestination()
-console.detailOutput = false
 console.asynchronously = false
 SwiftyBeaver.addDestination(console)
 
 
 class Handler : KnxTemperatureResponseHandlerDelegate {
     
-    func temperatureResponse(level: Double) {
+    func temperatureResponse(_ level: Double) {
 
         print("Temperature now: \(level)")
     }
@@ -43,7 +42,7 @@ class Handler : KnxTemperatureResponseHandlerDelegate {
 KnxRouterInterface.routerIp = "zbox"
 
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/2/0"),
-                                               type: KnxTelegramType.DPT9_001)
+                                               type: KnxTelegramType.dpt9_001)
 
 let sub = KnxTemperatureControl(subscriptionAddress: KnxGroupAddress(fromString: "3/2/0"),
                                 responseHandler: Handler())

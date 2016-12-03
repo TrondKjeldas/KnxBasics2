@@ -17,8 +17,8 @@
 //
 //: Playground - noun: a place where people can play
 
-import XCPlayground
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 import Cocoa
 
@@ -27,20 +27,19 @@ import SwiftyBeaver
 import KnxBasics2
 
 let console = ConsoleDestination()
-console.detailOutput = false
 console.asynchronously = false
-console.minLevel = .Warning
+console.minLevel = .warning
 SwiftyBeaver.addDestination(console)
 
 class Handler : KnxDimmerResponseHandlerDelegate {
     
     
-    func onOffResponse(on:Bool) {
+    func onOffResponse(_ on:Bool) {
         
         print("ON: \(on)")
     }
     
-    func dimLevelResponse(level:Int) {
+    func dimLevelResponse(_ level:Int) {
         
         print("DIM LEVEL: \(level)")
     }
@@ -52,13 +51,13 @@ class Handler : KnxDimmerResponseHandlerDelegate {
 
 let handler = Handler()
 
-KnxRouterInterface.routerIp = "zbox"
+KnxRouterInterface.routerIp = "gax58"
 
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
-                                               type: KnxTelegramType.DPT1_xxx)
+                                               type: KnxTelegramType.dpt1_xxx)
 
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
-                                               type: KnxTelegramType.DPT5_001)
+                                               type: KnxTelegramType.dpt5_001)
 
 let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
 
@@ -69,13 +68,11 @@ let dimmer =
                      setDimLevelAddress: KnxGroupAddress(fromString: "1/1/27"),
                      levelResponseAddress: lvlrspaddr, responseHandler:handler)
 
-dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
-               dispatch_get_main_queue()) {
-                dimmer.dimLevel = 20
+DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+    dimmer.dimLevel = 20
 }
 
-dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(6 * Double(NSEC_PER_SEC))),
-               dispatch_get_main_queue()) {
-                dimmer.dimLevel = 75
+DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
+    dimmer.dimLevel = 75
 }
 

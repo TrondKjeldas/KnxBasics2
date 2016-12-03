@@ -17,8 +17,8 @@
 //
 //: Playground - noun: a place where people can play
 
-import XCPlayground
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 import Cocoa
 
@@ -27,14 +27,13 @@ import SwiftyBeaver
 import KnxBasics2
 
 let console = ConsoleDestination()
-console.detailOutput = false
 console.asynchronously = false
-console.minLevel = .Info
+console.minLevel = .info
 SwiftyBeaver.addDestination(console)
 
 class Handler : KnxOnOffResponseHandlerDelegate {
     
-    func onOffResponse(on:Bool) {
+    func onOffResponse(_ on:Bool) {
         
         print("ON: \(on)")
     }
@@ -51,7 +50,7 @@ let handler = Handler()
 KnxRouterInterface.routerIp = "gax58"
 
 KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
-                                               type: KnxTelegramType.DPT1_xxx)
+                                               type: KnxTelegramType.dpt1_xxx)
 
 
 let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
@@ -63,17 +62,15 @@ let lightSwitch =
 lightSwitch.lightOn = true
 
 
-dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))),
-               dispatch_get_main_queue()) {
-                lightSwitch.lightOn = false
+DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+    lightSwitch.lightOn = false
                 
 }
 
 
 
-dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(6 * Double(NSEC_PER_SEC))),
-               dispatch_get_main_queue()) {
-                lightSwitch.lightOn = true
+DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
+    lightSwitch.lightOn = true
 }
 
 
