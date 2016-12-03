@@ -23,7 +23,7 @@ import Foundation
 import SwiftyBeaver
 
 /// Class representing a dimmable light.
-public class KnxDimmerControl : KnxOnOffControl {
+open class KnxDimmerControl : KnxOnOffControl {
     
     // MARK: Public API:
     
@@ -71,20 +71,20 @@ public class KnxDimmerControl : KnxOnOffControl {
     /**
      Trigger reading of dimmer level.
      */
-    public func readLevel() {
+    open func readLevel() {
 
         levelRspInterface?.submit(KnxTelegramFactory.createReadRequest())
     }
     
     /// Read/write property holding the light level.
-    public var dimLevel:Int{
+    open var dimLevel:Int{
         get {
             return _dimLevel
         }
         set {
             if newValue != _dimLevel {
                 log.verbose("dimLevel soon: \(newValue)")
-                try! dimmerInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT5_001, value:newValue))
+                try! dimmerInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.dpt5_001, value:newValue))
             }
         }
     }
@@ -96,7 +96,7 @@ public class KnxDimmerControl : KnxOnOffControl {
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
      */
-    public override func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    open override func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
         
         var type : KnxTelegramType
         
@@ -108,7 +108,7 @@ public class KnxDimmerControl : KnxOnOffControl {
                 _dimLevel = try telegram.getValueAsType(type)
                 dimmerResponseHandler?.dimLevelResponse(_dimLevel)
             }
-            catch KnxException.IllformedTelegramForType {
+            catch KnxException.illformedTelegramForType {
                 
                 log.error("Catched...")
             }
@@ -126,15 +126,15 @@ public class KnxDimmerControl : KnxOnOffControl {
     
     // MARK: Internal and private declarations
     
-    private var dimmerAddress:KnxGroupAddress
-    private var levelRspAddress:KnxGroupAddress
+    fileprivate var dimmerAddress:KnxGroupAddress
+    fileprivate var levelRspAddress:KnxGroupAddress
     
-    private var dimmerInterface:KnxRouterInterface?
-    private var levelRspInterface:KnxRouterInterface?
+    fileprivate var dimmerInterface:KnxRouterInterface?
+    fileprivate var levelRspInterface:KnxRouterInterface?
     
-    private var dimmerResponseHandler:KnxDimmerResponseHandlerDelegate?
+    fileprivate var dimmerResponseHandler:KnxDimmerResponseHandlerDelegate?
     
-    private var _dimLevel : Int
+    fileprivate var _dimLevel : Int
     
-    private let log = SwiftyBeaver.self
+    fileprivate let log = SwiftyBeaver.self
 }

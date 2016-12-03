@@ -22,7 +22,7 @@
 import Foundation
 
 /// Class representing a KNX group address.
-public class KnxGroupAddress : Hashable {
+open class KnxGroupAddress : Hashable {
     
     // MARK: Public API.
     
@@ -34,9 +34,9 @@ public class KnxGroupAddress : Hashable {
     public init(fromString:String) {
         
         
-        let parts = fromString.componentsSeparatedByString("/")
+        let parts = fromString.components(separatedBy: "/")
         
-        if let a = UInt16(parts[0]), b = UInt16(parts[1]), c = UInt16(parts[2]){
+        if let a = UInt16(parts[0]), let b = UInt16(parts[1]), let c = UInt16(parts[2]){
             
             addressAsUInt16 = a << 11 | b << 8 | c
             
@@ -48,10 +48,10 @@ public class KnxGroupAddress : Hashable {
     }
     
     /// A read-only property returning the 16bit representation of the group address.
-    private(set) public var addressAsUInt16 : UInt16
+    fileprivate(set) open var addressAsUInt16 : UInt16
     
     /// A read-only property returning the hash value of the object.
-    public var hashValue: Int {
+    open var hashValue: Int {
         return Int(addressAsUInt16)
     }
 }

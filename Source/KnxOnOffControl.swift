@@ -23,7 +23,7 @@ import Foundation
 import SwiftyBeaver
 
 /// Class representing a light switch.
-public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
+open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
     
     // MARK: Public API:
     
@@ -52,7 +52,7 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
     }
     
     /// Read/write property holding the on/off state.
-    public var lightOn:Bool {
+    open var lightOn:Bool {
         get {
             return _lightOn
         }
@@ -62,8 +62,8 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
                 _lightOn = newValue
                 
                 log.verbose("lightOn soon: \(_lightOn)")
-                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.DPT1_xxx,
-                    value:Int(_lightOn)))
+                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.dpt1_xxx,
+                                                                                  value:Int(NSNumber(value:_lightOn))))
             }
         }
     }
@@ -74,7 +74,7 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
      */
-    public func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    open func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
         
         var type : KnxTelegramType
         
@@ -84,10 +84,10 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(onOffAddress)
             do {
                 let val:Int = try telegram.getValueAsType(type)
-                _lightOn = Bool(val)
+                _lightOn = Bool(NSNumber(value:val))
                 responseHandler?.onOffResponse(lightOn)
             }
-            catch KnxException.IllformedTelegramForType {
+            catch KnxException.illformedTelegramForType {
                 
                 log.error("Catched...")
             }
@@ -103,13 +103,13 @@ public class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
     
     // MARK: Internal and private declarations
     
-    private var onOffAddress:KnxGroupAddress
+    fileprivate var onOffAddress:KnxGroupAddress
     
-    private var onOffInterface:KnxRouterInterface?
+    fileprivate var onOffInterface:KnxRouterInterface?
     
-    private var responseHandler:KnxOnOffResponseHandlerDelegate?
+    fileprivate var responseHandler:KnxOnOffResponseHandlerDelegate?
     
-    private var _lightOn : Bool
+    fileprivate var _lightOn : Bool
     
-    private let log = SwiftyBeaver.self
+    fileprivate let log = SwiftyBeaver.self
 }

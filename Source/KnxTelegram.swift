@@ -25,7 +25,7 @@ import Foundation
 public enum KnxTelegramType {
     
     /// Unknown/unspecified DPT.
-    case UNKNOWN
+    case unknown
     
     /// A generic 1-bit value in the range of DPT 1.001 - 1.022.
     /// DPT1.001 - On/off
@@ -34,38 +34,38 @@ public enum KnxTelegramType {
     /// DPT1.005 - Alarm/no alarm
     /// DPT1.009 - Close/open
     /// DPT1.015 - Reset/no action
-    case DPT1_xxx
+    case dpt1_xxx
 
     /// Dimming control
-    case DPT3_007
+    case dpt3_007
     
     /// Scaled value, range 0-100%.
-    case DPT5_001
+    case dpt5_001
     
     /// Temperature, in degree celsius
-    case DPT9_001
+    case dpt9_001
 
     /// Brightness
-    case DPT9_004
+    case dpt9_004
     
     /// Wind
-    case DPT9_005
+    case dpt9_005
     
     /// Time of day
-    case DPT10_001
+    case dpt10_001
     
     /// Scene number
-    case DPT17_001
+    case dpt17_001
     
     /// HVAC mode
-    case DPT20_102
+    case dpt20_102
     
     /// Combined info, on/off
-    case DPT27_001
+    case dpt27_001
 }
 
 /// Class representing a KNX telegram.
-public class KnxTelegram {
+open class KnxTelegram {
     
     // MARK: Public API
     
@@ -74,7 +74,7 @@ public class KnxTelegram {
         
         _bytes = nil
         _len = 0
-        _type = .UNKNOWN
+        _type = .unknown
     }
     
     /**
@@ -83,7 +83,7 @@ public class KnxTelegram {
      - parameter bytes: The payload to initialize the telegram with.
      - parameter type: The DPT type to set for the telegram.
      */
-    public init(bytes:[UInt8], type:KnxTelegramType = .UNKNOWN) {
+    public init(bytes:[UInt8], type:KnxTelegramType = .unknown) {
         
         _bytes = bytes
         _len = bytes.count
@@ -98,21 +98,21 @@ public class KnxTelegram {
      - returns: The decoded value as an integer.
      - throws: IllformedTelegramForType, UnknownTelegramType
      */
-    public func getValueAsType(type:KnxTelegramType) throws -> Int {
+    open func getValueAsType(_ type:KnxTelegramType) throws -> Int {
         
         switch(type) {
             
-        case .DPT1_xxx:
+        case .dpt1_xxx:
             
             if(_bytes!.count != 8) {
-                throw KnxException.IllformedTelegramForType
+                throw KnxException.illformedTelegramForType
             }
             return Int(_bytes![7] & 0x1)
 
-        case .DPT3_007:
+        case .dpt3_007:
             
             if(_bytes!.count != 8) {
-                throw KnxException.IllformedTelegramForType
+                throw KnxException.illformedTelegramForType
             }
             
             var returnValue : Int = 0
@@ -140,10 +140,10 @@ public class KnxTelegram {
             return returnValue
 
             
-        case .DPT5_001:
+        case .dpt5_001:
             
             if(_bytes!.count != 9) {
-                throw KnxException.IllformedTelegramForType
+                throw KnxException.illformedTelegramForType
             }
             
             let dimVal = Int(_bytes![8] & 0xff)
@@ -151,7 +151,7 @@ public class KnxTelegram {
             return (dimVal * 100) / 255
             
         default:
-            throw KnxException.UnknownTelegramType
+            throw KnxException.unknownTelegramType
         }
     }
 
@@ -163,16 +163,16 @@ public class KnxTelegram {
      - returns: The decoded value as a float.
      - throws: IllformedTelegramForType, UnknownTelegramType
      */
-    public func getValueAsType(type:KnxTelegramType) throws -> Double {
+    open func getValueAsType(_ type:KnxTelegramType) throws -> Double {
         
         switch(type) {
             
-        case .DPT9_001: fallthrough
-        case .DPT9_004: fallthrough
-        case .DPT9_005:
+        case .dpt9_001: fallthrough
+        case .dpt9_004: fallthrough
+        case .dpt9_005:
             
             if(_bytes!.count != 10) {
-                throw KnxException.IllformedTelegramForType
+                throw KnxException.illformedTelegramForType
             }
             
             //FloatValue = (0,01*M)*2(E)
@@ -202,7 +202,7 @@ public class KnxTelegram {
             
             
         default:
-            throw KnxException.UnknownTelegramType
+            throw KnxException.unknownTelegramType
         }
     }
     
@@ -214,14 +214,14 @@ public class KnxTelegram {
      - returns: The decoded value as a string.
      - throws: IllformedTelegramForType, UnknownTelegramType     
      */
-    public func getValueAsType(type:KnxTelegramType) throws -> String {
+    open func getValueAsType(_ type:KnxTelegramType) throws -> String {
         
         switch(type) {
             
-        case .DPT10_001:
+        case .dpt10_001:
             
             if(_bytes!.count != 11) {
-                throw KnxException.IllformedTelegramForType
+                throw KnxException.illformedTelegramForType
             }
             
             let days = ["??", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -237,13 +237,13 @@ public class KnxTelegram {
             
             
         default:
-            throw KnxException.UnknownTelegramType
+            throw KnxException.unknownTelegramType
         }
     }
 
     /// Read-only property indicating whether the telegram contains a
     /// write request or value response, i.e. not a read request.
-    public var isWriteRequestOrValueResponse : Bool {
+    open var isWriteRequestOrValueResponse : Bool {
         
         guard let bytes = _bytes else {
             
@@ -257,9 +257,9 @@ public class KnxTelegram {
     
     // MARK: Internal and private declarations
     
-    private var _bytes:[UInt8]?
-    private var _len:Int
-    private var _type:KnxTelegramType
+    fileprivate var _bytes:[UInt8]?
+    fileprivate var _len:Int
+    fileprivate var _type:KnxTelegramType
     
     internal var payload:[UInt8] {
         get {

@@ -25,7 +25,7 @@ import CocoaAsyncSocket
 import SwiftyBeaver
 
 /// Class representing the interface towards the KNX router.
-public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
+open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     
     // MARK: Public API.
     
@@ -39,7 +39,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         super.init()
         
         self.responseHandler = responseHandler
-        socket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+        socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
     }
     
     /**
@@ -50,21 +50,21 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      
      - throws: UnableToConnectToRouter
      */
-    public func connect() throws {
+    open func connect() throws {
         
         if !socket.isConnected {
          
             socket.delegate = self
             
             do {
-                try socket.connectToHost(KnxRouterInterface.routerIp,
+                try socket.connect(toHost: KnxRouterInterface.routerIp!,
                                          onPort: KnxRouterInterface.routerPort)
                 log.verbose("after")
             } catch let e {
                 
                 log.error("Oops: \(e)")
                 
-                throw KnxException.UnableToConnectToRouter
+                throw KnxException.unableToConnectToRouter
             }
             
         } else {
@@ -76,7 +76,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     /**
      Disconnect from a KNX.
      */
-    public func disconnect() {
+    open func disconnect() {
         
         if socket.isConnected {
 
@@ -90,11 +90,11 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      
      - parameter telegram: The telegram to transmit.
      */
-    public func submit(telegram:KnxTelegram) {
+    open func submit(_ telegram:KnxTelegram) {
         
-        let msgData = NSData(bytes: telegram.payload, length: telegram.payload.count)
+        let msgData = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
         log.info("SEND: \(msgData)")
-        socket.writeData(msgData, withTimeout: -1.0, tag: 0)
+        socket.write(msgData, withTimeout: -1.0, tag: 0)
         
         written += telegram.payload.count
     }
@@ -106,13 +106,13 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      - parameter didConnectToHost: The name of the host that it has connected to.
      - parameter port: The port that was connected on.
      */
-    @objc public func socket(socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
+    @objc open func socket(_ socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
         
         
         log.verbose("isConnected: \(socket.isConnected)")
         
         // Read first header
-        socket.readDataToLength(2, withTimeout:-1.0, tag: 0)
+        socket.readData(toLength: 2, withTimeout:-1.0, tag: 0)
     }
 
     /**
@@ -122,7 +122,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      - parameter didReadData: The received data.
      - parameter withTag: The tag value supplied in the request to read.
      */
-    @objc public func socket(socket : GCDAsyncSocket!, didReadData data:NSData!, withTag tag:Int) {
+    @objc open func socket(_ socket : GCDAsyncSocket, didRead data:Data, withTag tag:Int) {
         
         if(tag == 0) {
             
@@ -140,7 +140,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             
             log.debug("LEN: \(msgLen)")
             
-            socket.readDataToLength(UInt(msgLen), withTimeout:-1.0, buffer:telegramData, bufferOffset:2, tag: 1)
+            socket.readData(toLength: UInt(msgLen), withTimeout:-1.0, buffer:telegramData, bufferOffset:2, tag: 1)
             
         } else {
             
@@ -152,7 +152,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             
             if(telegramData.length > 4) {
                 
-                var dataBytes:[UInt8] = [UInt8](count:telegramData.length, repeatedValue:0)
+                var dataBytes:[UInt8] = [UInt8](repeating: 0, count: telegramData.length)
                 
                 telegramData.getBytes(&dataBytes, length: dataBytes.count)
                 
@@ -165,7 +165,7 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
             }
             
             // Next header
-            socket.readDataToLength(2, withTimeout:-1.0, tag: 0)
+            socket.readData(toLength: 2, withTimeout:-1.0, tag: 0)
         }
     }
     
@@ -175,27 +175,27 @@ public class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      - parameter socket: The socket that did connect.
      - parameter err: If the socket disconneted because of an error.
      */
-    @objc public func socketDidDisconnect(sock: GCDAsyncSocket!, withError err: NSError!) {
+    @objc open func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
 
         log.error("Socket disconnected: \(err)")
     }
     
     /// Property for setting the IP address of the KNX router
-    public static var routerIp : String?
+    open static var routerIp : String?
     
     /// Property for setting the port to connect to the KNX router on
     /// (defaults to port 6720.)
-    public static var routerPort : UInt16 = 6720
+    open static var routerPort : UInt16 = 6720
     
     // MARK: Internal and private declarations.
     
-    private var socket:GCDAsyncSocket! = nil
-    private var written:Int = 0
-    private var readCount:Int = 0
+    fileprivate var socket:GCDAsyncSocket! = nil
+    fileprivate var written:Int = 0
+    fileprivate var readCount:Int = 0
     
-    private var telegramData = NSMutableData()
+    fileprivate var telegramData = NSMutableData()
     
-    private var responseHandler : KnxTelegramResponseHandlerDelegate? = nil
+    fileprivate var responseHandler : KnxTelegramResponseHandlerDelegate? = nil
     
-    private let log = SwiftyBeaver.self
+    fileprivate let log = SwiftyBeaver.self
 }

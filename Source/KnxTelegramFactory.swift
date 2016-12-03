@@ -22,7 +22,7 @@
 import Foundation
 
 /// Factory class to create KNX telegrams of various type.
-public class KnxTelegramFactory {
+open class KnxTelegramFactory {
 
     // MARK: Public API
 
@@ -33,12 +33,12 @@ public class KnxTelegramFactory {
 
      - returns: A subscription request telegram, ready to be sent.
      */
-    public static func createSubscriptionRequest(groupAddress:KnxGroupAddress) -> KnxTelegram {
+    open static func createSubscriptionRequest(_ groupAddress:KnxGroupAddress) -> KnxTelegram {
 
         let addrLow8 = UInt8(truncatingBitPattern:(groupAddress.addressAsUInt16 & 0xFF))
         let addrHigh8 = UInt8(truncatingBitPattern:(groupAddress.addressAsUInt16 >> 8))
 
-        var bytes:[UInt8] = [UInt8](count:7, repeatedValue:0)
+        var bytes:[UInt8] = [UInt8](repeating: 0, count: 7)
         // Length...
         bytes[0] = 0;
         bytes[1] = 5;
@@ -57,9 +57,9 @@ public class KnxTelegramFactory {
      
      - returns: A read request telegram, ready to be sent.
      */
-    public static func createReadRequest() -> KnxTelegram {
+    open static func createReadRequest() -> KnxTelegram {
         
-        var bytes:[UInt8] = [UInt8](count:6, repeatedValue:0)
+        var bytes:[UInt8] = [UInt8](repeating: 0, count: 6)
         // Length...
         bytes[0] = 0;
         bytes[1] = 4;
@@ -81,15 +81,15 @@ public class KnxTelegramFactory {
      - returns: A telegram, ready to be sent.
      - throws: UnknownTelegramType     
      */
-    public static func createWriteRequest(type:KnxTelegramType, value:Int) throws -> KnxTelegram {
+    open static func createWriteRequest(_ type:KnxTelegramType, value:Int) throws -> KnxTelegram {
 
       var bytes:[UInt8]
 
         switch type {
 
-        case .DPT1_xxx:
+        case .dpt1_xxx:
             
-            bytes = [UInt8](count:6, repeatedValue:0)
+            bytes = [UInt8](repeating: 0, count: 6)
             // Length...
             bytes[0] = 0
             bytes[1] = 4
@@ -101,9 +101,9 @@ public class KnxTelegramFactory {
             
             break;
             
-        case .DPT5_001:
+        case .dpt5_001:
             
-            bytes = [UInt8](count:7, repeatedValue:0)
+            bytes = [UInt8](repeating: 0, count: 7)
             
             // Length...
             bytes[0] = 0
@@ -116,7 +116,7 @@ public class KnxTelegramFactory {
             bytes[6] = UInt8(truncatingBitPattern:((value * 255) / 100)) /* Convert range from 0-100 to 8bit */
             
         default:
-            throw KnxException.UnknownTelegramType
+            throw KnxException.unknownTelegramType
         }
         
       return KnxTelegram(bytes: bytes)

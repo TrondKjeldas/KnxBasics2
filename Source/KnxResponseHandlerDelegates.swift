@@ -30,7 +30,7 @@ public protocol KnxOnOffResponseHandlerDelegate {
      
      - parameter on: True if light on, false if light off.
      */
-    func onOffResponse(on:Bool)
+    func onOffResponse(_ on:Bool)
 }
 
 /// Delegate protocol for KnxDimmerControl delegates.
@@ -41,7 +41,7 @@ public protocol KnxDimmerResponseHandlerDelegate : KnxOnOffResponseHandlerDelega
      
      - parameter level: The new dimmer level.
      */
-    func dimLevelResponse(level:Int)
+    func dimLevelResponse(_ level:Int)
 }
 
 /// Delegate protocol for KnxTemperatureControl delegates.
@@ -52,5 +52,5 @@ public protocol KnxTemperatureResponseHandlerDelegate {
      
      - parameter level: The received temperature value.
      */
-    func temperatureResponse(level:Double)
+    func temperatureResponse(_ level:Double)
 }

@@ -23,11 +23,11 @@ import Foundation
 import SwiftyBeaver
 
 /// A global registry for mapping group addresses to DPT types.
-public class KnxGroupAddressRegistry {
+open class KnxGroupAddressRegistry {
     
     // MARK: Public API.
     
-    private static var registry : [KnxGroupAddress : KnxTelegramType] = [:]
+    fileprivate static var registry : [KnxGroupAddress : KnxTelegramType] = [:]
     
     /**
      Look up a DPT type based on the group address.
@@ -36,14 +36,14 @@ public class KnxGroupAddressRegistry {
      
      - returns: The DPT type registered for the address, or .UNKNOWN if the address is not registered.
      */
-    public static func getTypeForGroupAddress(address : KnxGroupAddress) -> KnxTelegramType {
+    open static func getTypeForGroupAddress(_ address : KnxGroupAddress) -> KnxTelegramType {
         
         if let address = registry[address] {
             return address
         }
         else {
             log.warning("Address not in registry: \(address)")
-            return KnxTelegramType.UNKNOWN
+            return KnxTelegramType.unknown
         }
     }
     
@@ -53,13 +53,13 @@ public class KnxGroupAddressRegistry {
      - parameter address: The group address to register a type for.
      - parameter type: The type to register.
      */
-    public static func addTypeForGroupAddress(address : KnxGroupAddress,
+    open static func addTypeForGroupAddress(_ address : KnxGroupAddress,
                                               type : KnxTelegramType) {
         log.verbose("Adding address \(address.addressAsUInt16) to registry.")
         registry[address] = type
     }
     
     // MARK: Internal and private declarations
-    private static let log = SwiftyBeaver.self
+    fileprivate static let log = SwiftyBeaver.self
 }
 

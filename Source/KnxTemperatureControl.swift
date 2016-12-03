@@ -23,7 +23,7 @@ import Foundation
 import SwiftyBeaver
 
 /// Class allowing subscription on temperature.
-public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
+open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
     
     // MARK: Public API:
     
@@ -52,7 +52,7 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
     }
     
     /// Read-only property holding the last received.
-    public var temperature:Double {
+    open var temperature:Double {
         get {
             return _temperature
         }
@@ -64,7 +64,7 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
      */
-    public func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    open func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
         
         var type : KnxTelegramType
         
@@ -76,7 +76,7 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
                 _temperature = try telegram.getValueAsType(type)
                 responseHandler?.temperatureResponse(_temperature)
             }
-            catch KnxException.IllformedTelegramForType {
+            catch KnxException.illformedTelegramForType {
                 
                 log.error("Catched...")
             }
@@ -92,13 +92,13 @@ public class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
     
     // MARK: Internal and private declarations
     
-    private var subscriptionAddress:KnxGroupAddress
+    fileprivate var subscriptionAddress:KnxGroupAddress
     
-    private var interface:KnxRouterInterface?
+    fileprivate var interface:KnxRouterInterface?
     
-    private var responseHandler:KnxTemperatureResponseHandlerDelegate?
+    fileprivate var responseHandler:KnxTemperatureResponseHandlerDelegate?
     
-    private var _temperature : Double
+    fileprivate var _temperature : Double
     
-    private let log = SwiftyBeaver.self
+    fileprivate let log = SwiftyBeaver.self
 }
