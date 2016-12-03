@@ -47,7 +47,7 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
             
             // TODO: Better error handling!
             try! interface.connect()
-            interface.submit(KnxTelegramFactory.createSubscriptionRequest(subscriptionAddress))
+            interface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: subscriptionAddress))
         }
     }
     
@@ -64,17 +64,17 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
      */
-    open func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
+    open func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         var type : KnxTelegramType
         
         let interface = sender as! KnxRouterInterface
         
         if interface == self.interface {
-            type = KnxGroupAddressRegistry.getTypeForGroupAddress(subscriptionAddress)
+            type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: subscriptionAddress)
             do {
-                _temperature = try telegram.getValueAsType(type)
-                responseHandler?.temperatureResponse(_temperature)
+                _temperature = try telegram.getValueAsType(type: type)
+                responseHandler?.temperatureResponse(level: _temperature)
             }
             catch KnxException.illformedTelegramForType {
                 

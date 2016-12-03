@@ -47,7 +47,7 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
             
             // TODO: Better error handling!
             try! onOffInterface.connect()
-            onOffInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setOnOffAddress))
+            onOffInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: setOnOffAddress))
         }
     }
     
@@ -62,7 +62,7 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
                 _lightOn = newValue
                 
                 log.verbose("lightOn soon: \(_lightOn)")
-                try! onOffInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.dpt1_xxx,
+                try! onOffInterface!.submit(telegram: KnxTelegramFactory.createWriteRequest(type: KnxTelegramType.dpt1_xxx,
                                                                                   value:Int(NSNumber(value:_lightOn))))
             }
         }
@@ -74,18 +74,18 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
      */
-    open func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
+    open func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         var type : KnxTelegramType
         
         let interface = sender as! KnxRouterInterface
         
         if interface == onOffInterface {
-            type = KnxGroupAddressRegistry.getTypeForGroupAddress(onOffAddress)
+            type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: onOffAddress)
             do {
-                let val:Int = try telegram.getValueAsType(type)
+                let val:Int = try telegram.getValueAsType(type: type)
                 _lightOn = Bool(NSNumber(value:val))
-                responseHandler?.onOffResponse(lightOn)
+                responseHandler?.onOffResponse(on: lightOn)
             }
             catch KnxException.illformedTelegramForType {
                 

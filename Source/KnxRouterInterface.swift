@@ -90,7 +90,7 @@ open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      
      - parameter telegram: The telegram to transmit.
      */
-    open func submit(_ telegram:KnxTelegram) {
+    open func submit(telegram:KnxTelegram) {
         
         let msgData = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
         log.info("SEND: \(msgData)")
@@ -160,7 +160,7 @@ open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
                 
                 if telegram.isWriteRequestOrValueResponse {
                     
-                    self.responseHandler?.subscriptionResponse(self, telegram:telegram)
+                    self.responseHandler?.subscriptionResponse(sender:self, telegram:telegram)
                 }
             }
             

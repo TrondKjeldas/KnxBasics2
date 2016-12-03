@@ -36,7 +36,7 @@ open class KnxGroupAddressRegistry {
      
      - returns: The DPT type registered for the address, or .UNKNOWN if the address is not registered.
      */
-    open static func getTypeForGroupAddress(_ address : KnxGroupAddress) -> KnxTelegramType {
+    open static func getTypeForGroupAddress(address : KnxGroupAddress) -> KnxTelegramType {
         
         if let address = registry[address] {
             return address
@@ -53,7 +53,7 @@ open class KnxGroupAddressRegistry {
      - parameter address: The group address to register a type for.
      - parameter type: The type to register.
      */
-    open static func addTypeForGroupAddress(_ address : KnxGroupAddress,
+    open static func addTypeForGroupAddress(address : KnxGroupAddress,
                                               type : KnxTelegramType) {
         log.verbose("Adding address \(address.addressAsUInt16) to registry.")
         registry[address] = type

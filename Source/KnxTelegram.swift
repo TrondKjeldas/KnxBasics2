@@ -98,7 +98,7 @@ open class KnxTelegram {
      - returns: The decoded value as an integer.
      - throws: IllformedTelegramForType, UnknownTelegramType
      */
-    open func getValueAsType(_ type:KnxTelegramType) throws -> Int {
+    open func getValueAsType(type:KnxTelegramType) throws -> Int {
         
         switch(type) {
             
@@ -163,7 +163,7 @@ open class KnxTelegram {
      - returns: The decoded value as a float.
      - throws: IllformedTelegramForType, UnknownTelegramType
      */
-    open func getValueAsType(_ type:KnxTelegramType) throws -> Double {
+    open func getValueAsType(type:KnxTelegramType) throws -> Double {
         
         switch(type) {
             
@@ -214,7 +214,7 @@ open class KnxTelegram {
      - returns: The decoded value as a string.
      - throws: IllformedTelegramForType, UnknownTelegramType     
      */
-    open func getValueAsType(_ type:KnxTelegramType) throws -> String {
+    open func getValueAsType(type:KnxTelegramType) throws -> String {
         
         switch(type) {
             

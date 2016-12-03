@@ -33,7 +33,7 @@ open class KnxTelegramFactory {
 
      - returns: A subscription request telegram, ready to be sent.
      */
-    open static func createSubscriptionRequest(_ groupAddress:KnxGroupAddress) -> KnxTelegram {
+    open static func createSubscriptionRequest(groupAddress:KnxGroupAddress) -> KnxTelegram {
 
         let addrLow8 = UInt8(truncatingBitPattern:(groupAddress.addressAsUInt16 & 0xFF))
         let addrHigh8 = UInt8(truncatingBitPattern:(groupAddress.addressAsUInt16 >> 8))
@@ -81,7 +81,7 @@ open class KnxTelegramFactory {
      - returns: A telegram, ready to be sent.
      - throws: UnknownTelegramType     
      */
-    open static func createWriteRequest(_ type:KnxTelegramType, value:Int) throws -> KnxTelegram {
+    open static func createWriteRequest(type:KnxTelegramType, value:Int) throws -> KnxTelegram {
 
       var bytes:[UInt8]
 

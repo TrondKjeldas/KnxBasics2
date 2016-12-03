@@ -30,6 +30,6 @@ public protocol KnxTelegramResponseHandlerDelegate {
      - parameter sender: The interface the telegram were received on.
      - parameter telegram: The received telegran.
      */
-    func subscriptionResponse(_ sender : AnyObject?, telegram:KnxTelegram)
+    func subscriptionResponse(sender : AnyObject?, telegram:KnxTelegram)
 }
 

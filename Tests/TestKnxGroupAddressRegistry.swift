@@ -27,10 +27,10 @@ class TestKnxGroupAddressRegistry: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3"),
+        KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/2/3"),
                                                        type: KnxTelegramType.dpt1_xxx)
         
-        KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"8/9/10"),
+        KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"8/9/10"),
                                                        type: KnxTelegramType.dpt5_001)
     }
     
@@ -41,16 +41,16 @@ class TestKnxGroupAddressRegistry: XCTestCase {
     
     func testAddressNotFound() {
         
-        XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"5/6/7")),
+        XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(address: KnxGroupAddress(fromString:"5/6/7")),
                        KnxTelegramType.unknown)
     }
     
     func testAddressFound() {
 
-        XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"1/2/3")),
+        XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/2/3")),
                        KnxTelegramType.dpt1_xxx)
 
-        XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(KnxGroupAddress(fromString:"8/9/10")),
+        XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(address: KnxGroupAddress(fromString:"8/9/10")),
                        KnxTelegramType.dpt5_001)
     }
 }

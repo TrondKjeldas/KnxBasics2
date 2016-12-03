@@ -36,11 +36,11 @@ class TestKnxTelegramFactory: XCTestCase {
     
     func testCreateSubscriptionRequest() {
        
-        XCTAssertNotNil(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString:"8/9/10")))
+        XCTAssertNotNil(KnxTelegramFactory.createSubscriptionRequest(groupAddress:KnxGroupAddress(fromString:"8/9/10")))
     }
     
     func testAddressFound() {
         
-        XCTAssertNotNil(try! KnxTelegramFactory.createWriteRequest(KnxTelegramType.dpt5_001, value: 1))
+        XCTAssertNotNil(try! KnxTelegramFactory.createWriteRequest(type:KnxTelegramType.dpt5_001, value: 1))
     }
 }

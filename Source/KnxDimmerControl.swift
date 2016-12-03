@@ -55,7 +55,7 @@ open class KnxDimmerControl : KnxOnOffControl {
             
             // TODO: Better error handling!
             try! dimmerInterface.connect()
-            dimmerInterface.submit(KnxTelegramFactory.createSubscriptionRequest(setDimLevelAddress))
+            dimmerInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: setDimLevelAddress))
         }
         
         levelRspInterface = KnxRouterInterface(responseHandler: self)
@@ -63,7 +63,7 @@ open class KnxDimmerControl : KnxOnOffControl {
             
             // TODO: Better error handling!
             try! levelRspInterface.connect()
-            levelRspInterface.submit(KnxTelegramFactory.createSubscriptionRequest(levelResponseAddress))
+            levelRspInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: levelResponseAddress))
             readLevel()
         }
     }
@@ -73,7 +73,7 @@ open class KnxDimmerControl : KnxOnOffControl {
      */
     open func readLevel() {
 
-        levelRspInterface?.submit(KnxTelegramFactory.createReadRequest())
+        levelRspInterface?.submit(telegram: KnxTelegramFactory.createReadRequest())
     }
     
     /// Read/write property holding the light level.
@@ -84,7 +84,7 @@ open class KnxDimmerControl : KnxOnOffControl {
         set {
             if newValue != _dimLevel {
                 log.verbose("dimLevel soon: \(newValue)")
-                try! dimmerInterface!.submit(KnxTelegramFactory.createWriteRequest(KnxTelegramType.dpt5_001, value:newValue))
+                try! dimmerInterface!.submit(telegram: KnxTelegramFactory.createWriteRequest(type: KnxTelegramType.dpt5_001, value:newValue))
             }
         }
     }
@@ -96,17 +96,17 @@ open class KnxDimmerControl : KnxOnOffControl {
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
      */
-    open override func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
+    open override func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         var type : KnxTelegramType
         
         let interface = sender as! KnxRouterInterface
         
         if interface == levelRspInterface {
-            type = KnxGroupAddressRegistry.getTypeForGroupAddress(levelRspAddress)
+            type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: levelRspAddress)
             do {
-                _dimLevel = try telegram.getValueAsType(type)
-                dimmerResponseHandler?.dimLevelResponse(_dimLevel)
+                _dimLevel = try telegram.getValueAsType(type: type)
+                dimmerResponseHandler?.dimLevelResponse(level: _dimLevel)
             }
             catch KnxException.illformedTelegramForType {
                 
@@ -118,7 +118,7 @@ open class KnxDimmerControl : KnxOnOffControl {
             }
         } else {
             // Also give super a shot...
-            super.subscriptionResponse(sender, telegram: telegram)
+            super.subscriptionResponse(sender:sender, telegram: telegram)
         }
         
         log.debug("HANDLING: \(telegram.payload)")
