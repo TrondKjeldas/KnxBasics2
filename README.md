@@ -4,8 +4,10 @@ Basic KNX connectivity.
 
 Interface and control your KNX installation from the network.
 
+Based on the Objective-C implementation in https://github.com/TrondKjeldas/KnxBasics.
 
-#Author
+
+# Author
 
 Trond Kjeldås
 
