@@ -33,7 +33,7 @@ SwiftyBeaver.addDestination(console)
 
 class Handler : KnxOnOffResponseHandlerDelegate {
     
-    func onOffResponse(_ on:Bool) {
+    func onOffResponse(on:Bool) {
         
         print("ON: \(on)")
     }
@@ -49,7 +49,7 @@ let handler = Handler()
 
 KnxRouterInterface.routerIp = "gax58"
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/0/14"),
                                                type: KnxTelegramType.dpt1_xxx)
 
 

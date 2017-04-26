@@ -177,7 +177,7 @@ open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
      */
     @objc open func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
 
-        log.error("Socket disconnected: \(err)")
+        log.error("Socket disconnected: \(String(describing: err))")
     }
     
     /// Property for setting the IP address of the KNX router
