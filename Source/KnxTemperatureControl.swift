@@ -75,7 +75,8 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: subscriptionAddress)
             do {
                 _temperature = try telegram.getValueAsType(type: type)
-                responseHandler?.temperatureResponse(level: _temperature)
+                responseHandler?.temperatureResponse(sender: subscriptionAddress,
+                                                     level: _temperature)
             }
             catch KnxException.illformedTelegramForType {
                 

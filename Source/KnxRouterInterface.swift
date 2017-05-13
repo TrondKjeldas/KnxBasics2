@@ -161,17 +161,31 @@ open class KnxRouterInterface : NSObject {
      */
     open func submit(telegram:KnxTelegram) {
         
-        let msgData = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
-        log.info("SEND: \(msgData)")
 
         switch KnxRouterInterface.connectionType {
         case .tcpDirect:
+
+            let msgData = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
+
+            log.info("SEND: \(msgData)")
+
             socket.write(msgData, withTimeout: -1.0, tag: 0)
 
             written += telegram.payload.count
 
         case .udpMulticast:
-            udpSocket.send(msgData, withTimeout: -1.0, tag: 0)
+
+            let routingHdr = Data(bytes: [0x06, 0x10, 0x05, 0x30, 0x00, 0x11])
+
+            let msgDataPost = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
+
+            log.info("SEND: \(routingHdr.hexEncodedString())\(msgDataPost)")
+
+            //udpSocket.send(routingHdr + msgDataPre,
+            udpSocket.send(routingHdr + msgDataPost,
+                           toHost: KnxRouterInterface.multicastGroup!,
+                           port: KnxRouterInterface.multicastPort,
+                           withTimeout: -1.0, tag: 0)
 
         default:
             log.warning("cant send because not conected")
@@ -288,9 +302,11 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
 
                 let telegram = KnxTelegram(bytes: dataBytes)
 
-                if telegram.isWriteRequestOrValueResponse {
-
-                    self.responseHandler?.subscriptionResponse(sender:self, telegram:telegram)
+                // In theory there should be only one subscriber present, since
+                // there is one KnxRouterInterface instance per group address in
+                // .tcpDirect mode. But call all of them just to be sure.
+                for handler in subscriptionMap {
+                    handler.value.subscriptionResponse(sender:self, telegram:telegram)
                 }
             }
 
@@ -364,10 +380,7 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
         log.info("address: \(telegram.getGroupAddress().string)")
 
         if telegram.isWriteRequestOrValueResponse {
-
-            if subscriptionMap.index(forKey: telegram.getGroupAddress()) != nil {
-                self.responseHandler?.subscriptionResponse(sender:self, telegram:telegram)
-            }
+            subscriptionMap[telegram.getGroupAddress()]?.subscriptionResponse(sender:self, telegram:telegram)
         }
     }
 

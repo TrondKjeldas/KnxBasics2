@@ -87,8 +87,9 @@ open class KnxTelegram {
         _bytes = bytes
         _len = bytes.count
         _type = type
-
-        _groupAddress = UInt16(UInt16(bytes[3]) << 8 | UInt16(bytes[4]))
+        if bytes.count >= 4 {
+            _groupAddress = UInt16(UInt16(bytes[3]) << 8 | UInt16(bytes[4]))
+        }
     }
 
     open func getGroupAddress() -> KnxGroupAddress {
@@ -255,10 +256,13 @@ open class KnxTelegram {
             
             return false
         }
-        
-        return ((bytes[6] & 0x03 == 0x00)
-            && ((bytes[7] & 0xC0 == 0x80)) // write request
-            || ((bytes[7] & 0xC0 == 0x40))) // value response
+        if bytes.count >= 7 {
+            return ((bytes[6] & 0x03 == 0x00)
+                && ((bytes[7] & 0xC0 == 0x80)) // write request
+                || ((bytes[7] & 0xC0 == 0x40))) // value response
+        } else {
+            return false
+        }
     }
     
     // MARK: Internal and private declarations

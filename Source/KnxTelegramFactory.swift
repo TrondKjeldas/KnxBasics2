@@ -88,19 +88,43 @@ open class KnxTelegramFactory {
         switch type {
 
         case .dpt1_xxx:
-            
-            bytes = [UInt8](repeating: 0, count: 6)
-            // Length...
-            bytes[0] = 0
-            bytes[1] = 4
-            // Content
-            bytes[2] = 0;
-            bytes[3] = 37
-            bytes[4] = 0
-            bytes[5] = UInt8(truncatingBitPattern:value) | 0x80
-            
+
+
+            switch KnxRouterInterface.connectionType {
+            case .tcpDirect:
+                bytes = [UInt8](repeating: 0, count: 6)
+                // Length...
+                bytes[0] = 0
+                bytes[1] = 4
+                // Content
+                bytes[2] = 0;
+                bytes[3] = 37
+                bytes[4] = 0
+                bytes[5] = UInt8(truncatingBitPattern:value) | 0x80
+
+            case .udpMulticast:
+                bytes = [UInt8](repeating: 0, count: 11)
+                bytes[0] = 0x29
+                bytes[1] = 0x00
+                bytes[2] = 0xBC
+                bytes[3] = 0xD0
+                bytes[4] = 0x00 // src addr
+                bytes[5] = 0x00 // src addr
+
+                bytes[6] = 0x08 // dst addr
+                bytes[7] = 0x10 // dst addr
+
+                bytes[8] = 0x01 // NPDU len
+                bytes[9] = 0x00
+                bytes[10] = UInt8(truncatingBitPattern:value) | 0x80
+
+            default:
+                bytes = [UInt8](repeating: 0, count: 6)
+                //log.warning("Connection not set")
+            }
+
             break;
-            
+
         case .dpt5_001:
             
             bytes = [UInt8](repeating: 0, count: 7)

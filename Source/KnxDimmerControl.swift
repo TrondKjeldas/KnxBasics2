@@ -108,7 +108,8 @@ open class KnxDimmerControl : KnxOnOffControl {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: levelRspAddress)
             do {
                 _dimLevel = try telegram.getValueAsType(type: type)
-                dimmerResponseHandler?.dimLevelResponse(level: _dimLevel)
+                dimmerResponseHandler?.dimLevelResponse(sender: levelRspAddress,
+                                                        level: _dimLevel)
             }
             catch KnxException.illformedTelegramForType {
                 

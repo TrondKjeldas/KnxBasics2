@@ -89,7 +89,8 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
             do {
                 let val:Int = try telegram.getValueAsType(type: type)
                 _lightOn = Bool(NSNumber(value:val))
-                responseHandler?.onOffResponse(on: lightOn)
+                responseHandler?.onOffResponse(sender: onOffAddress,
+                                               state: _lightOn)
             }
             catch KnxException.illformedTelegramForType {
                 
