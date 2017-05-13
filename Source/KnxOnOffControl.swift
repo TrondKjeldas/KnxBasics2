@@ -44,9 +44,9 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
         
         onOffInterface = KnxRouterInterface(responseHandler: self)
         if let onOffInterface = onOffInterface {
-            
+
             // TODO: Better error handling!
-            try! onOffInterface.connect()
+            try! onOffInterface.connect(type:.udpMulticast)
             onOffInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: setOnOffAddress))
         }
     }

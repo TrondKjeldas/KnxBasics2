@@ -49,11 +49,11 @@ let handler = Handler()
 
 KnxRouterInterface.routerIp = "gax58"
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/0/14"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/0/16"),
                                                type: KnxTelegramType.dpt1_xxx)
 
 
-let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
+let onoffaddr = KnxGroupAddress(fromString: "1/0/16")
 
 let lightSwitch =
     KnxOnOffControl(setOnOffAddress: onoffaddr,

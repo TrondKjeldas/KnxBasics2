@@ -75,6 +75,9 @@ open class KnxTelegram {
         _bytes = nil
         _len = 0
         _type = .unknown
+        _area = 0
+        _line = 0
+        _device = 0
     }
     
     /**
@@ -88,8 +91,15 @@ open class KnxTelegram {
         _bytes = bytes
         _len = bytes.count
         _type = type
+        _area = bytes[5]
+        _line = (bytes[4] & 0xF0) >> 4
+        _device = bytes[4]
     }
-    
+
+    public func getGroupAddr() -> String {
+        return String.init(format: "%d/%d/%d", _area, _line, _device)
+    }
+
     /**
      Returns the data value in the telegram as a specific DPT.
      
@@ -260,7 +270,10 @@ open class KnxTelegram {
     fileprivate var _bytes:[UInt8]?
     fileprivate var _len:Int
     fileprivate var _type:KnxTelegramType
-    
+    private var _area:UInt8
+    private var _line:UInt8
+    private var _device:UInt8
+
     internal var payload:[UInt8] {
         get {
             return _bytes!

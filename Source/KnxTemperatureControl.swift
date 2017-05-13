@@ -46,7 +46,7 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
         if let interface = interface {
             
             // TODO: Better error handling!
-            try! interface.connect()
+            try! interface.connect(type:.tcpDirect)
             interface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: subscriptionAddress))
         }
     }

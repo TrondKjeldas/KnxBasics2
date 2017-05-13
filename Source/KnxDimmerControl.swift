@@ -54,7 +54,7 @@ open class KnxDimmerControl : KnxOnOffControl {
         if let dimmerInterface = dimmerInterface {
             
             // TODO: Better error handling!
-            try! dimmerInterface.connect()
+            try! dimmerInterface.connect(type:.tcpDirect)
             dimmerInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: setDimLevelAddress))
         }
         
@@ -62,7 +62,7 @@ open class KnxDimmerControl : KnxOnOffControl {
         if let levelRspInterface = levelRspInterface {
             
             // TODO: Better error handling!
-            try! levelRspInterface.connect()
+            try! levelRspInterface.connect(type: .tcpDirect)
             levelRspInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: levelResponseAddress))
             readLevel()
         }

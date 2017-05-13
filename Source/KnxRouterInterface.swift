@@ -28,10 +28,10 @@ import SwiftyBeaver
 open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     
     // MARK: Public API.
-    
+
     /**
      Initializer for the router interface object.
-     
+
      - parameter responseHandler: The delegate object handling received telegrams.
      */
     public init(responseHandler : KnxTelegramResponseHandlerDelegate) {
@@ -39,40 +39,44 @@ open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         super.init()
         
         self.responseHandler = responseHandler
+
         socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+
+        udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
     }
-    
+
+    public enum ConnectionType {
+
+        case none
+
+        case tcpDirect
+
+        case udpMulticast
+    }
+
     /**
-     Connect to a KNX router at the specified address and port.
-     
-     - parameter ipAddress: The IP address to connect to.
-     - parameter onPort: The port to connect to. Default is port 6720.
-     
+     Connect to a KNX router.
+
      - throws: UnableToConnectToRouter
      */
-    open func connect() throws {
-        
-        if !socket.isConnected {
-         
-            socket.delegate = self
-            
-            do {
-                try socket.connect(toHost: KnxRouterInterface.routerIp!,
-                                         onPort: KnxRouterInterface.routerPort)
-                log.verbose("after")
-            } catch let e {
-                
-                log.error("Oops: \(e)")
-                
-                throw KnxException.unableToConnectToRouter
-            }
-            
-        } else {
-            
-            log.warning("socket already connected")
+
+    open func connect(type:ConnectionType) throws {
+
+        switch type {
+
+        case .tcpDirect:
+
+            try connectTcp()
+
+        case .udpMulticast:
+
+            try joinMulticastGroup()
+
+        default:
+            log.warning("cant send because not conected")
         }
     }
-    
+
     /**
      Disconnect from a KNX.
      */
@@ -94,11 +98,96 @@ open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
         
         let msgData = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
         log.info("SEND: \(msgData)")
-        socket.write(msgData, withTimeout: -1.0, tag: 0)
-        
-        written += telegram.payload.count
+
+        switch connectionType {
+        case .tcpDirect:
+            socket.write(msgData, withTimeout: -1.0, tag: 0)
+
+            written += telegram.payload.count
+
+        case .udpMulticast:
+            udpSocket.send(msgData, withTimeout: -1.0, tag: 0)
+
+        default:
+            log.warning("cant send because not conected")
+        }
     }
-    
+
+    /**
+     Join a KNX multicast group at the specified address and port.
+
+     - parameter ipAddress: The IP address to connect to.
+     - parameter onPort: The port to connect to. Default is port 6720.
+
+     - throws: UnableToConnectToRouter
+     */
+    private func joinMulticastGroup() throws {
+
+        if connectionType == .none {
+
+            if let udpSocket = self.udpSocket,
+                let group = KnxRouterInterface.multicastGroup {
+
+                udpSocket.setIPv6Enabled(false)
+
+                do {
+                    try udpSocket.enableBroadcast(true)
+                    try udpSocket.enableReusePort(true)
+                    try udpSocket.bind(toPort: KnxRouterInterface.multicastPort)
+                    try udpSocket.joinMulticastGroup(group, onInterface: "en0")
+                    try udpSocket.beginReceiving()
+
+                    connectionType = .udpMulticast
+
+                } catch let error as NSError {
+                    print("failed: \(error)")
+                    throw KnxException.unableToConnectToRouter
+                }
+            } else {
+                log.error("socket or group not initialized")
+                throw KnxException.unableToConnectToRouter
+            }
+        } else {
+            log.error("already connected")
+            throw KnxException.unableToConnectToRouter
+        }
+    }
+
+    /**
+     Connect to a KNX router over TCP.
+
+     - throws: UnableToConnectToRouter
+     */
+    private func connectTcp() throws {
+
+        if connectionType == .none {
+            if !socket.isConnected {
+
+                socket.delegate = self
+
+                do {
+                    try socket.connect(toHost: KnxRouterInterface.routerIp!,
+                                       onPort: KnxRouterInterface.routerPort)
+
+                    connectionType = .tcpDirect
+
+                    log.verbose("after")
+                } catch let e {
+
+                    log.error("Oops: \(e)")
+
+                    throw KnxException.unableToConnectToRouter
+                }
+                
+            } else {
+                
+                log.warning("socket already connected")
+            }
+        } else {
+            log.error("already connected")
+        }
+    }
+
     /**
      Response handler, called from the CocoaAsyncSocket framework upon connection.
      
@@ -186,16 +275,77 @@ open class KnxRouterInterface : NSObject, GCDAsyncSocketDelegate {
     /// Property for setting the port to connect to the KNX router on
     /// (defaults to port 6720.)
     open static var routerPort : UInt16 = 6720
-    
+
+    open static var multicastGroup : String?
+    open static var multicastPort : UInt16 = 3671
+
     // MARK: Internal and private declarations.
     
-    fileprivate var socket:GCDAsyncSocket! = nil
-    fileprivate var written:Int = 0
-    fileprivate var readCount:Int = 0
+    private var socket:GCDAsyncSocket! = nil
+    private var udpSocket: GCDAsyncUdpSocket! = nil
+
+    private var connectionType: ConnectionType = .none
+
+    private var written:Int = 0
+    private var readCount:Int = 0
     
-    fileprivate var telegramData = NSMutableData()
+    private var telegramData = NSMutableData()
     
     fileprivate var responseHandler : KnxTelegramResponseHandlerDelegate? = nil
     
-    fileprivate let log = SwiftyBeaver.self
+    private let log = SwiftyBeaver.self
 }
+
+extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
+
+    open func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+
+
+        let telegramData = NSMutableData()
+
+        telegramData.setData(data)
+
+        print("GOT: \(telegramData)")
+
+        var dataBytes:[UInt8] = [UInt8](repeating: 0, count: telegramData.length - 9)
+
+        telegramData.getBytes(&dataBytes, range: NSRange(location: 9,length: telegramData.length - 9))
+
+
+        let telegram = KnxTelegram(bytes: dataBytes)
+
+        print("address: \(telegram.getGroupAddr())")
+        if telegram.getGroupAddr() == "1/0/14" {
+            let val:Int = try! telegram.getValueAsType(type: .dpt1_xxx)
+            print("value: \(val)")
+        }
+
+        if telegram.isWriteRequestOrValueResponse {
+
+            self.responseHandler?.subscriptionResponse(sender:self, telegram:telegram)
+        }
+    }
+
+    public func udpSocket(sock: GCDAsyncUdpSocket!, didConnectToAddress address: NSData!) {
+        print("connected")
+    }
+
+    public func udpSocket(sock: GCDAsyncUdpSocket!, didNotConnect error: NSError!) {
+        print("did not connect")
+    }
+
+    public  func udpSocket(sock: GCDAsyncUdpSocket!, didNotSendDataWithTag tag: Int, dueToError error: NSError!) {
+        print("did not send data, error: \(error)")
+    }
+
+    public func udpSocket(sock: GCDAsyncUdpSocket!, didSendDataWithTag tag: Int) {
+        print("did send data")
+    }
+
+    public func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
+        print("did close")
+    }
+    
+    
+}
+
