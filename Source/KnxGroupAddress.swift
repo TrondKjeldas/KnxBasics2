@@ -46,6 +46,23 @@ open class KnxGroupAddress : Hashable {
         }
         
     }
+
+    public init(fromUInt16:UInt16) {
+
+        addressAsUInt16 = fromUInt16
+
+    }
+
+    open var string : String {
+
+        let a:UInt16 = (addressAsUInt16 >> 11) & 0x0001F
+        let b:UInt16 = (addressAsUInt16 >> 8) & 0x0007
+        let c:UInt16 = addressAsUInt16 & 0x00FF
+
+        return String.init(format: "%d/%d/%d", a, b, c)
+    }
+
+
     
     /// A read-only property returning the 16bit representation of the group address.
     fileprivate(set) open var addressAsUInt16 : UInt16

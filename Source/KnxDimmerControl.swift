@@ -50,20 +50,22 @@ open class KnxDimmerControl : KnxOnOffControl {
         // Initialize super for on/off functionality
         super.init(setOnOffAddress: setOnOffAddress, responseHandler: responseHandler)
 
-        dimmerInterface = KnxRouterInterface(responseHandler: self)
+        dimmerInterface = KnxRouterInterface.getKnxRouterInstance()
         if let dimmerInterface = dimmerInterface {
             
             // TODO: Better error handling!
-            try! dimmerInterface.connect(type:.tcpDirect)
-            dimmerInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: setDimLevelAddress))
+            try! dimmerInterface.connect()
+            dimmerInterface.subscribeFor(address: setDimLevelAddress,
+                                         responseHandler: self)
         }
         
-        levelRspInterface = KnxRouterInterface(responseHandler: self)
+        levelRspInterface = KnxRouterInterface.getKnxRouterInstance()
         if let levelRspInterface = levelRspInterface {
             
             // TODO: Better error handling!
-            try! levelRspInterface.connect(type: .tcpDirect)
-            levelRspInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: levelResponseAddress))
+            try! levelRspInterface.connect()
+            levelRspInterface.subscribeFor(address: levelRspAddress,
+                                           responseHandler: self)
             readLevel()
         }
     }

@@ -22,6 +22,7 @@
 import Foundation
 import SwiftyBeaver
 
+
 /// Class representing a light switch.
 open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
     
@@ -42,12 +43,15 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
         
         self.responseHandler = responseHandler
         
-        onOffInterface = KnxRouterInterface(responseHandler: self)
+        onOffInterface = KnxRouterInterface.getKnxRouterInstance()
+        
         if let onOffInterface = onOffInterface {
 
             // TODO: Better error handling!
-            try! onOffInterface.connect(type:.udpMulticast)
-            onOffInterface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: setOnOffAddress))
+            try! onOffInterface.connect()
+
+            onOffInterface.subscribeFor(address: setOnOffAddress,
+                                        responseHandler: self)
         }
     }
     

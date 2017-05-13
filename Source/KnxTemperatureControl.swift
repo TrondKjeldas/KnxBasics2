@@ -42,12 +42,13 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
         
         self._temperature = 0.0
         
-        interface = KnxRouterInterface(responseHandler: self)
+        interface = KnxRouterInterface.getKnxRouterInstance()
         if let interface = interface {
             
             // TODO: Better error handling!
-            try! interface.connect(type:.tcpDirect)
-            interface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: subscriptionAddress))
+            try! interface.connect()
+            interface.subscribeFor(address: subscriptionAddress,
+                                   responseHandler: self)
         }
     }
     
