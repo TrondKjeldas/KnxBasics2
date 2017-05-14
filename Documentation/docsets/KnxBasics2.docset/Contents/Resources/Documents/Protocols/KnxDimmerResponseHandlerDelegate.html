@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KnxTelegramResponseHandlerDelegate Protocol Reference</title>
+    <title>KnxDimmerResponseHandlerDelegate Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/KnxTelegramResponseHandlerDelegate" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/KnxDimmerResponseHandlerDelegate" class="dashAnchor"></a>
 
-    <a title="KnxTelegramResponseHandlerDelegate Protocol Reference"></a>
+    <a title="KnxDimmerResponseHandlerDelegate Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -38,7 +38,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KnxBasics2 Reference</a>
       <img class="carat" src="../img/carat.png" />
-      KnxTelegramResponseHandlerDelegate Protocol Reference
+      KnxDimmerResponseHandlerDelegate Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -118,10 +118,10 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>KnxTelegramResponseHandlerDelegate</h1>
+            <h1>KnxDimmerResponseHandlerDelegate</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxTelegramResponseHandlerDelegate</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxDimmerResponseHandlerDelegate</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/KnxOnOffResponseHandlerDelegate.html">KnxOnOffResponseHandlerDelegate</a></span></code></pre>
 
                 </div>
               </div>
@@ -137,9 +137,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP10KnxBasics234KnxTelegramResponseHandlerDelegate20subscriptionResponseFT6senderGSqPs9AnyObject__8telegramCS_11KnxTelegram_T_"></a>
-                    <a name="//apple_ref/swift/Method/subscriptionResponse(sender:telegram:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP10KnxBasics234KnxTelegramResponseHandlerDelegate20subscriptionResponseFT6senderGSqPs9AnyObject__8telegramCS_11KnxTelegram_T_">subscriptionResponse(sender:telegram:)</a>
+                    <a name="/s:FP10KnxBasics232KnxDimmerResponseHandlerDelegate16dimLevelResponseFT6senderCS_15KnxGroupAddress5levelSi_T_"></a>
+                    <a name="//apple_ref/swift/Method/dimLevelResponse(sender:level:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP10KnxBasics232KnxDimmerResponseHandlerDelegate16dimLevelResponseFT6senderCS_15KnxGroupAddress5levelSi_T_">dimLevelResponse(sender:level:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -147,14 +147,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Handler for received telegrams.</p>
+                        <p>Handler for changes in dimmer level.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">subscriptionResponse</span><span class="p">(</span><span class="nv">sender</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">telegram</span><span class="p">:</span><span class="kt"><a href="../Classes/KnxTelegram.html">KnxTelegram</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">dimLevelResponse</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span><span class="kt"><a href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a></span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span><span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -165,24 +165,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>sender</em>
+                                <em>level</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The interface the telegram were received on.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>telegram</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The received telegran.</p>
+                                  <p>The new dimmer level.</p>
                                 </div>
                               </td>
                             </tr>

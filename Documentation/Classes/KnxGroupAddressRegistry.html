@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -21,6 +24,12 @@
           KnxBasics2 Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
     
@@ -48,6 +57,9 @@
                 <a class="nav-group-task-link" href="../Classes/KnxGroupAddressRegistry.html">KnxGroupAddressRegistry</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxOnOffControl.html">KnxOnOffControl</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KnxRouterInterface.html">KnxRouterInterface</a>
               </li>
               <li class="nav-group-task">
@@ -56,11 +68,17 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KnxTelegramFactory.html">KnxTelegramFactory</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxTemperatureControl.html">KnxTemperatureControl</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ConnectionType.html">ConnectionType</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/KnxException.html">KnxException</a>
               </li>
@@ -73,7 +91,7 @@
             <a class="nav-group-name-link" href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Functions.html#/s:ZF10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
+                <a class="nav-group-task-link" href="../Functions.html#/s:F10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -81,10 +99,16 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/KnxResponseHandlerDelegate.html">KnxResponseHandlerDelegate</a>
+                <a class="nav-group-task-link" href="../Protocols/KnxDimmerResponseHandlerDelegate.html">KnxDimmerResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxOnOffResponseHandlerDelegate.html">KnxOnOffResponseHandlerDelegate</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxTemperatureResponseHandlerDelegate.html">KnxTemperatureResponseHandlerDelegate</a>
               </li>
             </ul>
           </li>
@@ -97,7 +121,7 @@
             <h1>KnxGroupAddressRegistry</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">KnxGroupAddressRegistry</span></code></pre>
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxGroupAddressRegistry</span></code></pre>
 
                 </div>
               </div>
@@ -120,9 +144,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC10KnxBasics223KnxGroupAddressRegistry22getTypeForGroupAddressFCS_15KnxGroupAddressOS_15KnxTelegramType"></a>
-                    <a name="//apple_ref/swift/Method/getTypeForGroupAddress(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC10KnxBasics223KnxGroupAddressRegistry22getTypeForGroupAddressFCS_15KnxGroupAddressOS_15KnxTelegramType">getTypeForGroupAddress(_:)</a>
+                    <a name="/s:ZFC10KnxBasics223KnxGroupAddressRegistry22getTypeForGroupAddressFT7addressCS_15KnxGroupAddress_OS_15KnxTelegramType"></a>
+                    <a name="//apple_ref/swift/Method/getTypeForGroupAddress(address:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10KnxBasics223KnxGroupAddressRegistry22getTypeForGroupAddressFT7addressCS_15KnxGroupAddress_OS_15KnxTelegramType">getTypeForGroupAddress(address:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -137,7 +161,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getTypeForGroupAddress</span><span class="p">(</span><span class="nv">address</span> <span class="p">:</span> <span class="kt">KnxGroupAddress</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">KnxTelegramType</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getTypeForGroupAddress</span><span class="p">(</span><span class="nv">address</span> <span class="p">:</span> <span class="kt"><a href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/KnxTelegramType.html">KnxTelegramType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -154,7 +178,6 @@
                               <td>
                                 <div>
                                   <p>The group address to look up.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -164,7 +187,6 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>The DPT type registered for the address, or .UNKNOWN if the address is not registered.</p>
-
                       </div>
                     </section>
                   </div>
@@ -172,9 +194,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC10KnxBasics223KnxGroupAddressRegistry22addTypeForGroupAddressFTCS_15KnxGroupAddress4typeOS_15KnxTelegramType_T_"></a>
-                    <a name="//apple_ref/swift/Method/addTypeForGroupAddress(_:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC10KnxBasics223KnxGroupAddressRegistry22addTypeForGroupAddressFTCS_15KnxGroupAddress4typeOS_15KnxTelegramType_T_">addTypeForGroupAddress(_:type:)</a>
+                    <a name="/s:ZFC10KnxBasics223KnxGroupAddressRegistry22addTypeForGroupAddressFT7addressCS_15KnxGroupAddress4typeOS_15KnxTelegramType_T_"></a>
+                    <a name="//apple_ref/swift/Method/addTypeForGroupAddress(address:type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10KnxBasics223KnxGroupAddressRegistry22addTypeForGroupAddressFT7addressCS_15KnxGroupAddress4typeOS_15KnxTelegramType_T_">addTypeForGroupAddress(address:type:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -189,8 +211,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">addTypeForGroupAddress</span><span class="p">(</span><span class="nv">address</span> <span class="p">:</span> <span class="kt">KnxGroupAddress</span><span class="p">,</span>
-                                              <span class="nv">type</span> <span class="p">:</span> <span class="kt">KnxTelegramType</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">addTypeForGroupAddress</span><span class="p">(</span><span class="nv">address</span> <span class="p">:</span> <span class="kt"><a href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a></span><span class="p">,</span>
+                                              <span class="nv">type</span> <span class="p">:</span> <span class="kt"><a href="../Enums/KnxTelegramType.html">KnxTelegramType</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -207,7 +229,6 @@
                               <td>
                                 <div>
                                   <p>The group address to register a type for.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -220,17 +241,57 @@
                               <td>
                                 <div>
                                   <p>The type to register.</p>
-
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Nothing.</p>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10KnxBasics223KnxGroupAddressRegistry10loadDPTMapFT4fromSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/loadDPTMap(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10KnxBasics223KnxGroupAddressRegistry10loadDPTMapFT4fromSS_T_">loadDPTMap(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load group address and DPT information from a .dptmap file</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">loadDPTMap</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span><span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filename</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The file to load</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -243,8 +304,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2016-04-28)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://EXAMPLE/KnxBasics2" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2017-05-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

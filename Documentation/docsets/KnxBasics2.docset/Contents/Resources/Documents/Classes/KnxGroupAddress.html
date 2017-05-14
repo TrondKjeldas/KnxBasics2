@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -21,6 +24,12 @@
           KnxBasics2 Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
     
@@ -48,6 +57,9 @@
                 <a class="nav-group-task-link" href="../Classes/KnxGroupAddressRegistry.html">KnxGroupAddressRegistry</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxOnOffControl.html">KnxOnOffControl</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KnxRouterInterface.html">KnxRouterInterface</a>
               </li>
               <li class="nav-group-task">
@@ -56,11 +68,17 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KnxTelegramFactory.html">KnxTelegramFactory</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxTemperatureControl.html">KnxTemperatureControl</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ConnectionType.html">ConnectionType</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/KnxException.html">KnxException</a>
               </li>
@@ -73,7 +91,7 @@
             <a class="nav-group-name-link" href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Functions.html#/s:ZF10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
+                <a class="nav-group-task-link" href="../Functions.html#/s:F10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -81,10 +99,16 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/KnxResponseHandlerDelegate.html">KnxResponseHandlerDelegate</a>
+                <a class="nav-group-task-link" href="../Protocols/KnxDimmerResponseHandlerDelegate.html">KnxDimmerResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxOnOffResponseHandlerDelegate.html">KnxOnOffResponseHandlerDelegate</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxTemperatureResponseHandlerDelegate.html">KnxTemperatureResponseHandlerDelegate</a>
               </li>
             </ul>
           </li>
@@ -97,7 +121,7 @@
             <h1>KnxGroupAddress</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">KnxGroupAddress</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxGroupAddress</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                 </div>
               </div>
@@ -154,17 +178,84 @@
                               <td>
                                 <div>
                                   <p>A string representation of the group address, in the form of <q>a/b/c</q>.</p>
-
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Nothing.</p>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10KnxBasics215KnxGroupAddresscFT10fromUInt16Vs6UInt16_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(fromUInt16:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10KnxBasics215KnxGroupAddresscFT10fromUInt16Vs6UInt16_S0_">init(fromUInt16:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>initializer for the group address object.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fromUInt16</span><span class="p">:</span><span class="kt">UInt16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fromUInt16</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An UInt16 integer representing the group address.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC10KnxBasics215KnxGroupAddress6stringSS"></a>
+                    <a name="//apple_ref/swift/Property/string" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC10KnxBasics215KnxGroupAddress6stringSS">string</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A read-only property returning a string representing the group address object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">string</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -182,14 +273,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A read-only attribute returning the 16bit representation of the group address.</p>
+                        <p>A read-only property returning the 16bit representation of the group address.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">addressAsUInt16</span> <span class="p">:</span> <span class="kt">UInt16</span></code></pre>
+                          <pre class="highlight"><code><span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">addressAsUInt16</span> <span class="p">:</span> <span class="kt">UInt16</span></code></pre>
 
                         </div>
                       </div>
@@ -209,14 +300,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A read-only attribute returning the hash value of the object.</p>
+                        <p>A read-only property returning the hash value of the object.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -231,8 +322,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2016-04-28)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://EXAMPLE/KnxBasics2" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2017-05-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

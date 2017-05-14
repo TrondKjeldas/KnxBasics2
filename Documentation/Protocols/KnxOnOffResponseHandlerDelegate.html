@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KnxTelegramResponseHandlerDelegate Protocol Reference</title>
+    <title>KnxOnOffResponseHandlerDelegate Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/KnxTelegramResponseHandlerDelegate" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/KnxOnOffResponseHandlerDelegate" class="dashAnchor"></a>
 
-    <a title="KnxTelegramResponseHandlerDelegate Protocol Reference"></a>
+    <a title="KnxOnOffResponseHandlerDelegate Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -38,7 +38,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KnxBasics2 Reference</a>
       <img class="carat" src="../img/carat.png" />
-      KnxTelegramResponseHandlerDelegate Protocol Reference
+      KnxOnOffResponseHandlerDelegate Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -118,14 +118,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>KnxTelegramResponseHandlerDelegate</h1>
+            <h1>KnxOnOffResponseHandlerDelegate</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxTelegramResponseHandlerDelegate</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxOnOffResponseHandlerDelegate</span></code></pre>
 
                 </div>
               </div>
-            <p>Delegate protocol for KnxDimmerControl delegates.</p>
+            <p>Delegate protocol for KnxOnOffControl delegates.</p>
 
           </div>
         </section>
@@ -137,9 +137,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP10KnxBasics234KnxTelegramResponseHandlerDelegate20subscriptionResponseFT6senderGSqPs9AnyObject__8telegramCS_11KnxTelegram_T_"></a>
-                    <a name="//apple_ref/swift/Method/subscriptionResponse(sender:telegram:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP10KnxBasics234KnxTelegramResponseHandlerDelegate20subscriptionResponseFT6senderGSqPs9AnyObject__8telegramCS_11KnxTelegram_T_">subscriptionResponse(sender:telegram:)</a>
+                    <a name="/s:FP10KnxBasics231KnxOnOffResponseHandlerDelegate13onOffResponseFT6senderCS_15KnxGroupAddress5stateSb_T_"></a>
+                    <a name="//apple_ref/swift/Method/onOffResponse(sender:state:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP10KnxBasics231KnxOnOffResponseHandlerDelegate13onOffResponseFT6senderCS_15KnxGroupAddress5stateSb_T_">onOffResponse(sender:state:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -147,14 +147,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Handler for received telegrams.</p>
+                        <p>Handler for changes in on/off state.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">subscriptionResponse</span><span class="p">(</span><span class="nv">sender</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="nv">telegram</span><span class="p">:</span><span class="kt"><a href="../Classes/KnxTelegram.html">KnxTelegram</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">onOffResponse</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span><span class="kt"><a href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a></span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span><span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -165,24 +165,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>sender</em>
+                                <em>on</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The interface the telegram were received on.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>telegram</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The received telegran.</p>
+                                  <p>True if light on, false if light off.</p>
                                 </div>
                               </td>
                             </tr>
