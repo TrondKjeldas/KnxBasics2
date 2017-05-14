@@ -79,8 +79,6 @@ open class KnxRouterInterface : NSObject {
         
         super.init()
 
-        print("In init!")
-
         switch KnxRouterInterface.connectionType {
 
         case .tcpDirect:

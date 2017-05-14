@@ -62,6 +62,30 @@ public enum KnxTelegramType {
     
     /// Combined info, on/off
     case dpt27_001
+
+    // Return type from string name
+    static func fromName(name: String) -> KnxTelegramType {
+        switch name {
+        case "DPT1.001": return .dpt1_xxx
+        case "DPT1.002": return .dpt1_xxx
+        case "DPT1.003": return .dpt1_xxx
+        case "DPT1.005": return .dpt1_xxx
+        case "DPT1.009": return .dpt1_xxx
+        case "DPT1.015": return .dpt1_xxx
+        case "DPT1.XXX": return .dpt1_xxx
+        case "DPT3.007": return .dpt3_007
+        case "DPT5.001": return .dpt5_001
+        case "DPT9.001": return .dpt9_001
+        case "DPT9.004": return .dpt9_004
+        case "DPT9.005": return .dpt9_005
+        case "DPT10.001": return .dpt10_001
+        case "DPT17.001": return .dpt17_001
+        case "DPT20.102": return .dpt20_102
+        case "DPT27.001": return .dpt27_001
+        default:
+            return .unknown
+        }
+    }
 }
 
 /// Class representing a KNX telegram.
