@@ -6,6 +6,9 @@ Interface and control your KNX installation from the network.
 
 Based on the Objective-C implementation in https://github.com/TrondKjeldas/KnxBasics.
 
+# Documentation
+
+[Jazzy generated documentation](https://trondkjeldas.github.io/KnxBasics2/).
 
 # Author
 
