@@ -47,12 +47,20 @@ open class KnxGroupAddress : Hashable {
         
     }
 
+    /**
+     initializer for the group address object.
+
+     - parameter fromUInt16: An UInt16 integer representing the group address.
+     */
     public init(fromUInt16:UInt16) {
 
         addressAsUInt16 = fromUInt16
 
     }
 
+    /**
+     A read-only property returning a string representing the group address object.
+     */
     open var string : String {
 
         let a:UInt16 = (addressAsUInt16 >> 11) & 0x0001F

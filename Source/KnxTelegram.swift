@@ -116,6 +116,9 @@ open class KnxTelegram {
         }
     }
 
+    /**
+    Returns the group address of the telegram.
+     */
     open func getGroupAddress() -> KnxGroupAddress {
 
         return KnxGroupAddress(fromUInt16: _groupAddress)

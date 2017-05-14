@@ -52,9 +52,19 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
 
             onOffInterface.subscribeFor(address: setOnOffAddress,
                                         responseHandler: self)
+            readState()
+
         }
     }
-    
+
+    /**
+     Trigger reading of switch state.
+     */
+    open func readState() {
+
+        onOffInterface?.sendReadRequest(to: onOffAddress)
+    }
+
     /// Read/write property holding the on/off state.
     open var lightOn:Bool {
         get {

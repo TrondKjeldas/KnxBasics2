@@ -24,22 +24,26 @@ import Foundation
 import CocoaAsyncSocket
 import SwiftyBeaver
 
+/// Type of connection towards the KNX router
+public enum ConnectionType {
+
+    /// none         - No connection type
+    case none
+
+    /// tcpDirect    - TCP connection (likely KNXD/EIBD proprietary)
+    case tcpDirect
+
+    /// udpMulticast - UDP multicast, KNXNet/IP connection
+    case udpMulticast
+}
+
 /// Class representing the interface towards the KNX router.
 open class KnxRouterInterface : NSObject {
     
     // MARK: Public API.
 
-    // Property to set for selecting connetion type
+    /// Property to set for selecting connetion type
     open static var connectionType: ConnectionType = .none
-
-    public enum ConnectionType {
-
-        case none
-
-        case tcpDirect
-
-        case udpMulticast
-    }
 
     /// Property for setting the IP address of the KNX router
     open static var routerIp : String?
@@ -48,13 +52,17 @@ open class KnxRouterInterface : NSObject {
     /// (defaults to port 6720.)
     open static var routerPort : UInt16 = 6720
 
-    // Property for setting the multicast group to join
+    /// Property for setting the multicast group to join
     open static var multicastGroup : String?
 
-    // Property for setting the port for the multicast group
+    /// Property for setting the port for the multicast group
     open static var multicastPort : UInt16 = 3671
 
+    /** Factory function to return an instance of a KnxRouterInterface.
 
+        - In tcpDirect mode each call returns a new instance, while
+        - in udpMulticast mode every call returns the same shared instance.
+     */
     open static func getKnxRouterInstance() -> KnxRouterInterface? {
 
         switch KnxRouterInterface.connectionType {
@@ -68,27 +76,6 @@ open class KnxRouterInterface : NSObject {
         default:
             SwiftyBeaver.self.error("Connection type not set!")
             return nil
-        }
-    }
-
-    /**
-     Initializer for the router interface object.
-
-     */
-    private override init() {
-        
-        super.init()
-
-        switch KnxRouterInterface.connectionType {
-
-        case .tcpDirect:
-            socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
-
-        case .udpMulticast:
-            udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
-
-        default:
-            log.error("Connection type not set!")
         }
     }
 
@@ -109,6 +96,7 @@ open class KnxRouterInterface : NSObject {
         case .udpMulticast:
 
             DispatchQueue.once(block: {
+                print("once")
                 try! joinMulticastGroup()
             })
 
@@ -191,6 +179,30 @@ open class KnxRouterInterface : NSObject {
         submit(telegram: KnxTelegramFactory.createReadRequest(to: to))
     }
 
+
+    // MARK: Internal and private declarations.
+
+    /**
+     Initializer for the router interface object.
+
+     */
+    private override init() {
+
+        super.init()
+
+        switch KnxRouterInterface.connectionType {
+
+        case .tcpDirect:
+            socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+
+        case .udpMulticast:
+            udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
+
+        default:
+            log.error("Connection type not set!")
+        }
+    }
+
     /**
      Submit a telegram for transmission.
      
@@ -229,9 +241,6 @@ open class KnxRouterInterface : NSObject {
         }
     }
 
-
-    // MARK: Internal and private declarations.
-    
     fileprivate var socket:GCDAsyncSocket! = nil
     fileprivate var udpSocket: GCDAsyncUdpSocket! = nil
 
@@ -398,6 +407,16 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
         }
     }
 
+    /**
+     Response handler, called from the CocoaAsyncSocket framework upon reception of data.
+
+     - parameter sock: The socket that the data was received on.
+     - parameter data: The received data.
+     - parameter address: The source address.
+     - parameter filterContext: The filter context used.
+
+     - parameter err: If the socket disconneted because of an error.
+     */
     open func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
 
 
@@ -419,26 +438,6 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
         if telegram.isWriteRequestOrValueResponse {
             subscriptionMap[telegram.getGroupAddress()]?.subscriptionResponse(sender:self, telegram:telegram)
         }
-    }
-
-    public func udpSocket(sock: GCDAsyncUdpSocket!, didConnectToAddress address: NSData!) {
-        log.warning("connected")
-    }
-
-    public func udpSocket(sock: GCDAsyncUdpSocket!, didNotConnect error: NSError!) {
-        log.warning("did not connect")
-    }
-
-    public  func udpSocket(sock: GCDAsyncUdpSocket!, didNotSendDataWithTag tag: Int, dueToError error: NSError!) {
-        log.warning("did not send data, error: \(error)")
-    }
-
-    public func udpSocket(sock: GCDAsyncUdpSocket!, didSendDataWithTag tag: Int) {
-        log.warning("did send data")
-    }
-
-    public func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
-        log.warning("did close")
     }
 }
 

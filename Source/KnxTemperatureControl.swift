@@ -49,9 +49,19 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
             try! interface.connect()
             interface.subscribeFor(address: subscriptionAddress,
                                    responseHandler: self)
+
+            readValue()
         }
     }
-    
+
+    /**
+     Trigger reading of sensor value.
+     */
+    open func readValue() {
+
+        interface?.sendReadRequest(to: subscriptionAddress)
+    }
+
     /// Read-only property holding the last received.
     open var temperature:Double {
         get {

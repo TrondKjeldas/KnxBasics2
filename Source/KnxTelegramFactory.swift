@@ -58,17 +58,42 @@ open class KnxTelegramFactory {
      - returns: A read request telegram, ready to be sent.
      */
     open static func createReadRequest(to:KnxGroupAddress) -> KnxTelegram {
-        
-        var bytes:[UInt8] = [UInt8](repeating: 0, count: 6)
-        // Length...
-        bytes[0] = 0;
-        bytes[1] = 4;
-        // Content
-        bytes[2] = 0;
-        bytes[3] = 37;
-        bytes[4] = 0
-        bytes[5] = 0
-        
+
+        var bytes : [UInt8]
+
+        switch KnxRouterInterface.connectionType {
+        case .tcpDirect:
+            bytes = [UInt8](repeating: 0, count: 6)
+            // Length...
+            bytes[0] = 0;
+            bytes[1] = 4;
+            // Content
+            bytes[2] = 0;
+            bytes[3] = 37;
+            bytes[4] = 0
+            bytes[5] = 0
+
+        case .udpMulticast:
+            bytes = [UInt8](repeating: 0, count: 11)
+            bytes[0] = 0x29
+            bytes[1] = 0x00
+            bytes[2] = 0xBC
+            bytes[3] = 0xD0
+            bytes[4] = 0x00 // src addr
+            bytes[5] = 0x00 // src addr
+
+            bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
+            bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr
+
+            bytes[8] = 0x01 // NPDU len
+            bytes[9] = 0x00
+            bytes[10] = 0x00
+        default:
+            bytes = [UInt8](repeating: 0, count: 6)
+            //log.warning("Connection not set")
+        }
+
+
         return KnxTelegram(bytes: bytes)
     }
     
