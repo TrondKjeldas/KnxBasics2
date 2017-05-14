@@ -66,8 +66,7 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
                 _lightOn = newValue
                 
                 log.verbose("lightOn soon: \(_lightOn)")
-                try! onOffInterface!.submit(telegram: KnxTelegramFactory.createWriteRequest(type: KnxTelegramType.dpt1_xxx,
-                                                                                  value:Int(NSNumber(value:_lightOn))))
+                onOffInterface?.sendWriteRequest(to: onOffAddress, type: .dpt10_001, value: _lightOn ? 1 : 0)
             }
         }
     }
@@ -80,28 +79,57 @@ open class KnxOnOffControl : KnxTelegramResponseHandlerDelegate {
      */
     open func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
-        var type : KnxTelegramType
-        
-        let interface = sender as! KnxRouterInterface
-        
-        if interface == onOffInterface {
-            type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: onOffAddress)
-            do {
-                let val:Int = try telegram.getValueAsType(type: type)
-                _lightOn = Bool(NSNumber(value:val))
-                responseHandler?.onOffResponse(sender: onOffAddress,
-                                               state: _lightOn)
+        let type : KnxTelegramType
+
+        switch KnxRouterInterface.connectionType {
+        case .tcpDirect:
+
+            let interface = sender as! KnxRouterInterface
+
+            if interface == onOffInterface {
+                type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: onOffAddress)
+                do {
+                    let val:Int = try telegram.getValueAsType(type: type)
+                    _lightOn = Bool(NSNumber(value:val))
+                    responseHandler?.onOffResponse(sender: onOffAddress,
+                                                   state: _lightOn)
+                }
+                catch KnxException.illformedTelegramForType {
+
+                    log.error("Illegal telegram type...")
+                }
+                catch let error as NSError {
+
+                    log.error("Error: \(error)")
+                }
             }
-            catch KnxException.illformedTelegramForType {
-                
-                log.error("Catched...")
+
+        case .udpMulticast:
+
+            let srcAddress = telegram.getGroupAddress()
+
+            if srcAddress == onOffAddress {
+
+                type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: onOffAddress)
+                do {
+                    let val:Int = try telegram.getValueAsType(type: type)
+                    _lightOn = Bool(NSNumber(value:val))
+                    responseHandler?.onOffResponse(sender: onOffAddress,
+                                                   state: _lightOn)
+                }
+                catch KnxException.illformedTelegramForType {
+
+                    log.error("Illegal telegram type...")
+                }
+                catch let error as NSError {
+
+                    log.error("Error: \(error)")
+                }
             }
-            catch {
-                
-                log.error("Catched...")
-            }
+
+        default:
+            log.error("Connection type not set")
         }
-        
         
         log.debug("HANDLING: \(telegram.payload)")
     }

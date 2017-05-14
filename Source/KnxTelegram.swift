@@ -87,7 +87,7 @@ open class KnxTelegram {
         _bytes = bytes
         _len = bytes.count
         _type = type
-        if bytes.count >= 4 {
+        if bytes.count >= 5 {
             _groupAddress = UInt16(UInt16(bytes[3]) << 8 | UInt16(bytes[4]))
         }
     }

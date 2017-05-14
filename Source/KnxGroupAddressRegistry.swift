@@ -42,7 +42,7 @@ open class KnxGroupAddressRegistry {
             return address
         }
         else {
-            log.warning("Address not in registry: \(address)")
+            log.warning("Address not in registry: \(address.string)")
             return KnxTelegramType.unknown
         }
     }

@@ -155,11 +155,50 @@ open class KnxRouterInterface : NSObject {
     }
 
     /**
+     Send a write request telegram to a group address.
+     
+     - parameter to: The group address to send to
+     - parameter type: The DPT to send
+     - parameter value: The value to send
+     */
+
+    open func sendWriteRequest(to:KnxGroupAddress, type:KnxTelegramType, value:Any) {
+
+        switch type {
+        case .dpt10_001:
+            let val = value as! Int
+            try! submit(telegram: KnxTelegramFactory.createWriteRequest(to: to,
+                                                                        type: .dpt1_xxx,
+                                                                        value:val))
+
+        case .dpt5_001:
+
+            let val = value as! Int
+            try! submit(telegram: KnxTelegramFactory.createWriteRequest(to: to,
+                                                                        type: .dpt5_001,
+                                                                        value:val))
+
+        default:
+            log.error("Type mot supported: \(type)")
+            break
+        }
+    }
+
+    /**
+     Send a read request telegram to a group address.
+     */
+
+    open func sendReadRequest(to:KnxGroupAddress) {
+
+        submit(telegram: KnxTelegramFactory.createReadRequest(to: to))
+    }
+
+    /**
      Submit a telegram for transmission.
      
      - parameter telegram: The telegram to transmit.
      */
-    open func submit(telegram:KnxTelegram) {
+    private func submit(telegram:KnxTelegram) {
         
 
         switch KnxRouterInterface.connectionType {
@@ -175,9 +214,9 @@ open class KnxRouterInterface : NSObject {
 
         case .udpMulticast:
 
-            let routingHdr = Data(bytes: [0x06, 0x10, 0x05, 0x30, 0x00, 0x11])
-
             let msgDataPost = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
+
+            let routingHdr = Data(bytes: [0x06, 0x10, 0x05, 0x30, 0x00, 6 + UInt8(telegram.payload.count)])
 
             log.info("SEND: \(routingHdr.hexEncodedString())\(msgDataPost)")
 
