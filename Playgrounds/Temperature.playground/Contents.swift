@@ -33,15 +33,17 @@ SwiftyBeaver.addDestination(console)
 
 class Handler : KnxTemperatureResponseHandlerDelegate {
     
-    func temperatureResponse(_ level: Double) {
+    func temperatureResponse(sender:KnxGroupAddress, level: Double) {
 
         print("Temperature now: \(level)")
     }
 }
 
-KnxRouterInterface.routerIp = "zbox"
+//KnxRouterInterface.routerIp = "zbox"
+KnxRouterInterface.multicastGroup = "224.0.23.12"
+KnxRouterInterface.connectionType = .udpMulticast
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/2/0"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"3/2/0"),
                                                type: KnxTelegramType.dpt9_001)
 
 let sub = KnxTemperatureControl(subscriptionAddress: KnxGroupAddress(fromString: "3/2/0"),

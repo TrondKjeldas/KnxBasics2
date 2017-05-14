@@ -33,10 +33,10 @@ SwiftyBeaver.addDestination(console)
 
 class Handler : KnxTelegramResponseHandlerDelegate {
     
-    func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
+    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         do {
-            let time : String = try telegram.getValueAsType(.dpt10_001)
+            let time : String = try telegram.getValueAsType(type: .dpt10_001)
             print("Time: \(time)")
         }
         catch {
@@ -47,12 +47,16 @@ class Handler : KnxTelegramResponseHandlerDelegate {
 
 let handler = Handler()
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/6/0"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"3/6/0"),
                                                type: KnxTelegramType.dpt10_001)
 
 KnxRouterInterface.routerIp = "gax58"
+KnxRouterInterface.multicastGroup = "224.0.23.12"
+KnxRouterInterface.connectionType = .udpMulticast
 
-let kr = KnxRouterInterface(responseHandler: handler)
+let kr = KnxRouterInterface.getKnxRouterInstance()
 
-try! kr.connect()
-kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/6/0")))
+try! kr?.connect()
+kr?.subscribeFor(address: KnxGroupAddress(fromString: "3/6/0"),
+                 responseHandler: handler)
+
