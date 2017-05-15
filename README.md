@@ -10,6 +10,8 @@ Based on the Objective-C implementation in https://github.com/TrondKjeldas/KnxBa
 
 [Jazzy generated documentation](https://trondkjeldas.github.io/KnxBasics2/).
 
+A small example on how to start using the framework can be found in https://github.com/TrondKjeldas/KnxApp. 
+
 # Author
 
 Trond Kjeldås
