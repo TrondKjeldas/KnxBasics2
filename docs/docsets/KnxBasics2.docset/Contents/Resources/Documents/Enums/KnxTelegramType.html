@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -21,6 +24,12 @@
           KnxBasics2 Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
     
@@ -48,6 +57,9 @@
                 <a class="nav-group-task-link" href="../Classes/KnxGroupAddressRegistry.html">KnxGroupAddressRegistry</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxOnOffControl.html">KnxOnOffControl</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KnxRouterInterface.html">KnxRouterInterface</a>
               </li>
               <li class="nav-group-task">
@@ -56,11 +68,17 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KnxTelegramFactory.html">KnxTelegramFactory</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KnxTemperatureControl.html">KnxTemperatureControl</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ConnectionType.html">ConnectionType</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/KnxException.html">KnxException</a>
               </li>
@@ -73,7 +91,7 @@
             <a class="nav-group-name-link" href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Functions.html#/s:ZF10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
+                <a class="nav-group-task-link" href="../Functions.html#/s:F10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -81,10 +99,16 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/KnxResponseHandlerDelegate.html">KnxResponseHandlerDelegate</a>
+                <a class="nav-group-task-link" href="../Protocols/KnxDimmerResponseHandlerDelegate.html">KnxDimmerResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxOnOffResponseHandlerDelegate.html">KnxOnOffResponseHandlerDelegate</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KnxTemperatureResponseHandlerDelegate.html">KnxTemperatureResponseHandlerDelegate</a>
               </li>
             </ul>
           </li>
@@ -113,9 +137,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO10KnxBasics215KnxTelegramType7UNKNOWNFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/UNKNOWN" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType7UNKNOWNFMS0_S0_">UNKNOWN</a>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType7unknownFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/unknown" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType7unknownFMS0_S0_">unknown</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -130,7 +154,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">UNKNOWN</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">unknown</span></code></pre>
 
                         </div>
                       </div>
@@ -144,9 +168,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO10KnxBasics215KnxTelegramType8DPT1_xxxFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/DPT1_xxx" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8DPT1_xxxFMS0_S0_">DPT1_xxx</a>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType8dpt1_xxxFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt1_xxx" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8dpt1_xxxFMS0_S0_">dpt1_xxx</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -154,14 +178,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A generic 1-bit value in the range of DPT 1.001 - 1.022.</p>
+                        <p>A generic 1-bit value in the range of DPT 1.001 - 1.022.
+DPT1.001 - On/off
+DPT1.002 - True/false
+DPT1.003 - Enable/disable
+DPT1.005 - Alarm/no alarm
+DPT1.009 - Close/open
+DPT1.015 - Reset/no action</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">DPT1_xxx</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt1_xxx</span></code></pre>
 
                         </div>
                       </div>
@@ -175,9 +205,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO10KnxBasics215KnxTelegramType8DPT5_001FMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/DPT5_001" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8DPT5_001FMS0_S0_">DPT5_001</a>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType8dpt3_007FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt3_007" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8dpt3_007FMS0_S0_">dpt3_007</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -185,14 +215,262 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Scaling value, range 0-100%.</p>
+                        <p>Dimming control</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">DPT5_001</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt3_007</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType8dpt5_001FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt5_001" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8dpt5_001FMS0_S0_">dpt5_001</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Scaled value, range 0-100%.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt5_001</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType8dpt9_001FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt9_001" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8dpt9_001FMS0_S0_">dpt9_001</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Temperature, in degree celsius</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt9_001</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType8dpt9_004FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt9_004" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8dpt9_004FMS0_S0_">dpt9_004</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Brightness</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt9_004</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType8dpt9_005FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt9_005" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType8dpt9_005FMS0_S0_">dpt9_005</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Wind</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt9_005</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType9dpt10_001FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt10_001" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType9dpt10_001FMS0_S0_">dpt10_001</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Time of day</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt10_001</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType9dpt17_001FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt17_001" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType9dpt17_001FMS0_S0_">dpt17_001</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Scene number</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt17_001</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType9dpt20_102FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt20_102" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType9dpt20_102FMS0_S0_">dpt20_102</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HVAC mode</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt20_102</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO10KnxBasics215KnxTelegramType9dpt27_001FMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dpt27_001" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO10KnxBasics215KnxTelegramType9dpt27_001FMS0_S0_">dpt27_001</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Combined info, on/off</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">dpt27_001</span></code></pre>
 
                         </div>
                       </div>
@@ -207,8 +485,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2016-04-28)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://EXAMPLE/KnxBasics2" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2017-05-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

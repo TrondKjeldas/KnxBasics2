@@ -8,6 +8,9 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,6 +23,12 @@
           KnxBasics2 Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
     
@@ -47,6 +56,9 @@
                 <a class="nav-group-task-link" href="Classes/KnxGroupAddressRegistry.html">KnxGroupAddressRegistry</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/KnxOnOffControl.html">KnxOnOffControl</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/KnxRouterInterface.html">KnxRouterInterface</a>
               </li>
               <li class="nav-group-task">
@@ -55,11 +67,17 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/KnxTelegramFactory.html">KnxTelegramFactory</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/KnxTemperatureControl.html">KnxTemperatureControl</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ConnectionType.html">ConnectionType</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/KnxException.html">KnxException</a>
               </li>
@@ -72,7 +90,7 @@
             <a class="nav-group-name-link" href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:ZF10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:F10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -80,10 +98,16 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/KnxResponseHandlerDelegate.html">KnxResponseHandlerDelegate</a>
+                <a class="nav-group-task-link" href="Protocols/KnxDimmerResponseHandlerDelegate.html">KnxDimmerResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/KnxOnOffResponseHandlerDelegate.html">KnxOnOffResponseHandlerDelegate</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/KnxTemperatureResponseHandlerDelegate.html">KnxTemperatureResponseHandlerDelegate</a>
               </li>
             </ul>
           </li>
@@ -101,38 +125,6 @@
 
         <section class="section">
           <div class="section-content">
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P10KnxBasics226KnxResponseHandlerDelegate"></a>
-                    <a name="//apple_ref/swift/Protocol/KnxResponseHandlerDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P10KnxBasics226KnxResponseHandlerDelegate">KnxResponseHandlerDelegate</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Delegate protocol for KnxDimmerControl delegates.</p>
-
-                        <a href="Protocols/KnxResponseHandlerDelegate.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxResponseHandlerDelegate</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
             <div class="task-group">
               <ul class="item-container">
                 <li class="item">
@@ -165,14 +157,102 @@
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P10KnxBasics231KnxOnOffResponseHandlerDelegate"></a>
+                    <a name="//apple_ref/swift/Protocol/KnxOnOffResponseHandlerDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P10KnxBasics231KnxOnOffResponseHandlerDelegate">KnxOnOffResponseHandlerDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate protocol for KnxOnOffControl delegates.</p>
+
+                        <a href="Protocols/KnxOnOffResponseHandlerDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxOnOffResponseHandlerDelegate</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P10KnxBasics232KnxDimmerResponseHandlerDelegate"></a>
+                    <a name="//apple_ref/swift/Protocol/KnxDimmerResponseHandlerDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P10KnxBasics232KnxDimmerResponseHandlerDelegate">KnxDimmerResponseHandlerDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate protocol for KnxDimmerControl delegates.</p>
+
+                        <a href="Protocols/KnxDimmerResponseHandlerDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxDimmerResponseHandlerDelegate</span> <span class="p">:</span> <span class="kt"><a href="Protocols/KnxOnOffResponseHandlerDelegate.html">KnxOnOffResponseHandlerDelegate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P10KnxBasics237KnxTemperatureResponseHandlerDelegate"></a>
+                    <a name="//apple_ref/swift/Protocol/KnxTemperatureResponseHandlerDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P10KnxBasics237KnxTemperatureResponseHandlerDelegate">KnxTemperatureResponseHandlerDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate protocol for KnxTemperatureControl delegates.</p>
+
+                        <a href="Protocols/KnxTemperatureResponseHandlerDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KnxTemperatureResponseHandlerDelegate</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2016-04-28)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://EXAMPLE/KnxBasics2" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2017-05-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

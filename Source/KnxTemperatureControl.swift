@@ -42,15 +42,26 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
         
         self._temperature = 0.0
         
-        interface = KnxRouterInterface(responseHandler: self)
+        interface = KnxRouterInterface.getKnxRouterInstance()
         if let interface = interface {
             
             // TODO: Better error handling!
             try! interface.connect()
-            interface.submit(telegram: KnxTelegramFactory.createSubscriptionRequest(groupAddress: subscriptionAddress))
+            interface.subscribeFor(address: subscriptionAddress,
+                                   responseHandler: self)
+
+            readValue()
         }
     }
-    
+
+    /**
+     Trigger reading of sensor value.
+     */
+    open func readValue() {
+
+        interface?.sendReadRequest(to: subscriptionAddress)
+    }
+
     /// Read-only property holding the last received.
     open var temperature:Double {
         get {
@@ -74,7 +85,8 @@ open class KnxTemperatureControl : KnxTelegramResponseHandlerDelegate {
             type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: subscriptionAddress)
             do {
                 _temperature = try telegram.getValueAsType(type: type)
-                responseHandler?.temperatureResponse(level: _temperature)
+                responseHandler?.temperatureResponse(sender: subscriptionAddress,
+                                                     level: _temperature)
             }
             catch KnxException.illformedTelegramForType {
                 

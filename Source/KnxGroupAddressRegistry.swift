@@ -42,7 +42,7 @@ open class KnxGroupAddressRegistry {
             return address
         }
         else {
-            log.warning("Address not in registry: \(address)")
+            log.warning("Address not in registry: \(address.string)")
             return KnxTelegramType.unknown
         }
     }
@@ -57,6 +57,48 @@ open class KnxGroupAddressRegistry {
                                               type : KnxTelegramType) {
         log.verbose("Adding address \(address.addressAsUInt16) to registry.")
         registry[address] = type
+    }
+
+    /**
+    Load group address and DPT information from a .dptmap file
+ 
+    - parameter filename: The file to load
+    */
+    open static func loadDPTMap(from:String) {
+
+        log.info("Loading from: \(from)")
+
+
+        var map : [String : [String : String]] = [:]
+
+        let url = URL(fileURLWithPath: from)
+
+        if let theStream = InputStream(url: url) {
+
+            theStream.open()
+
+            do {
+
+                let json = try JSONSerialization.jsonObject(with: theStream, options: JSONSerialization.ReadingOptions(rawValue: 0))
+
+                map = json as! [String:[String:String]]
+
+            } catch {
+                log.error("Unable to load map file: \(from)")
+                // Missing or corrupt map file...
+            }
+        }
+
+        for e in map {
+
+            let dpt = KnxTelegramType.fromName(name: e.value["DPT"]!)
+            if dpt == .unknown {
+                log.warning("Missing DPT in map file for GA: \(e.key)")
+            }
+            let add = KnxGroupAddress(fromString: e.key)
+            addTypeForGroupAddress(address: add, type: dpt)
+        }
+
     }
     
     // MARK: Internal and private declarations

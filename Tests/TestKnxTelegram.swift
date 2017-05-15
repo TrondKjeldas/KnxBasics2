@@ -165,4 +165,14 @@ class TestKnxTelegram: XCTestCase {
         XCTAssertTrue(false)
         
     }
+    func testGetGroupAddress() {
+
+        var bytes = [UInt8](repeating: 0, count: 8)
+
+        bytes[3] = 0x08
+        bytes[4] = 0x0E
+        let t = KnxTelegram(bytes: bytes)
+        XCTAssertEqual(t.getGroupAddress().string, "1/0/14")
+        XCTAssertEqual(t.getGroupAddress().addressAsUInt16, 0x080E)
+    }
 }

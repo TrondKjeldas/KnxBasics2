@@ -62,6 +62,30 @@ public enum KnxTelegramType {
     
     /// Combined info, on/off
     case dpt27_001
+
+    // Return type from string name
+    static func fromName(name: String) -> KnxTelegramType {
+        switch name {
+        case "DPT1.001": return .dpt1_xxx
+        case "DPT1.002": return .dpt1_xxx
+        case "DPT1.003": return .dpt1_xxx
+        case "DPT1.005": return .dpt1_xxx
+        case "DPT1.009": return .dpt1_xxx
+        case "DPT1.015": return .dpt1_xxx
+        case "DPT1.XXX": return .dpt1_xxx
+        case "DPT3.007": return .dpt3_007
+        case "DPT5.001": return .dpt5_001
+        case "DPT9.001": return .dpt9_001
+        case "DPT9.004": return .dpt9_004
+        case "DPT9.005": return .dpt9_005
+        case "DPT10.001": return .dpt10_001
+        case "DPT17.001": return .dpt17_001
+        case "DPT20.102": return .dpt20_102
+        case "DPT27.001": return .dpt27_001
+        default:
+            return .unknown
+        }
+    }
 }
 
 /// Class representing a KNX telegram.
@@ -73,7 +97,6 @@ open class KnxTelegram {
     public init() {
         
         _bytes = nil
-        _len = 0
         _type = .unknown
     }
     
@@ -88,8 +111,19 @@ open class KnxTelegram {
         _bytes = bytes
         _len = bytes.count
         _type = type
+        if bytes.count >= 5 {
+            _groupAddress = UInt16(UInt16(bytes[3]) << 8 | UInt16(bytes[4]))
+        }
     }
-    
+
+    /**
+    Returns the group address of the telegram.
+     */
+    open func getGroupAddress() -> KnxGroupAddress {
+
+        return KnxGroupAddress(fromUInt16: _groupAddress)
+    }
+
     /**
      Returns the data value in the telegram as a specific DPT.
      
@@ -249,18 +283,22 @@ open class KnxTelegram {
             
             return false
         }
-        
-        return ((bytes[6] & 0x03 == 0x00)
-            && ((bytes[7] & 0xC0 == 0x80)) // write request
-            || ((bytes[7] & 0xC0 == 0x40))) // value response
+        if bytes.count >= 7 {
+            return ((bytes[6] & 0x03 == 0x00)
+                && ((bytes[7] & 0xC0 == 0x80)) // write request
+                || ((bytes[7] & 0xC0 == 0x40))) // value response
+        } else {
+            return false
+        }
     }
     
     // MARK: Internal and private declarations
     
     fileprivate var _bytes:[UInt8]?
-    fileprivate var _len:Int
+    fileprivate var _len:Int = 0
     fileprivate var _type:KnxTelegramType
-    
+    fileprivate var _groupAddress:UInt16 = 0
+
     internal var payload:[UInt8] {
         get {
             return _bytes!

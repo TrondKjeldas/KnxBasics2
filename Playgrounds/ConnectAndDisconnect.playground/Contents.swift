@@ -33,16 +33,16 @@ SwiftyBeaver.addDestination(console)
 
 class Handler : KnxTelegramResponseHandlerDelegate {
     
-    func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
+    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         var val = -1
         do {
-            val = try telegram.getValueAsType(.dpt5_001)
+            val = try telegram.getValueAsType(type: .dpt5_001)
             print("Got response with value: \(val)")
         }
         catch {
             do {
-                val = try telegram.getValueAsType(.dpt1_xxx)
+                val = try telegram.getValueAsType(type: .dpt1_xxx)
                 print("Got response with value: \(val)")
             }
             catch {
@@ -54,23 +54,22 @@ class Handler : KnxTelegramResponseHandlerDelegate {
 
 let handler = Handler()
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"3/5/26"),
                                                type: KnxTelegramType.dpt5_001)
 
 KnxRouterInterface.routerIp = "gax58"
 
-let kr = KnxRouterInterface(responseHandler: handler)
+let kr = KnxRouterInterface.getKnxRouterInstance()
 
-try! kr.connect()
-kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
+try! kr?.connect()
+kr?.subscribeFor(address: KnxGroupAddress(fromString: "3/5/26"), responseHandler: handler)
 
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-    kr.disconnect()
+    kr?.disconnect()
 }
 
-
 DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
-                try! kr.connect()
-                kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
+    try! kr?.connect()
+    kr?.subscribeFor(address: KnxGroupAddress(fromString: "3/5/26"), responseHandler: handler)
 }

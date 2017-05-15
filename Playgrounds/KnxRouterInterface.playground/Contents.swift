@@ -33,16 +33,16 @@ SwiftyBeaver.addDestination(console)
 
 class Handler : KnxTelegramResponseHandlerDelegate {
     
-    func subscriptionResponse(_ sender : AnyObject?, telegram: KnxTelegram) {
+    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
         
         var val = -1
         do {
-            val = try telegram.getValueAsType(.dpt5_001)
+            val = try telegram.getValueAsType(type: .dpt5_001)
             print("Got response with value: \(val)")
         }
         catch {
             do {
-                val = try telegram.getValueAsType(.dpt1_xxx)
+                val = try telegram.getValueAsType(type: .dpt1_xxx)
                 print("Got response with value: \(val)")
             }
             catch {
@@ -54,21 +54,24 @@ class Handler : KnxTelegramResponseHandlerDelegate {
 
 let handler = Handler()
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/0/14"),
                                                type: KnxTelegramType.dpt1_xxx)
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"3/5/26"),
                                                type: KnxTelegramType.dpt5_001)
 
-KnxRouterInterface.routerIp = "zbox"
+//KnxRouterInterface.routerIp = "zbox"
+KnxRouterInterface.multicastGroup = "224.0.23.12"
+KnxRouterInterface.connectionType = .udpMulticast
 
-let kr = KnxRouterInterface(responseHandler: handler)
-let kr2 = KnxRouterInterface(responseHandler: handler)
+let kr = KnxRouterInterface.getKnxRouterInstance()
+let kr2 = KnxRouterInterface.getKnxRouterInstance()
 
-try! kr.connect()
-kr.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "3/5/26")))
+try! kr?.connect()
+kr?.subscribeFor(address: KnxGroupAddress(fromString: "3/5/26"), responseHandler:handler)
 
-try! kr2.connect()
-kr2.submit(KnxTelegramFactory.createSubscriptionRequest(KnxGroupAddress(fromString: "1/0/14")))
+try! kr2?.connect()
+kr2?.subscribeFor(address: KnxGroupAddress(fromString: "1/0/14"), responseHandler:handler)
+
 
 

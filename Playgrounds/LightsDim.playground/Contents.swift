@@ -34,12 +34,12 @@ SwiftyBeaver.addDestination(console)
 class Handler : KnxDimmerResponseHandlerDelegate {
     
     
-    func onOffResponse(_ on:Bool) {
+    func onOffResponse(sender:KnxGroupAddress, state:Bool) {
         
-        print("ON: \(on)")
+        print("ON: \(state)")
     }
     
-    func dimLevelResponse(_ level:Int) {
+    func dimLevelResponse(sender:KnxGroupAddress, level:Int) {
         
         print("DIM LEVEL: \(level)")
     }
@@ -51,21 +51,23 @@ class Handler : KnxDimmerResponseHandlerDelegate {
 
 let handler = Handler()
 
-KnxRouterInterface.routerIp = "gax58"
+//KnxRouterInterface.routerIp = "gax58"
+KnxRouterInterface.multicastGroup = "224.0.23.12"
+KnxRouterInterface.connectionType = .udpMulticast
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"1/0/14"),
+let onoffaddr = KnxGroupAddress(fromString: "1/0/8")
+
+let lvlrspaddr = KnxGroupAddress(fromString: "3/5/21")
+
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: onoffaddr,
                                                type: KnxTelegramType.dpt1_xxx)
 
-KnxGroupAddressRegistry.addTypeForGroupAddress(KnxGroupAddress(fromString:"3/5/26"),
+KnxGroupAddressRegistry.addTypeForGroupAddress(address: lvlrspaddr,
                                                type: KnxTelegramType.dpt5_001)
-
-let onoffaddr = KnxGroupAddress(fromString: "1/0/14")
-
-let lvlrspaddr = KnxGroupAddress(fromString: "3/5/26")
 
 let dimmer =
     KnxDimmerControl(setOnOffAddress: onoffaddr,
-                     setDimLevelAddress: KnxGroupAddress(fromString: "1/1/27"),
+                     setDimLevelAddress: KnxGroupAddress(fromString: "1/1/20"),
                      levelResponseAddress: lvlrspaddr, responseHandler:handler)
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
