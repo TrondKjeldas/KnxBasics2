@@ -4,5 +4,7 @@ osx_image: xcode8.3
 xcode_workspace: KnxBasics2.xcworkspace
 xcode_scheme: KnxBasics2
 
+cache: cocoapods
+
 before_install:
   - pod install --repo-update
