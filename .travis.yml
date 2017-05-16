@@ -3,3 +3,6 @@ osx_image: xcode8.3
 #xcode_project: MyNewProject.xcodeproj # path to your xcodeproj folder
 xcode_workspace: KnxBasics2.xcworkspace
 xcode_scheme: KnxBasics2
+
+before_install:
+  - pod install --repo-update
