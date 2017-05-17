@@ -58,6 +58,7 @@ KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromStri
                                                type: KnxTelegramType.dpt5_001)
 
 KnxRouterInterface.routerIp = "gax58"
+KnxRouterInterface.connectionType = .tcpDirect
 
 let kr = KnxRouterInterface.getKnxRouterInstance()
 
