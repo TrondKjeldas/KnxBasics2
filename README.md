@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/TrondKjeldas/KnxBasics2.svg?branch=master)](https://travis-ci.org/TrondKjeldas/KnxBasics2)
+[![Build Status](https://travis-ci.org/TrondKjeldas/KnxBasics2.svg?branch=master)](https://travis-ci.org/TrondKjeldas/KnxBasics2) ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20macOS-lightgray.svg)
 
 # KnxBasics2
 
