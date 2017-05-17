@@ -12,5 +12,5 @@ before_install:
 script:
   - xcodebuild -workspace KnxBasics2.xcworkspace -list
   - xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2
+  - xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2 test
   
- 
