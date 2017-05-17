@@ -24,33 +24,33 @@ import Foundation
 
 /// Delegate protocol for KnxOnOffControl delegates.
 public protocol KnxOnOffResponseHandlerDelegate {
-    
+
     /**
      Handler for changes in on/off state.
      
      - parameter on: True if light on, false if light off.
      */
-    func onOffResponse(sender:KnxGroupAddress, state:Bool)
+    func onOffResponse(sender: KnxGroupAddress, state: Bool)
 }
 
 /// Delegate protocol for KnxDimmerControl delegates.
-public protocol KnxDimmerResponseHandlerDelegate : KnxOnOffResponseHandlerDelegate {
-    
+public protocol KnxDimmerResponseHandlerDelegate: KnxOnOffResponseHandlerDelegate {
+
     /**
      Handler for changes in dimmer level.
      
      - parameter level: The new dimmer level.
      */
-    func dimLevelResponse(sender:KnxGroupAddress, level:Int)
+    func dimLevelResponse(sender: KnxGroupAddress, level: Int)
 }
 
 /// Delegate protocol for KnxTemperatureControl delegates.
 public protocol KnxTemperatureResponseHandlerDelegate {
-    
+
     /**
      Handler for changes in dimmer level.
      
      - parameter level: The received temperature value.
      */
-    func temperatureResponse(sender:KnxGroupAddress, level:Double)
+    func temperatureResponse(sender: KnxGroupAddress, level: Double)
 }

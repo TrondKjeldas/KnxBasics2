@@ -35,10 +35,7 @@ SwiftyBeaver.addDestination(console)
 
 KnxGroupAddressRegistry.getTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/2/3"))
 
-
 KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/2/3"),
                                                type: KnxTelegramType.dpt1_xxx)
 
 KnxGroupAddressRegistry.getTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/2/3"))
-
-

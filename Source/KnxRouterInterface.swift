@@ -38,25 +38,25 @@ public enum ConnectionType {
 }
 
 /// Class representing the interface towards the KNX router.
-open class KnxRouterInterface : NSObject {
-    
+open class KnxRouterInterface: NSObject {
+
     // MARK: Public API.
 
     /// Property to set for selecting connetion type
     open static var connectionType: ConnectionType = .none
 
     /// Property for setting the IP address of the KNX router
-    open static var routerIp : String?
+    open static var routerIp: String?
 
     /// Property for setting the port to connect to the KNX router on
     /// (defaults to port 6720.)
-    open static var routerPort : UInt16 = 6720
+    open static var routerPort: UInt16 = 6720
 
     /// Property for setting the multicast group to join
-    open static var multicastGroup : String?
+    open static var multicastGroup: String?
 
     /// Property for setting the port for the multicast group
-    open static var multicastPort : UInt16 = 3671
+    open static var multicastPort: UInt16 = 3671
 
     /** Factory function to return an instance of a KnxRouterInterface.
 
@@ -109,7 +109,7 @@ open class KnxRouterInterface : NSObject {
      Disconnect from a KNX.
      */
     open func disconnect() {
-        
+
         if socket.isConnected {
 
             socket.delegate = nil
@@ -124,14 +124,13 @@ open class KnxRouterInterface : NSObject {
         }
     }
 
-
     /**
      Subscribe for a group address.
 
      - parameter address: The group address to subscrive to.
      */
-    open func subscribeFor(address:KnxGroupAddress,
-                           responseHandler : KnxTelegramResponseHandlerDelegate) {
+    open func subscribeFor(address: KnxGroupAddress,
+                           responseHandler: KnxTelegramResponseHandlerDelegate) {
 
         subscriptionMap[address] = responseHandler
 
@@ -148,7 +147,7 @@ open class KnxRouterInterface : NSObject {
      - parameter value: The value to send
      */
 
-    open func sendWriteRequest(to:KnxGroupAddress, type:KnxTelegramType, value:Any) {
+    open func sendWriteRequest(to: KnxGroupAddress, type: KnxTelegramType, value:Any) {
 
         switch type {
         case .dpt10_001:
@@ -174,11 +173,10 @@ open class KnxRouterInterface : NSObject {
      Send a read request telegram to a group address.
      */
 
-    open func sendReadRequest(to:KnxGroupAddress) {
+    open func sendReadRequest(to: KnxGroupAddress) {
 
         submit(telegram: KnxTelegramFactory.createReadRequest(to: to))
     }
-
 
     // MARK: Internal and private declarations.
 
@@ -208,8 +206,7 @@ open class KnxRouterInterface : NSObject {
      
      - parameter telegram: The telegram to transmit.
      */
-    private func submit(telegram:KnxTelegram) {
-        
+    private func submit(telegram: KnxTelegram) {
 
         switch KnxRouterInterface.connectionType {
         case .tcpDirect:
@@ -241,20 +238,20 @@ open class KnxRouterInterface : NSObject {
         }
     }
 
-    fileprivate var socket:GCDAsyncSocket! = nil
+    fileprivate var socket: GCDAsyncSocket! = nil
     fileprivate var udpSocket: GCDAsyncUdpSocket! = nil
 
-    private static let sharedInstance : KnxRouterInterface = KnxRouterInterface()
+    private static let sharedInstance: KnxRouterInterface = KnxRouterInterface()
 
-    private var written:Int = 0
-    fileprivate var readCount:Int = 0
-    
+    private var written: Int = 0
+    fileprivate var readCount: Int = 0
+
     fileprivate var telegramData = NSMutableData()
-    
-    fileprivate var responseHandler : KnxTelegramResponseHandlerDelegate? = nil
 
-    fileprivate var subscriptionMap:[KnxGroupAddress : KnxTelegramResponseHandlerDelegate] = [:]
-    
+    fileprivate var responseHandler: KnxTelegramResponseHandlerDelegate?
+
+    fileprivate var subscriptionMap: [KnxGroupAddress : KnxTelegramResponseHandlerDelegate] = [:]
+
     fileprivate let log = SwiftyBeaver.self
 }
 
@@ -296,8 +293,7 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
      - parameter didConnectToHost: The name of the host that it has connected to.
      - parameter port: The port that was connected on.
      */
-    @objc open func socket(_ socket : GCDAsyncSocket, didConnectToHost host:String, port p:UInt16) {
-
+    @objc open func socket(_ socket: GCDAsyncSocket, didConnectToHost host: String, port p: UInt16) {
 
         log.verbose("isConnected: \(socket.isConnected)")
 
@@ -312,7 +308,7 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
      - parameter didReadData: The received data.
      - parameter withTag: The tag value supplied in the request to read.
      */
-    @objc open func socket(_ socket : GCDAsyncSocket, didRead data:Data, withTag tag:Int) {
+    @objc open func socket(_ socket: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
 
         if(tag == 0) {
 
@@ -320,13 +316,13 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
 
             telegramData.setData(data)
 
-            var msgLenL:UInt8 = 0
-            var msgLenH:UInt8 = 0
+            var msgLenL: UInt8 = 0
+            var msgLenH: UInt8 = 0
 
-            telegramData.getBytes(&msgLenH, range: NSRange(location: 0,length: 1))
-            telegramData.getBytes(&msgLenL, range: NSRange(location: 1,length: 1))
+            telegramData.getBytes(&msgLenH, range: NSRange(location: 0, length: 1))
+            telegramData.getBytes(&msgLenL, range: NSRange(location: 1, length: 1))
 
-            let msgLen:UInt16 = UInt16(msgLenH) << 8 | UInt16(msgLenL)
+            let msgLen: UInt16 = UInt16(msgLenH) << 8 | UInt16(msgLenL)
 
             log.debug("LEN: \(msgLen)")
 
@@ -342,7 +338,7 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
 
             if(telegramData.length > 4) {
 
-                var dataBytes:[UInt8] = [UInt8](repeating: 0, count: telegramData.length)
+                var dataBytes: [UInt8] = [UInt8](repeating: 0, count: telegramData.length)
 
                 telegramData.getBytes(&dataBytes, length: dataBytes.count)
 
@@ -419,17 +415,15 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
      */
     open func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
 
-
         let telegramData = NSMutableData()
 
         telegramData.setData(data)
 
         log.info("GOT: \(telegramData)")
 
-        var dataBytes:[UInt8] = [UInt8](repeating: 0, count: telegramData.length - 9)
+        var dataBytes: [UInt8] = [UInt8](repeating: 0, count: telegramData.length - 9)
 
-        telegramData.getBytes(&dataBytes, range: NSRange(location: 9,length: telegramData.length - 9))
-
+        telegramData.getBytes(&dataBytes, range: NSRange(location: 9, length: telegramData.length - 9))
 
         let telegram = KnxTelegram(bytes: dataBytes)
 
@@ -440,4 +434,3 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
         }
     }
 }
-

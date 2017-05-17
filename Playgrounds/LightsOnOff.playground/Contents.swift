@@ -31,17 +31,17 @@ console.asynchronously = false
 console.minLevel = .info
 SwiftyBeaver.addDestination(console)
 
-class Handler : KnxOnOffResponseHandlerDelegate {
-    
-    func onOffResponse(sender: KnxGroupAddress, state:Bool) {
-        
+class Handler: KnxOnOffResponseHandlerDelegate {
+
+    func onOffResponse(sender: KnxGroupAddress, state: Bool) {
+
         print("ON: \(state)")
     }
-    
+
     // No use for these...
-    func dimLevelResponse(level:Int) {
+    func dimLevelResponse(level: Int) {
     }
-    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    func subscriptionResponse(sender: AnyObject?, telegram: KnxTelegram) {
     }
 }
 
@@ -55,7 +55,6 @@ KnxRouterInterface.multicastGroup = "224.0.23.12"
 KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/0/16"),
                                                type: KnxTelegramType.dpt1_xxx)
 
-
 let onoffaddr = KnxGroupAddress(fromString: "1/0/16")
 
 let lightSwitch =
@@ -64,17 +63,11 @@ let lightSwitch =
 
 lightSwitch.lightOn = true
 
-
 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
     lightSwitch.lightOn = false
-                
+
 }
-
-
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
     lightSwitch.lightOn = true
 }
-
-
-

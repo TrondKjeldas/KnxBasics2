@@ -24,11 +24,11 @@ import SwiftyBeaver
 
 /// A global registry for mapping group addresses to DPT types.
 open class KnxGroupAddressRegistry {
-    
+
     // MARK: Public API.
-    
-    fileprivate static var registry : [KnxGroupAddress : KnxTelegramType] = [:]
-    
+
+    fileprivate static var registry: [KnxGroupAddress : KnxTelegramType] = [:]
+
     /**
      Look up a DPT type based on the group address.
      
@@ -36,25 +36,24 @@ open class KnxGroupAddressRegistry {
      
      - returns: The DPT type registered for the address, or .UNKNOWN if the address is not registered.
      */
-    open static func getTypeForGroupAddress(address : KnxGroupAddress) -> KnxTelegramType {
-        
+    open static func getTypeForGroupAddress(address: KnxGroupAddress) -> KnxTelegramType {
+
         if let address = registry[address] {
             return address
-        }
-        else {
+        } else {
             log.warning("Address not in registry: \(address.string)")
             return KnxTelegramType.unknown
         }
     }
-    
+
     /**
      Register a DPT type for a group address.
      
      - parameter address: The group address to register a type for.
      - parameter type: The type to register.
      */
-    open static func addTypeForGroupAddress(address : KnxGroupAddress,
-                                              type : KnxTelegramType) {
+    open static func addTypeForGroupAddress(address: KnxGroupAddress,
+                                              type: KnxTelegramType) {
         log.verbose("Adding address \(address.addressAsUInt16) to registry.")
         registry[address] = type
     }
@@ -64,12 +63,11 @@ open class KnxGroupAddressRegistry {
  
     - parameter filename: The file to load
     */
-    open static func loadDPTMap(from:String) {
+    open static func loadDPTMap(from: String) {
 
         log.info("Loading from: \(from)")
 
-
-        var map : [String : [String : String]] = [:]
+        var map: [String : [String : String]] = [:]
 
         let url = URL(fileURLWithPath: from)
 
@@ -100,8 +98,7 @@ open class KnxGroupAddressRegistry {
         }
 
     }
-    
+
     // MARK: Internal and private declarations
     fileprivate static let log = SwiftyBeaver.self
 }
-

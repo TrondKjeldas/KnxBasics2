@@ -22,29 +22,29 @@ import XCTest
 @testable import KnxBasics2
 
 class TestKnxGroupAddressRegistry: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/2/3"),
                                                        type: KnxTelegramType.dpt1_xxx)
-        
+
         KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"8/9/10"),
                                                        type: KnxTelegramType.dpt5_001)
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testAddressNotFound() {
-        
+
         XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(address: KnxGroupAddress(fromString:"5/6/7")),
                        KnxTelegramType.unknown)
     }
-    
+
     func testAddressFound() {
 
         XCTAssertEqual(KnxGroupAddressRegistry.getTypeForGroupAddress(address: KnxGroupAddress(fromString:"1/2/3")),

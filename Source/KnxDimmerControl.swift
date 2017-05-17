@@ -23,10 +23,10 @@ import Foundation
 import SwiftyBeaver
 
 /// Class representing a dimmable light.
-open class KnxDimmerControl : KnxOnOffControl {
-    
+open class KnxDimmerControl: KnxOnOffControl {
+
     // MARK: Public API:
-    
+
     /**
      Initializes a new object.
      
@@ -34,17 +34,17 @@ open class KnxDimmerControl : KnxOnOffControl {
      - parameter setDimLevelAddress: The group address to use for setting light level.
      - parameter levelResponseAddress: The group address to use for subscribing to light level changes.
      */
-    
-    public init(setOnOffAddress:KnxGroupAddress,
-                setDimLevelAddress:KnxGroupAddress,
-                levelResponseAddress:KnxGroupAddress,
-                responseHandler : KnxDimmerResponseHandlerDelegate) {
-        
+
+    public init(setOnOffAddress: KnxGroupAddress,
+                setDimLevelAddress: KnxGroupAddress,
+                levelResponseAddress: KnxGroupAddress,
+                responseHandler: KnxDimmerResponseHandlerDelegate) {
+
         dimmerAddress = setDimLevelAddress
         levelRspAddress = levelResponseAddress
-        
+
         self._dimLevel = 0
-        
+
         self.dimmerResponseHandler = responseHandler
 
         // Initialize super for on/off functionality
@@ -52,16 +52,16 @@ open class KnxDimmerControl : KnxOnOffControl {
 
         dimmerInterface = KnxRouterInterface.getKnxRouterInstance()
         if let dimmerInterface = dimmerInterface {
-            
+
             // TODO: Better error handling!
             try! dimmerInterface.connect()
             dimmerInterface.subscribeFor(address: setDimLevelAddress,
                                          responseHandler: self)
         }
-        
+
         levelRspInterface = KnxRouterInterface.getKnxRouterInstance()
         if let levelRspInterface = levelRspInterface {
-            
+
             // TODO: Better error handling!
             try! levelRspInterface.connect()
             levelRspInterface.subscribeFor(address: levelRspAddress,
@@ -69,7 +69,7 @@ open class KnxDimmerControl : KnxOnOffControl {
             readLevel()
         }
     }
-    
+
     /**
      Trigger reading of dimmer level.
      */
@@ -77,9 +77,9 @@ open class KnxDimmerControl : KnxOnOffControl {
 
         levelRspInterface?.sendReadRequest(to: levelRspAddress)
     }
-    
+
     /// Read/write property holding the light level.
-    open var dimLevel:Int{
+    open var dimLevel: Int {
         get {
             return _dimLevel
         }
@@ -91,17 +91,16 @@ open class KnxDimmerControl : KnxOnOffControl {
         }
     }
 
-
     /**
      Handler for telegram responses.
      
      - parameter sender: The interface the telegran were received on.
      - parameter telegram: The received telegram.
      */
-    open override func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
-        
-        let type : KnxTelegramType
-        
+    open override func subscriptionResponse(sender: AnyObject?, telegram: KnxTelegram) {
+
+        let type: KnxTelegramType
+
         switch KnxRouterInterface.connectionType {
         case .tcpDirect:
 
@@ -113,12 +112,10 @@ open class KnxDimmerControl : KnxOnOffControl {
                     _dimLevel = try telegram.getValueAsType(type: type)
                     dimmerResponseHandler?.dimLevelResponse(sender: levelRspAddress,
                                                             level: _dimLevel)
-                }
-                catch KnxException.illformedTelegramForType {
+                } catch KnxException.illformedTelegramForType {
 
                     log.error("Illegal telegram type...")
-                }
-                catch let error as NSError {
+                } catch let error as NSError {
 
                     log.error("Error: \(error)")
                 }
@@ -137,13 +134,11 @@ open class KnxDimmerControl : KnxOnOffControl {
                     _dimLevel = try telegram.getValueAsType(type: type)
                     dimmerResponseHandler?.dimLevelResponse(sender: levelRspAddress,
                                                             level: _dimLevel)
-                }
-                catch KnxException.illformedTelegramForType {
+                } catch KnxException.illformedTelegramForType {
 
                     log.error("Illegal telegram type...")
-                }
-                catch let error as NSError {
-                    
+                } catch let error as NSError {
+
                     log.error("Error: \(error)")
                 }
             } else {
@@ -155,21 +150,20 @@ open class KnxDimmerControl : KnxOnOffControl {
             log.error("Connection type not set")
         }
 
-
         log.debug("HANDLING: \(telegram.payload)")
     }
-    
+
     // MARK: Internal and private declarations
-    
-    fileprivate var dimmerAddress:KnxGroupAddress
-    fileprivate var levelRspAddress:KnxGroupAddress
-    
-    fileprivate var dimmerInterface:KnxRouterInterface?
-    fileprivate var levelRspInterface:KnxRouterInterface?
-    
-    fileprivate var dimmerResponseHandler:KnxDimmerResponseHandlerDelegate?
-    
-    fileprivate var _dimLevel : Int
-    
+
+    fileprivate var dimmerAddress: KnxGroupAddress
+    fileprivate var levelRspAddress: KnxGroupAddress
+
+    fileprivate var dimmerInterface: KnxRouterInterface?
+    fileprivate var levelRspInterface: KnxRouterInterface?
+
+    fileprivate var dimmerResponseHandler: KnxDimmerResponseHandlerDelegate?
+
+    fileprivate var _dimLevel: Int
+
     fileprivate let log = SwiftyBeaver.self
 }

@@ -33,21 +33,21 @@ open class KnxTelegramFactory {
 
      - returns: A subscription request telegram, ready to be sent.
      */
-    open static func createSubscriptionRequest(groupAddress:KnxGroupAddress) -> KnxTelegram {
+    open static func createSubscriptionRequest(groupAddress: KnxGroupAddress) -> KnxTelegram {
 
         let addrLow8 = UInt8(truncatingBitPattern:(groupAddress.addressAsUInt16 & 0xFF))
         let addrHigh8 = UInt8(truncatingBitPattern:(groupAddress.addressAsUInt16 >> 8))
 
-        var bytes:[UInt8] = [UInt8](repeating: 0, count: 7)
+        var bytes: [UInt8] = [UInt8](repeating: 0, count: 7)
         // Length...
-        bytes[0] = 0;
-        bytes[1] = 5;
+        bytes[0] = 0
+        bytes[1] = 5
         // Content
-        bytes[2] = 0;
-        bytes[3] = 34;
+        bytes[2] = 0
+        bytes[3] = 34
         bytes[4] = addrHigh8
         bytes[5] = addrLow8
-        bytes[6] = 0x00;
+        bytes[6] = 0x00
 
         return KnxTelegram(bytes: bytes)
     }
@@ -57,19 +57,19 @@ open class KnxTelegramFactory {
      
      - returns: A read request telegram, ready to be sent.
      */
-    open static func createReadRequest(to:KnxGroupAddress) -> KnxTelegram {
+    open static func createReadRequest(to: KnxGroupAddress) -> KnxTelegram {
 
-        var bytes : [UInt8]
+        var bytes: [UInt8]
 
         switch KnxRouterInterface.connectionType {
         case .tcpDirect:
             bytes = [UInt8](repeating: 0, count: 6)
             // Length...
-            bytes[0] = 0;
-            bytes[1] = 4;
+            bytes[0] = 0
+            bytes[1] = 4
             // Content
-            bytes[2] = 0;
-            bytes[3] = 37;
+            bytes[2] = 0
+            bytes[3] = 37
             bytes[4] = 0
             bytes[5] = 0
 
@@ -93,10 +93,9 @@ open class KnxTelegramFactory {
             //log.warning("Connection not set")
         }
 
-
         return KnxTelegram(bytes: bytes)
     }
-    
+
     /**
      Create a write request telegram.
 
@@ -106,11 +105,11 @@ open class KnxTelegramFactory {
      - returns: A telegram, ready to be sent.
      - throws: UnknownTelegramType     
      */
-    open static func createWriteRequest(to:KnxGroupAddress,
-                                        type:KnxTelegramType,
-                                        value:Int) throws -> KnxTelegram {
+    open static func createWriteRequest(to: KnxGroupAddress,
+                                        type: KnxTelegramType,
+                                        value: Int) throws -> KnxTelegram {
 
-      var bytes:[UInt8]
+      var bytes: [UInt8]
 
         switch type {
 
@@ -123,7 +122,7 @@ open class KnxTelegramFactory {
                 bytes[0] = 0
                 bytes[1] = 4
                 // Content
-                bytes[2] = 0;
+                bytes[2] = 0
                 bytes[3] = 37
                 bytes[4] = 0
                 bytes[5] = UInt8(truncatingBitPattern:value) | 0x80
@@ -149,10 +148,10 @@ open class KnxTelegramFactory {
                 //log.warning("Connection not set")
             }
 
-            break;
+            break
 
         case .dpt5_001:
-            
+
             switch KnxRouterInterface.connectionType {
             case .tcpDirect:
                 bytes = [UInt8](repeating: 0, count: 7)
@@ -192,7 +191,7 @@ open class KnxTelegramFactory {
         default:
             throw KnxException.unknownTelegramType
         }
-        
+
       return KnxTelegram(bytes: bytes)
     }
 }

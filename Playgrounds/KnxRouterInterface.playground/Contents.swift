@@ -31,21 +31,19 @@ console.asynchronously = false
 console.minLevel = .warning
 SwiftyBeaver.addDestination(console)
 
-class Handler : KnxTelegramResponseHandlerDelegate {
-    
-    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
-        
+class Handler: KnxTelegramResponseHandlerDelegate {
+
+    func subscriptionResponse(sender: AnyObject?, telegram: KnxTelegram) {
+
         var val = -1
         do {
             val = try telegram.getValueAsType(type: .dpt5_001)
             print("Got response with value: \(val)")
-        }
-        catch {
+        } catch {
             do {
                 val = try telegram.getValueAsType(type: .dpt1_xxx)
                 print("Got response with value: \(val)")
-            }
-            catch {
+            } catch {
                 print("Catched...")
             }
         }
@@ -72,6 +70,3 @@ kr?.subscribeFor(address: KnxGroupAddress(fromString: "3/5/26"), responseHandler
 
 try! kr2?.connect()
 kr2?.subscribeFor(address: KnxGroupAddress(fromString: "1/0/14"), responseHandler:handler)
-
-
-

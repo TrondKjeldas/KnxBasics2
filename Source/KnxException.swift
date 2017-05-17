@@ -22,14 +22,14 @@
 import Foundation
 
 /// Enumeration of the exceptions that can be raised from the classes in the framework.
-public enum KnxException : Error {
-    
+public enum KnxException: Error {
+
     /// A connection to the KNX router could not be initiated
     case unableToConnectToRouter
-    
+
     /// Unknown value used for DPT.
     case unknownTelegramType
-    
+
     /// Not possible to decode telegram according to specified DPT.
     case illformedTelegramForType
 }

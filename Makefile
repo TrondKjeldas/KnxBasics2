@@ -13,3 +13,7 @@ test-macos:
 
 build-ios:
 	xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2Ios 
+
+lint:
+	swiftlint autocorrect
+

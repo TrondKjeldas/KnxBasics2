@@ -22,29 +22,27 @@
 import Foundation
 
 /// Class representing a KNX group address.
-open class KnxGroupAddress : Hashable {
-    
+open class KnxGroupAddress: Hashable {
+
     // MARK: Public API.
-    
+
     /**
      initializer for the group address object.
      
      - parameter fromString: A string representation of the group address, in the form of "a/b/c".
      */
-    public init(fromString:String) {
-        
-        
+    public init(fromString: String) {
+
         let parts = fromString.components(separatedBy: "/")
-        
-        if let a = UInt16(parts[0]), let b = UInt16(parts[1]), let c = UInt16(parts[2]){
-            
+
+        if let a = UInt16(parts[0]), let b = UInt16(parts[1]), let c = UInt16(parts[2]) {
+
             addressAsUInt16 = a << 11 | b << 8 | c
-            
-        } else
-        {
+
+        } else {
             addressAsUInt16 = 0
         }
-        
+
     }
 
     /**
@@ -52,7 +50,7 @@ open class KnxGroupAddress : Hashable {
 
      - parameter fromUInt16: An UInt16 integer representing the group address.
      */
-    public init(fromUInt16:UInt16) {
+    public init(fromUInt16: UInt16) {
 
         addressAsUInt16 = fromUInt16
 
@@ -61,20 +59,18 @@ open class KnxGroupAddress : Hashable {
     /**
      A read-only property returning a string representing the group address object.
      */
-    open var string : String {
+    open var string: String {
 
-        let a:UInt16 = (addressAsUInt16 >> 11) & 0x0001F
-        let b:UInt16 = (addressAsUInt16 >> 8) & 0x0007
-        let c:UInt16 = addressAsUInt16 & 0x00FF
+        let a: UInt16 = (addressAsUInt16 >> 11) & 0x0001F
+        let b: UInt16 = (addressAsUInt16 >> 8) & 0x0007
+        let c: UInt16 = addressAsUInt16 & 0x00FF
 
         return String.init(format: "%d/%d/%d", a, b, c)
     }
 
-
-    
     /// A read-only property returning the 16bit representation of the group address.
-    fileprivate(set) open var addressAsUInt16 : UInt16
-    
+    fileprivate(set) open var addressAsUInt16: UInt16
+
     /// A read-only property returning the hash value of the object.
     open var hashValue: Int {
         return Int(addressAsUInt16)

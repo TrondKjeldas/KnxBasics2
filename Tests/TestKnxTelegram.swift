@@ -63,7 +63,6 @@ class TestKnxTelegram: XCTestCase {
 
         var bytes = [UInt8](repeating: 0, count: 9)
 
-
         bytes[8] = 0x00
         XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt5_001), 0 )
 
@@ -74,7 +73,6 @@ class TestKnxTelegram: XCTestCase {
         XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt5_001), 100 )
 
     }
-
 
     func testDPT9_001() {
 
@@ -146,7 +144,6 @@ class TestKnxTelegram: XCTestCase {
         bytes[10] = 0x3B
         XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt10_001), "Sun 23:59:59")
     }
-
 
     func testDPT17_001() {
 

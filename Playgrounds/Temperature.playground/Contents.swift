@@ -30,10 +30,9 @@ let console = ConsoleDestination()
 console.asynchronously = false
 SwiftyBeaver.addDestination(console)
 
+class Handler: KnxTemperatureResponseHandlerDelegate {
 
-class Handler : KnxTemperatureResponseHandlerDelegate {
-    
-    func temperatureResponse(sender:KnxGroupAddress, level: Double) {
+    func temperatureResponse(sender: KnxGroupAddress, level: Double) {
 
         print("Temperature now: \(level)")
     }

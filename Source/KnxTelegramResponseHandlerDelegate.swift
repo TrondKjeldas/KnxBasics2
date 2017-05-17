@@ -23,13 +23,12 @@ import Foundation
 
 /// Delegate protocol for KnxDimmerControl delegates.
 public protocol KnxTelegramResponseHandlerDelegate {
-    
+
     /**
      Handler for received telegrams.
      
      - parameter sender: The interface the telegram were received on.
      - parameter telegram: The received telegran.
      */
-    func subscriptionResponse(sender : AnyObject?, telegram:KnxTelegram)
+    func subscriptionResponse(sender: AnyObject?, telegram: KnxTelegram)
 }
-

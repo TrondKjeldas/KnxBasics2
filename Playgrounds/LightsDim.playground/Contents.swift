@@ -31,21 +31,20 @@ console.asynchronously = false
 console.minLevel = .warning
 SwiftyBeaver.addDestination(console)
 
-class Handler : KnxDimmerResponseHandlerDelegate {
-    
-    
-    func onOffResponse(sender:KnxGroupAddress, state:Bool) {
-        
+class Handler: KnxDimmerResponseHandlerDelegate {
+
+    func onOffResponse(sender: KnxGroupAddress, state: Bool) {
+
         print("ON: \(state)")
     }
-    
-    func dimLevelResponse(sender:KnxGroupAddress, level:Int) {
-        
+
+    func dimLevelResponse(sender: KnxGroupAddress, level: Int) {
+
         print("DIM LEVEL: \(level)")
     }
 
     // No use for this...
-    func subscriptionResponse(sender : AnyObject?, telegram: KnxTelegram) {
+    func subscriptionResponse(sender: AnyObject?, telegram: KnxTelegram) {
     }
 }
 
@@ -77,4 +76,3 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
 DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
     dimmer.dimLevel = 75
 }
-
