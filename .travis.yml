@@ -10,6 +10,5 @@ before_install:
   - pod install --repo-update
 
 script:
- # - xctool -workspace KnxBasics2.xcworkspace -scheme KnxBasics2 test
-  - xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2 test
-  
+  - xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2
+ 
