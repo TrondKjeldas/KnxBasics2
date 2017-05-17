@@ -12,6 +12,8 @@
 		94C75CBA379C573D0C44FC68 /* Pods_KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED72649DF879A631A6A7C0FA /* Pods_KnxBasics2.framework */; };
 		BF6652401CC7F066004158BB /* KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6652351CC7F065004158BB /* KnxBasics2.framework */; };
 		BF6F3AF11EB12F7B00A4F89E /* KnxBasics2Ios.h in Headers */ = {isa = PBXBuildFile; fileRef = BF6F3AEF1EB12F7B00A4F89E /* KnxBasics2Ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF81E6861ECC34E700C2D250 /* DataHexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81E6841ECC34E700C2D250 /* DataHexString.swift */; };
+		BF81E6871ECC34E700C2D250 /* DispatchQueueDoOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81E6851ECC34E700C2D250 /* DispatchQueueDoOnce.swift */; };
 		BF9ADC9E1CD6686900CA7C83 /* KnxTemperatureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9ADC9D1CD6686900CA7C83 /* KnxTemperatureControl.swift */; };
 		BFD490E91CD66EC600D76625 /* TestKnxTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD490E71CD66EAC00D76625 /* TestKnxTelegram.swift */; };
 		BFD490EB1CD66EFE00D76625 /* KnxOnOffControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD490EA1CD66EFE00D76625 /* KnxOnOffControl.swift */; };
@@ -52,6 +54,8 @@
 		BF6F3AED1EB12F7B00A4F89E /* KnxBasics2Ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KnxBasics2Ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6F3AEF1EB12F7B00A4F89E /* KnxBasics2Ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KnxBasics2Ios.h; sourceTree = "<group>"; };
 		BF6F3AF01EB12F7B00A4F89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF81E6841ECC34E700C2D250 /* DataHexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataHexString.swift; path = Source/DataHexString.swift; sourceTree = SOURCE_ROOT; };
+		BF81E6851ECC34E700C2D250 /* DispatchQueueDoOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DispatchQueueDoOnce.swift; path = Source/DispatchQueueDoOnce.swift; sourceTree = SOURCE_ROOT; };
 		BF9ADC9D1CD6686900CA7C83 /* KnxTemperatureControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxTemperatureControl.swift; path = Source/KnxTemperatureControl.swift; sourceTree = SOURCE_ROOT; };
 		BFD490E11CD66DFF00D76625 /* Temperature.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Temperature.playground; path = Playgrounds/Temperature.playground; sourceTree = "<group>"; };
 		BFD490E21CD66DFF00D76625 /* LightsDim.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = LightsDim.playground; path = Playgrounds/LightsDim.playground; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 		BFE550001CD281DC002A79C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BF81E6841ECC34E700C2D250 /* DataHexString.swift */,
+				BF81E6851ECC34E700C2D250 /* DispatchQueueDoOnce.swift */,
 				BFD490EA1CD66EFE00D76625 /* KnxOnOffControl.swift */,
 				BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */,
 				BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */,
@@ -389,7 +395,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		18854C9EAFCFDD3786687324 /* [CP] Embed Pods Frameworks */ = {
@@ -449,7 +455,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EDA35A3FF1B1C2859B0B14BE /* [CP] Check Pods Manifest.lock */ = {
@@ -464,7 +470,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FA893CDCFEDF710C49C6EFD3 /* [CP] Copy Pods Resources */ = {
@@ -489,11 +495,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF81E6861ECC34E700C2D250 /* DataHexString.swift in Sources */,
 				BFE54FEF1CD2732F002A79C4 /* KnxTelegramResponseHandlerDelegate.swift in Sources */,
 				BFE54FE91CD2732F002A79C4 /* KnxRouterInterface.swift in Sources */,
 				BF9ADC9E1CD6686900CA7C83 /* KnxTemperatureControl.swift in Sources */,
 				BFE54FEB1CD2732F002A79C4 /* KnxTelegram.swift in Sources */,
 				BFE54FDF1CD2732F002A79C4 /* KnxGroupAddress.swift in Sources */,
+				BF81E6871ECC34E700C2D250 /* DispatchQueueDoOnce.swift in Sources */,
 				BFD490EB1CD66EFE00D76625 /* KnxOnOffControl.swift in Sources */,
 				BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift in Sources */,
 				BFE54FE51CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */,
@@ -791,6 +799,7 @@
 				BF6F3AF31EB12F7B00A4F89E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
