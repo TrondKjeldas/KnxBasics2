@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/TrondKjeldas/KnxBasics2.svg?branch=master)](https://travis-ci.org/TrondKjeldas/KnxBasics2) ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20macOS-lightgray.svg)
+[![Build Status](https://travis-ci.org/TrondKjeldas/KnxBasics2.svg?branch=master)](https://travis-ci.org/TrondKjeldas/KnxBasics2) ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20macOS-lightgray.svg) ![License](https://img.shields.io/badge/license-LGPL%20v2-blue.svg)
 
 # KnxBasics2
 
@@ -20,6 +20,6 @@ Trond Kjeldås
 
 # Licence
 
-GNU Public License Version 2.
+Lesser GNU Public License Version 2.
 
 See the LICENSE.md file for details.
