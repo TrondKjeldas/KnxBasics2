@@ -211,7 +211,7 @@ open class KnxRouterInterface: NSObject {
         switch KnxRouterInterface.connectionType {
         case .tcpDirect:
 
-            let msgData = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
+            let msgData = Data(bytes: telegram.payload)
 
             log.info("SEND: \(msgData)")
 
@@ -221,14 +221,12 @@ open class KnxRouterInterface: NSObject {
 
         case .udpMulticast:
 
-            let msgDataPost = Data(bytes: UnsafePointer<UInt8>(telegram.payload), count: telegram.payload.count)
+            let hdr = KnxNetIpHeader(asType: .RoutingIndication, withLength: telegram.payload.count)
+            let frame = KnxIpDataLinkLayerFrame(header: hdr, body: telegram.payload)
 
-            let routingHdr = Data(bytes: [0x06, 0x10, 0x05, 0x30, 0x00, 6 + UInt8(telegram.payload.count)])
+            log.info("SEND: \(frame.payload.hexEncodedString())")
 
-            log.info("SEND: \(routingHdr.hexEncodedString())\(msgDataPost)")
-
-            //udpSocket.send(routingHdr + msgDataPre,
-            udpSocket.send(routingHdr + msgDataPost,
+            udpSocket.send(frame.payload,
                            toHost: KnxRouterInterface.multicastGroup!,
                            port: KnxRouterInterface.multicastPort,
                            withTimeout: -1.0, tag: 0)

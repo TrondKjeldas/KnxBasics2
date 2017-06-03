@@ -10,6 +10,8 @@
 		1D95691F4AB8C1F52C221271 /* Pods_KnxBasics2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C95B88379E0E0A01C9C97A /* Pods_KnxBasics2Tests.framework */; };
 		48C824CD9BA90EED41F565DB /* Pods_KnxBasics2Ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A429BF0405B7FE4C77D2AF7 /* Pods_KnxBasics2Ios.framework */; };
 		94C75CBA379C573D0C44FC68 /* Pods_KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED72649DF879A631A6A7C0FA /* Pods_KnxBasics2.framework */; };
+		BF6500E21EE30F5A003790F9 /* KnxNetIpHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6500E01EE30F5A003790F9 /* KnxNetIpHeader.swift */; };
+		BF6500E31EE30F5A003790F9 /* KnxIpDataLinkLayerFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6500E11EE30F5A003790F9 /* KnxIpDataLinkLayerFrame.swift */; };
 		BF6652401CC7F066004158BB /* KnxBasics2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6652351CC7F065004158BB /* KnxBasics2.framework */; };
 		BF6F3AF11EB12F7B00A4F89E /* KnxBasics2Ios.h in Headers */ = {isa = PBXBuildFile; fileRef = BF6F3AEF1EB12F7B00A4F89E /* KnxBasics2Ios.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF81E6861ECC34E700C2D250 /* DataHexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF81E6841ECC34E700C2D250 /* DataHexString.swift */; };
@@ -49,6 +51,8 @@
 		787B4B234BE2761552504889 /* Pods-KnxBasics2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnxBasics2.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnxBasics2/Pods-KnxBasics2.release.xcconfig"; sourceTree = "<group>"; };
 		92C95B88379E0E0A01C9C97A /* Pods_KnxBasics2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnxBasics2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA40C7BEA1D54A86D869C31E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF6500E01EE30F5A003790F9 /* KnxNetIpHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxNetIpHeader.swift; path = Source/KnxNetIpHeader.swift; sourceTree = SOURCE_ROOT; };
+		BF6500E11EE30F5A003790F9 /* KnxIpDataLinkLayerFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxIpDataLinkLayerFrame.swift; path = Source/KnxIpDataLinkLayerFrame.swift; sourceTree = SOURCE_ROOT; };
 		BF6652351CC7F065004158BB /* KnxBasics2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KnxBasics2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF66523F1CC7F066004158BB /* KnxBasics2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnxBasics2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6F3AED1EB12F7B00A4F89E /* KnxBasics2Ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KnxBasics2Ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +219,8 @@
 		BFE550001CD281DC002A79C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BF6500E01EE30F5A003790F9 /* KnxNetIpHeader.swift */,
+				BF6500E11EE30F5A003790F9 /* KnxIpDataLinkLayerFrame.swift */,
 				BF81E6841ECC34E700C2D250 /* DataHexString.swift */,
 				BF81E6851ECC34E700C2D250 /* DispatchQueueDoOnce.swift */,
 				BFD490EA1CD66EFE00D76625 /* KnxOnOffControl.swift */,
@@ -505,7 +511,9 @@
 				BFD490EB1CD66EFE00D76625 /* KnxOnOffControl.swift in Sources */,
 				BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift in Sources */,
 				BFE54FE51CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */,
+				BF6500E31EE30F5A003790F9 /* KnxIpDataLinkLayerFrame.swift in Sources */,
 				BFE54FED1CD2732F002A79C4 /* KnxTelegramFactory.swift in Sources */,
+				BF6500E21EE30F5A003790F9 /* KnxNetIpHeader.swift in Sources */,
 				BFE54FE11CD2732F002A79C4 /* KnxDimmerControl.swift in Sources */,
 				BFE54FE31CD2732F002A79C4 /* KnxException.swift in Sources */,
 			);
