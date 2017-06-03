@@ -85,7 +85,7 @@ open class KnxGroupAddress: Hashable {
  
  - returns: True if the objects are equal, otherwise false.
  */
-public func ==(lhs: KnxGroupAddress,
-               rhs: KnxGroupAddress) -> Bool {
+public func == (lhs: KnxGroupAddress,
+                rhs: KnxGroupAddress) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }

@@ -221,7 +221,7 @@ open class KnxRouterInterface: NSObject {
 
         case .udpMulticast:
 
-            let hdr = KnxNetIpHeader(asType: .RoutingIndication, withLength: telegram.payload.count)
+            let hdr = KnxNetIpHeader(asType: .routingIndication, withLength: telegram.payload.count)
             let frame = KnxIpDataLinkLayerFrame(header: hdr, body: telegram.payload)
 
             log.info("SEND: \(frame.payload.hexEncodedString())")
@@ -291,7 +291,7 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
      - parameter didConnectToHost: The name of the host that it has connected to.
      - parameter port: The port that was connected on.
      */
-    @objc open func socket(_ socket: GCDAsyncSocket, didConnectToHost host: String, port p: UInt16) {
+    @objc open func socket(_ socket: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
 
         log.verbose("isConnected: \(socket.isConnected)")
 
@@ -308,22 +308,15 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
      */
     @objc open func socket(_ socket: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
 
-        if(tag == 0) {
+        if tag == 0 {
 
             // Got header, two first bytes
 
-            telegramData.setData(data)
-
-            var msgLenL: UInt8 = 0
-            var msgLenH: UInt8 = 0
-
-            telegramData.getBytes(&msgLenH, range: NSRange(location: 0, length: 1))
-            telegramData.getBytes(&msgLenL, range: NSRange(location: 1, length: 1))
-
-            let msgLen: UInt16 = UInt16(msgLenH) << 8 | UInt16(msgLenL)
+            let msgLen: UInt16 = UInt16(data[0]) << 8 | UInt16(data[1])
 
             log.debug("LEN: \(msgLen)")
 
+            telegramData.setData(data)
             socket.readData(toLength: UInt(msgLen), withTimeout:-1.0, buffer:telegramData, bufferOffset:2, tag: 1)
 
         } else {
@@ -334,7 +327,7 @@ extension KnxRouterInterface : GCDAsyncSocketDelegate {
 
             log.info("GOT: \(telegramData)")
 
-            if(telegramData.length > 4) {
+            if telegramData.length > 4 {
 
                 var dataBytes: [UInt8] = [UInt8](repeating: 0, count: telegramData.length)
 
@@ -411,24 +404,20 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
 
      - parameter err: If the socket disconneted because of an error.
      */
-    open func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+    open func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data,
+                        fromAddress address: Data, withFilterContext filterContext: Any?) {
 
-        let telegramData = NSMutableData()
+        log.info("GOT: \(data.hexEncodedString())")
 
-        telegramData.setData(data)
-
-        log.info("GOT: \(telegramData)")
-
-        var dataBytes: [UInt8] = [UInt8](repeating: 0, count: telegramData.length - 9)
-
-        telegramData.getBytes(&dataBytes, range: NSRange(location: 9, length: telegramData.length - 9))
+        let dataBytes: [UInt8] = Array(data.subdata(in: 9..<data.count))
 
         let telegram = KnxTelegram(bytes: dataBytes)
 
         log.info("address: \(telegram.getGroupAddress().string)")
 
         if telegram.isWriteRequestOrValueResponse {
-            subscriptionMap[telegram.getGroupAddress()]?.subscriptionResponse(sender:self, telegram:telegram)
+            subscriptionMap[telegram.getGroupAddress()]?.subscriptionResponse(sender:self,
+                                                                              telegram:telegram)
         }
     }
 }

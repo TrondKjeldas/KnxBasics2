@@ -29,10 +29,10 @@ open class KnxNetIpHeader {
 
     public enum ServiceTypeIdentifier: UInt16 {
 
-        case Unknown = 0x0000
-        case RoutingIndication = 0x0530
-        case RoutingBusy = 0x0531
-        case RoutingLostMessage = 0x0532
+        case unknown = 0x0000
+        case routingIndication = 0x0530
+        case routingBusy = 0x0531
+        case routingLostMessage = 0x0532
 
         func highByte() -> UInt8 {
             return UInt8((self.rawValue >> 8) & 0x00FF)
@@ -47,7 +47,7 @@ open class KnxNetIpHeader {
 
       _hdrLength = 6
       _protocolVersion = 0x10
-      _serviceTypeIdentifier = .Unknown
+      _serviceTypeIdentifier = .unknown
       _totalLength = 6
     }
 

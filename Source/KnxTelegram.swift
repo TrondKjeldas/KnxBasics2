@@ -134,18 +134,18 @@ open class KnxTelegram {
      */
     open func getValueAsType(type: KnxTelegramType) throws -> Int {
 
-        switch(type) {
+        switch type {
 
         case .dpt1_xxx:
 
-            if(_bytes!.count != 8) {
+            if _bytes!.count != 8 {
                 throw KnxException.illformedTelegramForType
             }
             return Int(_bytes![7] & 0x1)
 
         case .dpt3_007:
 
-            if(_bytes!.count != 8) {
+            if _bytes!.count != 8 {
                 throw KnxException.illformedTelegramForType
             }
 
@@ -175,7 +175,7 @@ open class KnxTelegram {
 
         case .dpt5_001:
 
-            if(_bytes!.count != 9) {
+            if _bytes!.count != 9 {
                 throw KnxException.illformedTelegramForType
             }
 
@@ -198,13 +198,13 @@ open class KnxTelegram {
      */
     open func getValueAsType(type: KnxTelegramType) throws -> Double {
 
-        switch(type) {
+        switch type {
 
         case .dpt9_001: fallthrough
         case .dpt9_004: fallthrough
         case .dpt9_005:
 
-            if(_bytes!.count != 10) {
+            if _bytes!.count != 10 {
                 throw KnxException.illformedTelegramForType
             }
 
@@ -248,11 +248,11 @@ open class KnxTelegram {
      */
     open func getValueAsType(type: KnxTelegramType) throws -> String {
 
-        switch(type) {
+        switch type {
 
         case .dpt10_001:
 
-            if(_bytes!.count != 11) {
+            if _bytes!.count != 11 {
                 throw KnxException.illformedTelegramForType
             }
 
@@ -296,10 +296,5 @@ open class KnxTelegram {
     fileprivate var _type: KnxTelegramType
     fileprivate var _groupAddress: UInt16 = 0
 
-    internal var payload: [UInt8] {
-        get {
-            return _bytes!
-        }
-    }
-
+    internal var payload: [UInt8] { return _bytes! }
 }

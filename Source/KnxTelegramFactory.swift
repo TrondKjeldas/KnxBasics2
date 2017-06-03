@@ -109,89 +109,119 @@ open class KnxTelegramFactory {
                                         type: KnxTelegramType,
                                         value: Int) throws -> KnxTelegram {
 
-      var bytes: [UInt8]
-
         switch type {
 
         case .dpt1_xxx:
 
-            switch KnxRouterInterface.connectionType {
-            case .tcpDirect:
-                bytes = [UInt8](repeating: 0, count: 6)
-                // Length...
-                bytes[0] = 0
-                bytes[1] = 4
-                // Content
-                bytes[2] = 0
-                bytes[3] = 37
-                bytes[4] = 0
-                bytes[5] = UInt8(truncatingBitPattern:value) | 0x80
-
-            case .udpMulticast:
-                bytes = [UInt8](repeating: 0, count: 11)
-                bytes[0] = 0x29
-                bytes[1] = 0x00
-                bytes[2] = 0xBC
-                bytes[3] = 0xD0
-                bytes[4] = 0x00 // src addr
-                bytes[5] = 0x00 // src addr
-
-                bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
-                bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr
-
-                bytes[8] = 0x01 // NPDU len
-                bytes[9] = 0x00
-                bytes[10] = UInt8(truncatingBitPattern:value) | 0x80
-
-            default:
-                bytes = [UInt8](repeating: 0, count: 6)
-                //log.warning("Connection not set")
-            }
-
-            break
+            return createDpt1_xxxWriteRequest(to: to, value: value)
 
         case .dpt5_001:
 
-            switch KnxRouterInterface.connectionType {
-            case .tcpDirect:
-                bytes = [UInt8](repeating: 0, count: 7)
-
-                // Length...
-                bytes[0] = 0
-                bytes[1] = 5
-                // Content
-                bytes[2] = 0
-                bytes[3] = 37
-                bytes[4] = 0
-                bytes[5] = 0x80
-                bytes[6] = UInt8(truncatingBitPattern:((value * 255) / 100)) /* Convert range from 0-100 to 8bit */
-
-            case .udpMulticast:
-                bytes = [UInt8](repeating: 0, count: 12)
-                bytes[0] = 0x29
-                bytes[1] = 0x00
-                bytes[2] = 0xBC
-                bytes[3] = 0xD0
-                bytes[4] = 0x00 // src addr
-                bytes[5] = 0x00 // src addr
-
-                bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
-                bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr
-
-                bytes[8] = 0x02 // NPDU len
-                bytes[9] = 0x00
-                bytes[10] = 0x80
-                bytes[11] = UInt8(truncatingBitPattern:((value * 255) / 100)) /* Convert range from 0-100 to 8bit */
-
-            default:
-                bytes = [UInt8](repeating: 0, count: 6)
-                //log.warning("Connection not set")
-            }
+            return createDpt5_001WriteRequest(to: to, value: value)
 
         default:
             throw KnxException.unknownTelegramType
         }
+    }
 
-      return KnxTelegram(bytes: bytes)
+    /**
+     Create a write request telegram for DPT5_001.
+
+     - parameter to: Group address to write to.
+     - parameter value: The value to write, as an integer.
+
+     - returns: A telegram, ready to be sent.
+     */
+    private static func createDpt5_001WriteRequest(to: KnxGroupAddress,
+                                                   value: Int) -> KnxTelegram {
+
+        var bytes: [UInt8]
+
+        switch KnxRouterInterface.connectionType {
+        case .tcpDirect:
+            bytes = [UInt8](repeating: 0, count: 7)
+
+            // Length...
+            bytes[0] = 0
+            bytes[1] = 5
+            // Content
+            bytes[2] = 0
+            bytes[3] = 37
+            bytes[4] = 0
+            bytes[5] = 0x80
+            bytes[6] = UInt8(truncatingBitPattern:((value * 255) / 100)) /* Convert range from 0-100 to 8bit */
+
+        case .udpMulticast:
+            bytes = [UInt8](repeating: 0, count: 12)
+            bytes[0] = 0x29
+            bytes[1] = 0x00
+            bytes[2] = 0xBC
+            bytes[3] = 0xD0
+            bytes[4] = 0x00 // src addr
+            bytes[5] = 0x00 // src addr
+
+            bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
+            bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr
+
+            bytes[8] = 0x02 // NPDU len
+            bytes[9] = 0x00
+            bytes[10] = 0x80
+            bytes[11] = UInt8(truncatingBitPattern:((value * 255) / 100)) /* Convert range from 0-100 to 8bit */
+
+        default:
+            bytes = [UInt8](repeating: 0, count: 6)
+            //log.warning("Connection not set")
+        }
+
+        return KnxTelegram(bytes: bytes)
+    }
+
+    /**
+     Create a write request telegram for DPT1_xxx.
+
+     - parameter to: Group address to write to.
+     - parameter value: The value to write, as an integer.
+
+     - returns: A telegram, ready to be sent.
+     */
+    private static func createDpt1_xxxWriteRequest(to: KnxGroupAddress,
+                                                   value: Int) -> KnxTelegram {
+
+        var bytes: [UInt8]
+
+        switch KnxRouterInterface.connectionType {
+        case .tcpDirect:
+            bytes = [UInt8](repeating: 0, count: 6)
+            // Length...
+            bytes[0] = 0
+            bytes[1] = 4
+            // Content
+            bytes[2] = 0
+            bytes[3] = 37
+            bytes[4] = 0
+            bytes[5] = UInt8(truncatingBitPattern:value) | 0x80
+
+        case .udpMulticast:
+            bytes = [UInt8](repeating: 0, count: 11)
+            bytes[0] = 0x29
+            bytes[1] = 0x00
+            bytes[2] = 0xBC
+            bytes[3] = 0xD0
+            bytes[4] = 0x00 // src addr
+            bytes[5] = 0x00 // src addr
+
+            bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
+            bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr
+
+            bytes[8] = 0x01 // NPDU len
+            bytes[9] = 0x00
+            bytes[10] = UInt8(truncatingBitPattern:value) | 0x80
+
+        default:
+            bytes = [UInt8](repeating: 0, count: 6)
+            //log.warning("Connection not set")
+        }
+
+        return KnxTelegram(bytes: bytes)
     }
 }

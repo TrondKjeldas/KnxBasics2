@@ -53,7 +53,7 @@ open class KnxGroupAddressRegistry {
      - parameter type: The type to register.
      */
     open static func addTypeForGroupAddress(address: KnxGroupAddress,
-                                              type: KnxTelegramType) {
+                                            type: KnxTelegramType) {
         log.verbose("Adding address \(address.addressAsUInt16) to registry.")
         registry[address] = type
     }
@@ -77,7 +77,9 @@ open class KnxGroupAddressRegistry {
 
             do {
 
-                let json = try JSONSerialization.jsonObject(with: theStream, options: JSONSerialization.ReadingOptions(rawValue: 0))
+                let json =
+                    try JSONSerialization.jsonObject(with: theStream,
+                                                     options: JSONSerialization.ReadingOptions(rawValue: 0))
 
                 map = json as! [String:[String:String]]
 

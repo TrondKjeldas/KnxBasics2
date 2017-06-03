@@ -64,9 +64,7 @@ open class KnxTemperatureControl: KnxTelegramResponseHandlerDelegate {
 
     /// Read-only property holding the last received.
     open var temperature: Double {
-        get {
-            return _temperature
-        }
+        return _temperature
     }
 
     /**
