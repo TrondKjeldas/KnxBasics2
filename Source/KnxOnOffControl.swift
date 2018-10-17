@@ -99,7 +99,7 @@ open class KnxOnOffControl: KnxTelegramResponseHandlerDelegate {
                 type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: onOffAddress)
                 do {
                     let val: Int = try telegram.getValueAsType(type: type)
-                    _lightOn = Bool(NSNumber(value:val))
+                    _lightOn = Bool(truncating: NSNumber(value:val))
                     responseHandler?.onOffResponse(sender: onOffAddress,
                                                    state: _lightOn)
                 } catch KnxException.illformedTelegramForType {
@@ -120,7 +120,7 @@ open class KnxOnOffControl: KnxTelegramResponseHandlerDelegate {
                 type = KnxGroupAddressRegistry.getTypeForGroupAddress(address: onOffAddress)
                 do {
                     let val: Int = try telegram.getValueAsType(type: type)
-                    _lightOn = Bool(NSNumber(value:val))
+                    _lightOn = Bool(truncating: NSNumber(value:val))
                     responseHandler?.onOffResponse(sender: onOffAddress,
                                                    state: _lightOn)
                 } catch KnxException.illformedTelegramForType {

@@ -81,35 +81,35 @@ class TestKnxTelegram: XCTestCase {
         // Zero
         bytes[8] = 0x00
         bytes[9] = 0x00
-        XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 0.0, accuracy: 0.01)
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 0.0, accuracy: 0.01)
 
         // Positive temperatures
         bytes[8] = 0x07
         bytes[9] = 0xE2
-        XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 20.18, accuracy: 0.01)
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 20.18, accuracy: 0.01)
 
         bytes[8] = 0x02
         bytes[9] = 0xA8
-        XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 6.8, accuracy: 0.01)
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 6.8, accuracy: 0.01)
 
         // Negative temperatures
         bytes[8] = 0x87
         bytes[9] = 0x9C
-        XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), -1.0, accuracy: 0.01)
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), -1.0, accuracy: 0.01)
 
         bytes[8] = 0x8A
         bytes[9] = 0x24
-        XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), -30.0, accuracy: 0.01)
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), -30.0, accuracy: 0.01)
 
         // Lower limit
         bytes[8] = 0xF8
         bytes[9] = 0x00
-        XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), -671088.64, accuracy: 0.01)
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), -671088.64, accuracy: 0.01)
 
         // Upper limit
         bytes[8] = 0x7F
         bytes[9] = 0xFF
-        XCTAssertEqualWithAccuracy(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 670760.96, accuracy: 0.01)
+        XCTAssertEqual(try KnxTelegram(bytes: bytes).getValueAsType(type:.dpt9_001), 670760.96, accuracy: 0.01)
     }
 
     func testDPT9_004() {

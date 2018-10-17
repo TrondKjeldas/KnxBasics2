@@ -43,27 +43,27 @@ open class KnxRouterInterface: NSObject {
     // MARK: Public API.
 
     /// Property to set for selecting connetion type
-    open static var connectionType: ConnectionType = .none
+    public static var connectionType: ConnectionType = .none
 
     /// Property for setting the IP address of the KNX router
-    open static var routerIp: String?
+    public static var routerIp: String?
 
     /// Property for setting the port to connect to the KNX router on
     /// (defaults to port 6720.)
-    open static var routerPort: UInt16 = 6720
+    public static var routerPort: UInt16 = 6720
 
     /// Property for setting the multicast group to join
-    open static var multicastGroup: String?
+    public static var multicastGroup: String?
 
     /// Property for setting the port for the multicast group
-    open static var multicastPort: UInt16 = 3671
+    public static var multicastPort: UInt16 = 3671
 
     /** Factory function to return an instance of a KnxRouterInterface.
 
         - In tcpDirect mode each call returns a new instance, while
         - in udpMulticast mode every call returns the same shared instance.
      */
-    open static func getKnxRouterInstance() -> KnxRouterInterface? {
+    public static func getKnxRouterInstance() -> KnxRouterInterface? {
 
         switch KnxRouterInterface.connectionType {
 

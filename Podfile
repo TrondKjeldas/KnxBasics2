@@ -11,7 +11,7 @@ target 'KnxBasics2' do
     platform :osx, '10.13'
 end
 target 'KnxBasics2Ios' do
-    platform :ios, '10.3'
+    platform :ios, '12.0'
 end
 
 target 'KnxBasics2Tests' do
