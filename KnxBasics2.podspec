@@ -52,6 +52,6 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
-  s.dependency "CocoaAsyncSocket"
-  s.dependency "SwiftyBeaver"
+  s.dependency 'CocoaAsyncSocket', '>= 7.6.0'
+  s.dependency 'SwiftyBeaver', '>= 1.2.1'
 end

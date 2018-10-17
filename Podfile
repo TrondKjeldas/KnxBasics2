@@ -3,18 +3,18 @@
 # Uncomment this line if you're using Swift
 use_frameworks!
  
-pod 'CocoaAsyncSocket','7.6.0'
+pod 'CocoaAsyncSocket','>= 7.6.0'
 
-pod 'SwiftyBeaver', '1.2.1'
+pod 'SwiftyBeaver', '>= 1.2.1'
 
 target 'KnxBasics2' do
-    platform :osx, '10.12'
+    platform :osx, '10.13'
 end
 target 'KnxBasics2Ios' do
     platform :ios, '10.3'
 end
 
 target 'KnxBasics2Tests' do
-
+    platform :osx, '10.13'
 end
 
