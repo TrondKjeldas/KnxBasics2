@@ -31,6 +31,9 @@
 		BFE54FF81CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FF41CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift */; };
 		BFE550041CD282EC002A79C4 /* TestKnxTelegramFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE550031CD282EC002A79C4 /* TestKnxTelegramFactory.swift */; };
 		BFE550051CD284CD002A79C4 /* KnxBasics2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE54FF51CD27C25002A79C4 /* KnxBasics2Tests.swift */; };
+		BFE900B021793D3400014D0F /* KnxDeviceAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE900AF21793D3400014D0F /* KnxDeviceAddress.swift */; };
+		BFE900B121793D3400014D0F /* KnxDeviceAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE900AF21793D3400014D0F /* KnxDeviceAddress.swift */; };
+		BFE900B221793D3400014D0F /* KnxDeviceAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE900AF21793D3400014D0F /* KnxDeviceAddress.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,14 +64,14 @@
 		BF81E6851ECC34E700C2D250 /* DispatchQueueDoOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DispatchQueueDoOnce.swift; path = Source/DispatchQueueDoOnce.swift; sourceTree = SOURCE_ROOT; };
 		BF9ADC9D1CD6686900CA7C83 /* KnxTemperatureControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxTemperatureControl.swift; path = Source/KnxTemperatureControl.swift; sourceTree = SOURCE_ROOT; };
 		BFD490E11CD66DFF00D76625 /* Temperature.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Temperature.playground; path = Playgrounds/Temperature.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFD490E21CD66DFF00D76625 /* LightsDim.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = LightsDim.playground; path = Playgrounds/LightsDim.playground; sourceTree = "<group>"; };
+		BFD490E21CD66DFF00D76625 /* LightsDim.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = LightsDim.playground; path = Playgrounds/LightsDim.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFD490E31CD66DFF00D76625 /* LightsOnOff.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = LightsOnOff.playground; path = Playgrounds/LightsOnOff.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFD490E41CD66DFF00D76625 /* KnxRouterInterface.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = KnxRouterInterface.playground; path = Playgrounds/KnxRouterInterface.playground; sourceTree = "<group>"; };
-		BFD490E51CD66DFF00D76625 /* GroupAddresses.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = GroupAddresses.playground; path = Playgrounds/GroupAddresses.playground; sourceTree = "<group>"; };
+		BFD490E41CD66DFF00D76625 /* KnxRouterInterface.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = KnxRouterInterface.playground; path = Playgrounds/KnxRouterInterface.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFD490E51CD66DFF00D76625 /* GroupAddresses.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = GroupAddresses.playground; path = Playgrounds/GroupAddresses.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFD490E61CD66DFF00D76625 /* PlayingWithCocoaAsyncSocket.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PlayingWithCocoaAsyncSocket.playground; path = Playgrounds/PlayingWithCocoaAsyncSocket.playground; sourceTree = "<group>"; };
 		BFD490E71CD66EAC00D76625 /* TestKnxTelegram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestKnxTelegram.swift; path = Tests/TestKnxTelegram.swift; sourceTree = SOURCE_ROOT; };
 		BFD490EA1CD66EFE00D76625 /* KnxOnOffControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxOnOffControl.swift; path = Source/KnxOnOffControl.swift; sourceTree = SOURCE_ROOT; };
-		BFD490EC1CD6721600D76625 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Time.playground; path = Playgrounds/Time.playground; sourceTree = "<group>"; };
+		BFD490EC1CD6721600D76625 /* Time.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Time.playground; path = Playgrounds/Time.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFD491641CD93B8A00D76625 /* ConnectAndDisconnect.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = ConnectAndDisconnect.playground; path = Playgrounds/ConnectAndDisconnect.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxGroupAddress.swift; path = Source/KnxGroupAddress.swift; sourceTree = SOURCE_ROOT; };
 		BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KnxDimmerControl.swift; path = Source/KnxDimmerControl.swift; sourceTree = SOURCE_ROOT; };
@@ -86,6 +89,7 @@
 		BFE54FF61CD27C25002A79C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
 		BFE54FFD1CD27DBE002A79C4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BFE550031CD282EC002A79C4 /* TestKnxTelegramFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestKnxTelegramFactory.swift; path = Tests/TestKnxTelegramFactory.swift; sourceTree = SOURCE_ROOT; };
+		BFE900AF21793D3400014D0F /* KnxDeviceAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KnxDeviceAddress.swift; path = Source/KnxDeviceAddress.swift; sourceTree = SOURCE_ROOT; };
 		CB73442EA3207EEAC4C24721 /* Pods-KnxBasics2Ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnxBasics2Ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnxBasics2Ios/Pods-KnxBasics2Ios.debug.xcconfig"; sourceTree = "<group>"; };
 		CEAB61FEAD1BB8CAB2AFACE5 /* Pods-KnxBasics2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnxBasics2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ED72649DF879A631A6A7C0FA /* Pods_KnxBasics2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnxBasics2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +228,7 @@
 				BF81E6851ECC34E700C2D250 /* DispatchQueueDoOnce.swift */,
 				BFD490EA1CD66EFE00D76625 /* KnxOnOffControl.swift */,
 				BFE54FD41CD2732F002A79C4 /* KnxGroupAddress.swift */,
+				BFE900AF21793D3400014D0F /* KnxDeviceAddress.swift */,
 				BFE54FD51CD2732F002A79C4 /* KnxDimmerControl.swift */,
 				BFE54FD61CD2732F002A79C4 /* KnxException.swift */,
 				BFE54FD71CD2732F002A79C4 /* KnxGroupAddressRegistry.swift */,
@@ -341,6 +346,7 @@
 					BF6F3AEC1EB12F7B00A4F89E = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 3CV29VNQFD;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -478,6 +484,7 @@
 				BFE54FDF1CD2732F002A79C4 /* KnxGroupAddress.swift in Sources */,
 				BF81E6871ECC34E700C2D250 /* DispatchQueueDoOnce.swift in Sources */,
 				BFD490EB1CD66EFE00D76625 /* KnxOnOffControl.swift in Sources */,
+				BFE900B021793D3400014D0F /* KnxDeviceAddress.swift in Sources */,
 				BFE54FE71CD2732F002A79C4 /* KnxResponseHandlerDelegates.swift in Sources */,
 				BFE54FE51CD2732F002A79C4 /* KnxGroupAddressRegistry.swift in Sources */,
 				BF6500E31EE30F5A003790F9 /* KnxIpDataLinkLayerFrame.swift in Sources */,
@@ -492,6 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE900B121793D3400014D0F /* KnxDeviceAddress.swift in Sources */,
 				BFD490E91CD66EC600D76625 /* TestKnxTelegram.swift in Sources */,
 				BFE550051CD284CD002A79C4 /* KnxBasics2Tests.swift in Sources */,
 				BFE54FF81CD27C25002A79C4 /* TestKnxGroupAddressRegistry.swift in Sources */,
@@ -503,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE900B221793D3400014D0F /* KnxDeviceAddress.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +733,7 @@
 			baseConfigurationReference = CB73442EA3207EEAC4C24721 /* Pods-KnxBasics2Ios.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -741,6 +751,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -751,6 +762,7 @@
 			baseConfigurationReference = 4C57FEB8FCEAFB58900C56CD /* Pods-KnxBasics2Ios.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -40,6 +40,7 @@ class Handler: KnxTemperatureResponseHandlerDelegate {
 
 //KnxRouterInterface.routerIp = "zbox"
 KnxRouterInterface.multicastGroup = "224.0.23.12"
+KnxRouterInterface.knxSourceAddr = KnxDeviceAddress(fromString: "0.1.0")
 KnxRouterInterface.connectionType = .udpMulticast
 
 KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromString:"3/2/0"),

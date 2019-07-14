@@ -60,6 +60,7 @@ KnxGroupAddressRegistry.addTypeForGroupAddress(address: KnxGroupAddress(fromStri
 
 //KnxRouterInterface.routerIp = "zbox"
 KnxRouterInterface.multicastGroup = "224.0.23.12"
+KnxRouterInterface.knxSourceAddr = KnxDeviceAddress(fromString: "0.1.0")
 KnxRouterInterface.connectionType = .udpMulticast
 
 let kr = KnxRouterInterface.getKnxRouterInstance()

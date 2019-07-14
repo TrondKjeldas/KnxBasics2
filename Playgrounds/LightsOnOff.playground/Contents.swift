@@ -49,6 +49,7 @@ let handler = Handler()
 
 KnxRouterInterface.routerIp = "gax58"
 KnxRouterInterface.multicastGroup = "224.0.23.12"
+KnxRouterInterface.knxSourceAddr = KnxDeviceAddress(fromString: "0.1.0")
 KnxRouterInterface.connectionType = .udpMulticast
 //KnxRouterInterface.connectionType = .tcpDirect
 

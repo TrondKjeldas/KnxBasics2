@@ -58,6 +58,8 @@ open class KnxRouterInterface: NSObject {
     /// Property for setting the port for the multicast group
     public static var multicastPort: UInt16 = 3671
 
+    public static var knxSourceAddr: KnxDeviceAddress = KnxDeviceAddress(fromString: "0.0.0")
+
     /** Factory function to return an instance of a KnxRouterInterface.
 
         - In tcpDirect mode each call returns a new instance, while
