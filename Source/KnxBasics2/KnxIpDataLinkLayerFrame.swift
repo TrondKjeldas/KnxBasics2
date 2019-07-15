@@ -46,7 +46,7 @@ open class KnxIpDataLinkLayerFrame {
             return Data()
         }
 
-        let data = _header.payload + Data(bytes: _body)
+        let data = _header.payload + Data(_body)
         log.debug("FRAME: \(data.hexEncodedString())")
         return data
     }

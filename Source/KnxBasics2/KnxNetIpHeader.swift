@@ -61,9 +61,9 @@ open class KnxNetIpHeader {
 
     public var payload: Data {
 
-        let data = Data(bytes: [ _hdrLength, _protocolVersion,
-                                 _serviceTypeIdentifier.highByte(), _serviceTypeIdentifier.lowByte(),
-                                 UInt8(_totalLength >> 8), UInt8(_totalLength)])
+        let data = Data([ _hdrLength, _protocolVersion,
+                          _serviceTypeIdentifier.highByte(), _serviceTypeIdentifier.lowByte(),
+                          UInt8(_totalLength >> 8), UInt8(_totalLength)])
         log.debug("HDR: \(data.hexEncodedString())")
         return data
     }

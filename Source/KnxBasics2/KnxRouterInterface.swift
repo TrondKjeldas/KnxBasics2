@@ -213,7 +213,7 @@ open class KnxRouterInterface: NSObject {
         switch KnxRouterInterface.connectionType {
         case .tcpDirect:
 
-            let msgData = Data(bytes: telegram.payload)
+            let msgData = Data(telegram.payload)
 
             log.info("SEND: \(msgData)")
 
