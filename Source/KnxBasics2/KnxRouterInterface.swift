@@ -58,7 +58,14 @@ open class KnxRouterInterface: NSObject {
     /// Property for setting the port for the multicast group
     public static var multicastPort: UInt16 = 3671
 
+    /// Property for setting the source address. When using
+    /// udpMulticast as connection type this is mandatory,
+    /// and must be set to an address outside of the router's
+    /// address pool.
     public static var knxSourceAddr: KnxDeviceAddress = KnxDeviceAddress(fromString: "0.0.0")
+
+    // Which local interface to use. Default should work for most cases.
+    public static var localInterface: String? = nil
 
     /** Factory function to return an instance of a KnxRouterInterface.
 
@@ -383,7 +390,8 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
                 try udpSocket.enableBroadcast(true)
                 try udpSocket.enableReusePort(true)
                 try udpSocket.bind(toPort: KnxRouterInterface.multicastPort)
-                try udpSocket.joinMulticastGroup(group, onInterface: "en0")
+                try udpSocket.joinMulticastGroup(group,
+                                                 onInterface: KnxRouterInterface.localInterface)
                 try udpSocket.beginReceiving()
 
             } catch let error as NSError {
