@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "KnxBasics2",
-            targets: ["KnxBasics2"]),
+            targets: ["KnxBasics2"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -29,6 +29,6 @@ let package = Package(
             dependencies: ["SwiftyBeaver", "CocoaAsyncSocket"]),
         .testTarget(
             name: "KnxBasics2Tests",
-            dependencies: ["KnxBasics2"]),
+            dependencies: ["KnxBasics2"])
     ]
 )

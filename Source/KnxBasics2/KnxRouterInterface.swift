@@ -65,7 +65,7 @@ open class KnxRouterInterface: NSObject {
     public static var knxSourceAddr: KnxDeviceAddress = KnxDeviceAddress(fromString: "0.0.0")
 
     // Which local interface to use. Default should work for most cases.
-    public static var localInterface: String? = nil
+    public static var localInterface: String?
 
     /** Factory function to return an instance of a KnxRouterInterface.
 
