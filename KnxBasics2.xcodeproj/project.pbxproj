@@ -419,7 +419,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket-macOS/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver-macOS/SwiftyBeaver.framework",
 			);
@@ -430,7 +430,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KnxBasics2Tests/Pods-KnxBasics2Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D1C90AE89B4A6DAEA7A801F /* [CP] Check Pods Manifest.lock */ = {
