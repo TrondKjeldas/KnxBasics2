@@ -1,6 +1,47 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/trond/Projects/KNX/KnxBasics3/Source/KnxBasics2/DispatchQueueDoOnce.swift",
+      "line": 14,
+      "symbol": "DispatchQueue.once(file:function:line:block:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/trond/Projects/KNX/KnxBasics3/Source/KnxBasics2/KnxIpDataLinkLayerFrame.swift",
+      "line": 37,
+      "symbol": "KnxIpDataLinkLayerFrame.init(header:body:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/trond/Projects/KNX/KnxBasics3/Source/KnxBasics2/KnxIpDataLinkLayerFrame.swift",
+      "line": 43,
+      "symbol": "KnxIpDataLinkLayerFrame.payload",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/trond/Projects/KNX/KnxBasics3/Source/KnxBasics2/KnxNetIpHeader.swift",
+      "line": 30,
+      "symbol": "KnxNetIpHeader.ServiceTypeIdentifier",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/trond/Projects/KNX/KnxBasics3/Source/KnxBasics2/KnxNetIpHeader.swift",
+      "line": 62,
+      "symbol": "KnxNetIpHeader.payload",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/trond/Projects/KNX/KnxBasics3/Source/KnxBasics2/KnxRouterInterface.swift",
+      "line": 68,
+      "symbol": "KnxRouterInterface.localInterface",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    }
   ],
-  "source_directory": "/Users/trond/Projects/KNX/KnxBasics2"
+  "source_directory": "/Users/trond/Projects/KNX/KnxBasics3"
 }

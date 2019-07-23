@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KnxTelegramFactory Class Reference</title>
+    <title>DispatchQueue Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/KnxTelegramFactory" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/DispatchQueue" class="dashAnchor"></a>
 
-    <a title="KnxTelegramFactory Class Reference"></a>
+    <a title="DispatchQueue Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -38,7 +38,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KnxBasics2 Reference</a>
       <img class="carat" src="../img/carat.png" />
-      KnxTelegramFactory Class Reference
+      DispatchQueue Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -138,35 +138,27 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>KnxTelegramFactory</h1>
+            <h1>DispatchQueue</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxTelegramFactory</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">DispatchQueue</span></code></pre>
 
                 </div>
               </div>
-            <p>Factory class to create KNX telegrams of various type.</p>
-
+            
           </div>
         </section>
 
         <section class="section">
           <div class="section-content">
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Public%20API"></a>
-                <a name="//apple_ref/swift/Section/Public API" class="dashAnchor"></a>
-                <a href="#/Public%20API">
-                  <h3 class="section-name">Public API</h3>
-                </a>
-              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10KnxBasics20A15TelegramFactoryC25createSubscriptionRequest12groupAddressAA0aC0CAA0a5GroupI0C_tFZ"></a>
-                    <a name="//apple_ref/swift/Method/createSubscriptionRequest(groupAddress:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10KnxBasics20A15TelegramFactoryC25createSubscriptionRequest12groupAddressAA0aC0CAA0a5GroupI0C_tFZ">createSubscriptionRequest(groupAddress:)</a>
+                    <a name="/s:So17OS_dispatch_queueC10KnxBasics2E4once5token5blockySS_yyXEtFZ"></a>
+                    <a name="//apple_ref/swift/Method/once(token:block:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So17OS_dispatch_queueC10KnxBasics2E4once5token5blockySS_yyXEtFZ">once(token:block:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -174,14 +166,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a subscription request.</p>
+                        <p>Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
+only execute the code once even in the presence of multithreaded calls.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">createSubscriptionRequest</span><span class="p">(</span><span class="nv">groupAddress</span><span class="p">:</span> <span class="kt"><a href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/KnxTelegram.html">KnxTelegram</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">once</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -192,121 +185,29 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>groupAddress</em>
+                                <em>token</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The group address to subscribe to.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A subscription request telegram, ready to be sent.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10KnxBasics20A15TelegramFactoryC17createReadRequest2toAA0aC0CAA0A12GroupAddressC_tFZ"></a>
-                    <a name="//apple_ref/swift/Method/createReadRequest(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10KnxBasics20A15TelegramFactoryC17createReadRequest2toAA0aC0CAA0A12GroupAddressC_tFZ">createReadRequest(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Create a read request.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">createReadRequest</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/KnxTelegram.html">KnxTelegram</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A read request telegram, ready to be sent.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10KnxBasics20A15TelegramFactoryC18createWriteRequest2to4type5valueAA0aC0CAA0A12GroupAddressC_AA0aC4TypeOSitKFZ"></a>
-                    <a name="//apple_ref/swift/Method/createWriteRequest(to:type:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10KnxBasics20A15TelegramFactoryC18createWriteRequest2to4type5valueAA0aC0CAA0A12GroupAddressC_AA0aC4TypeOSitKFZ">createWriteRequest(to:type:value:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Create a write request telegram.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <p>UnknownTelegramType</p>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">createWriteRequest</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Classes/KnxGroupAddress.html">KnxGroupAddress</a></span><span class="p">,</span>
-                                    <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/KnxTelegramType.html">KnxTelegramType</a></span><span class="p">,</span>
-                                    <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/KnxTelegram.html">KnxTelegram</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>DPT type.</p>
+                                  <p>A unique reverse DNS style name such as com.vectorform.<name> or a GUID</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>value</em>
+                                <em>block</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The value to write, as an integer.</p>
+                                  <p>Block to execute once</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A telegram, ready to be sent.</p>
                       </div>
                     </section>
                   </div>

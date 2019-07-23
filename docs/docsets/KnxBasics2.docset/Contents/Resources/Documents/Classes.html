@@ -14,6 +14,7 @@
   </head>
   <body>
 
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
 
     <a title="Classes  Reference"></a>
 
@@ -22,7 +23,7 @@
         <a class="header-link" href="index.html">
           KnxBasics2 Docs
         </a>
-         (95% documented)
+         (94% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -46,6 +47,9 @@
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/KnxDeviceAddress.html">KnxDeviceAddress</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/KnxDimmerControl.html">KnxDimmerControl</a>
               </li>
@@ -79,7 +83,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Enums.html">Enums</a>
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/ConnectionType.html">ConnectionType</a>
@@ -93,10 +97,21 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/DispatchQueue.html">DispatchQueue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Functions.html#/s:F10KnxBasics2oi2eeFTCS_15KnxGroupAddressS0__Sb">==(_:_:)</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:10KnxBasics22eeoiySbAA0A12GroupAddressC_ADtF">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Functions.html#/s:10KnxBasics22eeoiySbAA0A13DeviceAddressC_ADtF">==(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -136,9 +151,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C10KnxBasics218KnxRouterInterface"></a>
-                    <a name="//apple_ref/swift/Class/KnxRouterInterface" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics218KnxRouterInterface">KnxRouterInterface</a>
+                    <a name="/s:10KnxBasics20A13DeviceAddressC"></a>
+                    <a name="//apple_ref/swift/Class/KnxDeviceAddress" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A13DeviceAddressC">KnxDeviceAddress</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -146,15 +161,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Class representing the interface towards the KNX router.</p>
+                        <p>Class representing a KNX device address.</p>
 
-                        <a href="Classes/KnxRouterInterface.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/KnxDeviceAddress.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxRouterInterface</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxDeviceAddress</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                         </div>
                       </div>
@@ -168,265 +183,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C10KnxBasics221KnxTemperatureControl"></a>
-                    <a name="//apple_ref/swift/Class/KnxTemperatureControl" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics221KnxTemperatureControl">KnxTemperatureControl</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class allowing subscription on temperature.</p>
-
-                        <a href="Classes/KnxTemperatureControl.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxTemperatureControl</span><span class="p">:</span> <span class="kt"><a href="Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics211KnxTelegram"></a>
-                    <a name="//apple_ref/swift/Class/KnxTelegram" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics211KnxTelegram">KnxTelegram</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class representing a KNX telegram.</p>
-
-                        <a href="Classes/KnxTelegram.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxTelegram</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics215KnxGroupAddress"></a>
-                    <a name="//apple_ref/swift/Class/KnxGroupAddress" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics215KnxGroupAddress">KnxGroupAddress</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class representing a KNX group address.</p>
-
-                        <a href="Classes/KnxGroupAddress.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxGroupAddress</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics215KnxOnOffControl"></a>
-                    <a name="//apple_ref/swift/Class/KnxOnOffControl" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics215KnxOnOffControl">KnxOnOffControl</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class representing a light switch.</p>
-
-                        <a href="Classes/KnxOnOffControl.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxOnOffControl</span><span class="p">:</span> <span class="kt"><a href="Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics223KnxGroupAddressRegistry"></a>
-                    <a name="//apple_ref/swift/Class/KnxGroupAddressRegistry" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics223KnxGroupAddressRegistry">KnxGroupAddressRegistry</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A global registry for mapping group addresses to DPT types.</p>
-
-                        <a href="Classes/KnxGroupAddressRegistry.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxGroupAddressRegistry</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics223KnxIpDataLinkLayerFrame"></a>
-                    <a name="//apple_ref/swift/Class/KnxIpDataLinkLayerFrame" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics223KnxIpDataLinkLayerFrame">KnxIpDataLinkLayerFrame</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class representing a KNX Data Link Layer Frame.</p>
-
-                        <a href="Classes/KnxIpDataLinkLayerFrame.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxIpDataLinkLayerFrame</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics218KnxTelegramFactory"></a>
-                    <a name="//apple_ref/swift/Class/KnxTelegramFactory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics218KnxTelegramFactory">KnxTelegramFactory</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Factory class to create KNX telegrams of various type.</p>
-
-                        <a href="Classes/KnxTelegramFactory.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxTelegramFactory</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics214KnxNetIpHeader"></a>
-                    <a name="//apple_ref/swift/Class/KnxNetIpHeader" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics214KnxNetIpHeader">KnxNetIpHeader</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class representing a KNXnet/IP header.</p>
-
-                        <a href="Classes/KnxNetIpHeader.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxNetIpHeader</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C10KnxBasics216KnxDimmerControl"></a>
+                    <a name="/s:10KnxBasics20A13DimmerControlC"></a>
                     <a name="//apple_ref/swift/Class/KnxDimmerControl" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10KnxBasics216KnxDimmerControl">KnxDimmerControl</a>
+                    <a class="token" href="#/s:10KnxBasics20A13DimmerControlC">KnxDimmerControl</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -442,7 +201,295 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">KnxDimmerControl</span><span class="p">:</span> <span class="kt"><a href="Classes/KnxOnOffControl.html">KnxOnOffControl</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxDimmerControl</span> <span class="p">:</span> <span class="kt"><a href="Classes/KnxOnOffControl.html">KnxOnOffControl</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A12GroupAddressC"></a>
+                    <a name="//apple_ref/swift/Class/KnxGroupAddress" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A12GroupAddressC">KnxGroupAddress</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class representing a KNX group address.</p>
+
+                        <a href="Classes/KnxGroupAddress.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxGroupAddress</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A20GroupAddressRegistryC"></a>
+                    <a name="//apple_ref/swift/Class/KnxGroupAddressRegistry" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A20GroupAddressRegistryC">KnxGroupAddressRegistry</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A global registry for mapping group addresses to DPT types.</p>
+
+                        <a href="Classes/KnxGroupAddressRegistry.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxGroupAddressRegistry</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A20IpDataLinkLayerFrameC"></a>
+                    <a name="//apple_ref/swift/Class/KnxIpDataLinkLayerFrame" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A20IpDataLinkLayerFrameC">KnxIpDataLinkLayerFrame</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class representing a KNX Data Link Layer Frame.</p>
+
+                        <a href="Classes/KnxIpDataLinkLayerFrame.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxIpDataLinkLayerFrame</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A11NetIpHeaderC"></a>
+                    <a name="//apple_ref/swift/Class/KnxNetIpHeader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A11NetIpHeaderC">KnxNetIpHeader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class representing a KNXnet/IP header.</p>
+
+                        <a href="Classes/KnxNetIpHeader.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxNetIpHeader</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A12OnOffControlC"></a>
+                    <a name="//apple_ref/swift/Class/KnxOnOffControl" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A12OnOffControlC">KnxOnOffControl</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class representing a light switch.</p>
+
+                        <a href="Classes/KnxOnOffControl.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxOnOffControl</span> <span class="p">:</span> <span class="kt"><a href="Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@KnxBasics2@objc(cs)KnxRouterInterface"></a>
+                    <a name="//apple_ref/swift/Class/KnxRouterInterface" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@KnxBasics2@objc(cs)KnxRouterInterface">KnxRouterInterface</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class representing the interface towards the KNX router.</p>
+
+                        <a href="Classes/KnxRouterInterface.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxRouterInterface</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A8TelegramC"></a>
+                    <a name="//apple_ref/swift/Class/KnxTelegram" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A8TelegramC">KnxTelegram</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class representing a KNX telegram.</p>
+
+                        <a href="Classes/KnxTelegram.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxTelegram</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A15TelegramFactoryC"></a>
+                    <a name="//apple_ref/swift/Class/KnxTelegramFactory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A15TelegramFactoryC">KnxTelegramFactory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Factory class to create KNX telegrams of various type.</p>
+
+                        <a href="Classes/KnxTelegramFactory.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxTelegramFactory</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10KnxBasics20A18TemperatureControlC"></a>
+                    <a name="//apple_ref/swift/Class/KnxTemperatureControl" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10KnxBasics20A18TemperatureControlC">KnxTemperatureControl</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class allowing subscription on temperature.</p>
+
+                        <a href="Classes/KnxTemperatureControl.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">KnxTemperatureControl</span> <span class="p">:</span> <span class="kt"><a href="Protocols/KnxTelegramResponseHandlerDelegate.html">KnxTelegramResponseHandlerDelegate</a></span></code></pre>
 
                         </div>
                       </div>
@@ -457,8 +504,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://EXAMPLE/KnxBasics2" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2017-06-03)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external">Trond</a>. All rights reserved. (Last updated: 2019-07-23)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
