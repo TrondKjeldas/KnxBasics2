@@ -1,19 +1,20 @@
 #
 # Small makefile to simplify building and testing from the command line
 #
-default: build-macos build-ios
+default: build-macos test-macos
+
+build: build-macos
 
 test: test-macos
 
 build-macos:
-	xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2
+	swift build
 
 test-macos:
-	xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2 test
-
-build-ios:
-	xcodebuild -workspace KnxBasics2.xcworkspace -scheme KnxBasics2Ios 
+	swift test
 
 lint:
 	swiftlint autocorrect
 
+doc:
+	./doc_generation.sh
