@@ -17,7 +17,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", .branch("xcode11-beta")), //.upToNextMajor(from: "1.7.0")),
+        .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", .upToNextMajor(from: "1.8.0")),
         .package(url: "https://github.com/TrondKjeldas/CocoaAsyncSocket.git", .branch("master")) // .upToNextMajor(from: "7.6.3"))
 
     ],
