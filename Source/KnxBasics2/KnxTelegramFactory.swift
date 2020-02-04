@@ -79,8 +79,8 @@ open class KnxTelegramFactory {
             bytes[1] = 0x00
             bytes[2] = 0xBC
             bytes[3] = 0xD0
-            bytes[4] = UInt8((KnxRouterInterface.knxSourceAddr.addressAsUInt16 >> 8) & 0xFF) // src addr
-            bytes[5] = UInt8(KnxRouterInterface.knxSourceAddr.addressAsUInt16 & 0xFF) // src addr
+            bytes[4] = UInt8((KnxRouterInterface.knxSourceAddr!.addressAsUInt16 >> 8) & 0xFF) // src addr
+            bytes[5] = UInt8(KnxRouterInterface.knxSourceAddr!.addressAsUInt16 & 0xFF) // src addr
 
             bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
             bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr
@@ -157,8 +157,8 @@ open class KnxTelegramFactory {
             bytes[1] = 0x00
             bytes[2] = 0xBC
             bytes[3] = 0xD0
-            bytes[4] = UInt8((KnxRouterInterface.knxSourceAddr.addressAsUInt16 >> 8) & 0xFF) // src addr
-            bytes[5] = UInt8(KnxRouterInterface.knxSourceAddr.addressAsUInt16 & 0xFF) // src addr
+            bytes[4] = UInt8((KnxRouterInterface.knxSourceAddr!.addressAsUInt16 >> 8) & 0xFF) // src addr
+            bytes[5] = UInt8(KnxRouterInterface.knxSourceAddr!.addressAsUInt16 & 0xFF) // src addr
 
             bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
             bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr
@@ -207,8 +207,8 @@ open class KnxTelegramFactory {
             bytes[1] = 0x00
             bytes[2] = 0xBC
             bytes[3] = 0xD0
-            bytes[4] = UInt8((KnxRouterInterface.knxSourceAddr.addressAsUInt16 >> 8) & 0xFF) // src addr
-            bytes[5] = UInt8(KnxRouterInterface.knxSourceAddr.addressAsUInt16 & 0xFF) // src addr
+            bytes[4] = UInt8((KnxRouterInterface.knxSourceAddr!.addressAsUInt16 >> 8) & 0xFF) // src addr
+            bytes[5] = UInt8(KnxRouterInterface.knxSourceAddr!.addressAsUInt16 & 0xFF) // src addr
 
             bytes[6] = UInt8((to.addressAsUInt16 >> 8) & 0xFF) // dst addr
             bytes[7] = UInt8(to.addressAsUInt16 & 0xFF)        // dst addr

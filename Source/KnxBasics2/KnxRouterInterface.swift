@@ -60,12 +60,12 @@ open class KnxRouterInterface: NSObject {
 
     /// Property for setting the source address. When using
     /// udpMulticast as connection type this is mandatory,
-    /// and must be set to an address outside of the router's
+    /// and MUST be set to an address outside of the router's
     /// address pool.
-    public static var knxSourceAddr: KnxDeviceAddress = KnxDeviceAddress(fromString: "0.0.0")
+    public static var knxSourceAddr: KnxDeviceAddress? = nil
 
     // Which local interface to use. Default should work for most cases.
-    public static var localInterface: String?
+    public static var localInterface: String? = "en0"
 
     /** Factory function to return an instance of a KnxRouterInterface.
 
@@ -77,9 +77,26 @@ open class KnxRouterInterface: NSObject {
         switch KnxRouterInterface.connectionType {
 
         case .tcpDirect:
+
+            if routerIp == nil {
+                SwiftyBeaver.self.error("Router IP not set!")
+                return nil
+            }
+
             return KnxRouterInterface()
 
         case .udpMulticast:
+
+            if multicastGroup == nil {
+                SwiftyBeaver.self.error("Multicast group not set!")
+                return nil
+            }
+
+            if knxSourceAddr == nil {
+                SwiftyBeaver.self.error("KNX source address not set!")
+                return nil
+            }
+
             return KnxRouterInterface.sharedInstance
 
         default:
@@ -417,13 +434,14 @@ extension KnxRouterInterface : GCDAsyncUdpSocketDelegate {
     open func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data,
                         fromAddress address: Data, withFilterContext filterContext: Any?) {
 
-        log.info("GOT: \(data.hexEncodedString())")
+        log.debug("GOT: \(data.hexEncodedString())")
 
         let dataBytes: [UInt8] = Array(data.subdata(in: 9..<data.count))
 
         let telegram = KnxTelegram(bytes: dataBytes)
 
-        log.info("address: \(telegram.getGroupAddress().string)")
+
+        log.debug("address: \(telegram.getGroupAddress().string)")
 
         if telegram.isWriteRequestOrValueResponse {
             subscriptionMap[telegram.getGroupAddress()]?.subscriptionResponse(sender:self,
